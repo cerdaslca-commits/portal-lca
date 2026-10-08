@@ -2076,7 +2076,7 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
     var p=map[id], sec=p.dataset.sec;
     $$('.menu>li>a').forEach(function(a){a.classList.toggle('on',(a.textContent.trim()===sec)||(sec==='Data & Laporan'&&a.dataset.p==='dampak')||(sec==='Media'&&a.dataset.p==='medsos'))});
     $('#crumb').innerHTML='<a href="#beranda">Beranda</a>'+(id==='beranda'?'':' / '+sec+(p.dataset.title!==sec?' / '+p.dataset.title:''));
-    document.title=(id==='beranda'?'':p.dataset.title+' · ')+'Portal Cerdas Al-Qur\'an';
+    document.title=(id==='beranda'?'':p.dataset.title+' · ')+'Portal Lembaga Cerdas Al-Qur\'an';
     $('#menu').classList.remove('open');$('#burger').setAttribute('aria-expanded','false');
     window.scrollTo(0,0);$('#totop').hidden=id==='beranda';
   }
