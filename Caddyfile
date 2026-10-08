@@ -1,0 +1,23 @@
+{
+	admin off
+	persist_config off
+	auto_https off
+	servers {
+		trusted_proxies static 0.0.0.0/0 ::/0
+	}
+}
+
+:{$PORT:3000} {
+	root * /srv
+	encode zstd gzip
+	@media path /media/*
+	header @media Cache-Control "public, max-age=604800"
+	header /index.html Cache-Control "no-cache"
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+	}
+	respond /health 200
+	try_files {path} /index.html
+	file_server
+}
