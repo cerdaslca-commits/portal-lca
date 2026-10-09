@@ -388,6 +388,14 @@ footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
 @media(max-width:520px){.kal .c{min-height:48px;padding:3px}.kal .c i{display:none}.kal .c.ev:after,.kal .c.sh:after{content:"";position:absolute;right:4px;top:4px;width:6px;height:6px;border-radius:50%;background:var(--gold)}}
 html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]) .kal .c.ev{background:#3b3216;border-color:#8a6d1f}}
+.toc{padding-left:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;margin:10px 0}
+.toc li{background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;font-family:var(--f-ui);font-size:14.5px;line-height:1.35}
+.toc li a{color:var(--ink);text-decoration:none}.toc li a b{color:var(--green)}
+.toc li small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.toc.sah li.soon{opacity:.6}
+.toc.sah li .no{display:inline-block;min-width:26px;color:var(--gold);font-weight:600}
+@media(min-width:861px){.menu>li>a{white-space:nowrap}}
+@media(min-width:861px) and (max-width:1180px){.menu>li>a{padding:13px 9px;font-size:13.5px}}
 .mnow{display:grid;grid-template-columns:1.4fr 1fr;gap:12px}
 .mnow .card.big{border-left:4px solid var(--gold)}
 .mnow .side{display:flex;flex-direction:column;gap:12px}
@@ -440,7 +448,7 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
   <button class="burger" id="burger" type="button" aria-expanded="false">☰ Menu</button>
   <ul class="menu" id="menu">
     <li><a href="#beranda" data-p="beranda">Beranda</a></li>
-    <li class="has"><a href="#tentang" data-p="tentang">Tentang LCA</a>
+    <li class="has"><a href="#tentang" data-p="tentang" data-sec="Tentang LCA">Tentang</a>
       <ul class="sub">
         <li><a href="#tentang">Sejarah &amp; Kiprah</a></li>
         <li><a href="#visi">Visi, Misi &amp; Motto</a></li>
@@ -448,7 +456,7 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
         <li><a href="#departemen">Departemen &amp; Komunitas</a></li>
         <li><a href="#legalitas">Legalitas &amp; Rekomendasi</a></li>
       </ul></li>
-    <li class="has"><a href="#gencar" data-p="gencar">Program GENCAR</a>
+    <li class="has"><a href="#gencar" data-p="gencar" data-sec="Program GENCAR">GENCAR</a>
       <ul class="sub">
         <li><a href="#gencar">Empat Program Inti</a></li>
         <li><a href="#sensus">Sensus Al-Qur'an</a></li>
@@ -466,11 +474,13 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
         <li><a href="#kajian-terbata">Terbata-bata Berpahala Dua</a></li>
         <li><a href="#kajian-malaikat">Doa Malaikat untuk yang Berinfak</a></li>
       </ul></li>
-    <li class="has"><a href="#materi" data-p="materi">Materi Al-Qur'an</a>
+    <li class="has"><a href="#materi" data-p="materi" data-sec="Materi Al-Qur'an">Materi</a>
       <ul class="sub"><li><a href="#materi">Semua Seri &amp; Kitab Rujukan</a></li><li><a href="#materi-1">Seri 1: Al-Qur&#x27;an, Mukjizat Terbesar yang Masih Bisa Disentuh</a></li><li><a href="#materi-2">Seri 2: Adab Membaca Al-Qur&#x27;an Menurut Imam an-Nawawi</a></li><li><a href="#materi-3">Seri 3: Turunnya Al-Qur&#x27;an</a></li><li><a href="#materi-4">Seri 4: Tantangan yang Tak Pernah Terjawab</a></li><li><a href="#materi-5">Seri 5: Satu Huruf, Sepuluh Kebaikan</a></li><li><a href="#materi-6">Seri 6: Sejarah Pengumpulan Mushaf</a></li><li><a href="#materi">Seri lainnya…</a></li></ul></li>
+    <li class="has"><a href="#sirah" data-p="sirah">Sirah</a>
+      <ul class="sub"><li><a href="#sirah">Daftar Isi Sirah &amp; Sahabat</a></li><li><a href="#sirah-1">Sirah Nabawiyah (21 bab)</a></li><li><a href="#sahabat-1">Kisah 60 Sahabat</a></li></ul></li>
     <li class="has"><a href="#kalender" data-p="kalender">Kalender</a>
       <ul class="sub"><li><a href="#kalender">Kalender Hijriah KHGT</a></li><li><a href="#jumat">Keutamaan Hari Jumat</a></li><li><a href="#harbesar">Hari Besar &amp; Puasa Sunnah</a></li></ul></li>
-    <li class="has"><a href="#dampak" data-p="dampak">Data &amp; Laporan</a>
+    <li class="has"><a href="#dampak" data-p="dampak" data-sec="Data &amp; Laporan">Laporan</a>
       <ul class="sub">
         <li><a href="#dampak">Dampak &amp; Wilayah Garapan</a></li>
         <li><a href="#laporan">Laporan Bulanan Agustus 2026</a></li>
@@ -529,6 +539,9 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
 
   <div class="secthead"><h2>Materi Al-Qur'an Pekan Ini</h2><a href="#materi">Semua seri →</a></div>
   <div data-materi-now></div>
+
+  <div class="secthead"><h2>Sirah Nabi &amp; Kisah Sahabat</h2><a href="#sirah">Daftar isi →</a></div>
+  <div class="grid"><a class="card" href="#sirah-1"><span class="k">Sirah Nabawiyah · 21 bab</span><h3>Perjalanan Hidup Rasulullah ﷺ</h3><p>Dari Tahun Gajah, wahyu pertama di Gua Hira, hijrah, hingga Haji Wada'.</p><span class="more">Mulai membaca →</span></a><div data-sahabat-now class="as-card"></div></div>
 
   <div class="secthead"><h2>Kajian Pilihan</h2><a href="#kajian">Semua kajian →</a></div>
   <div class="feature">
@@ -1042,6 +1055,395 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
   <ul class="evlist" data-next-events="24"></ul>
   <h2>Ayyamul Bidh (13, 14, 15 setiap bulan Hijriah)</h2><div class="dalil"><p class="ar">إِذَا صُمْتَ مِنَ الشَّهْرِ ثَلاَثًا فَصُمْ ثَلاَثَ عَشْرَةَ وَأَرْبَعَ عَشْرَةَ وَخَمْسَ عَشْرَةَ</p><p class="tr">"Jika engkau berpuasa tiga hari dalam sebulan, maka berpuasalah pada tanggal 13, 14, dan 15."</p><cite>HR. At-Tirmidzi no. 761 dan An-Nasa'i, dihasankan at-Tirmidzi</cite></div><p>Pada bulan Dzulhijjah, tanggal 13 termasuk hari Tasyrik yang dilarang berpuasa, sehingga puasanya diganti hari lain.</p><h2>Puasa Senin dan Kamis</h2><div class="dalil"><p class="ar">تُعْرَضُ الأَعْمَالُ يَوْمَ الاِثْنَيْنِ وَالْخَمِيسِ، فَأُحِبُّ أَنْ يُعْرَضَ عَمَلِي وَأَنَا صَائِمٌ</p><p class="tr">"Amal-amal diperlihatkan (kepada Allah) setiap hari Senin dan Kamis, maka aku suka amalku diperlihatkan ketika aku sedang berpuasa."</p><cite>HR. At-Tirmidzi no. 747, ia berkata: hasan gharib</cite></div><h2>Muharram: Tasu'a dan Asyura (9 dan 10 Muharram)</h2><div class="dalil"><p class="ar">أَفْضَلُ الصِّيَامِ بَعْدَ رَمَضَانَ شَهْرُ اللَّهِ الْمُحَرَّمُ</p><p class="tr">"Puasa yang paling utama setelah Ramadhan adalah puasa di bulan Allah, Muharram."</p><cite>HR. Muslim no. 1163</cite></div><p>Puasa Asyura diharapkan menghapus dosa setahun yang lalu (HR. Muslim no. 1162), dan Rasulullah ﷺ berniat menambah puasa tanggal 9 (HR. Muslim no. 1134).</p><h2>Ramadhan</h2><div class="dalil"><p class="ar">مَنْ صَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ</p><p class="tr">"Siapa yang berpuasa Ramadhan karena iman dan mengharap pahala, diampuni dosanya yang telah lalu."</p><cite>HR. Bukhari no. 38 dan Muslim no. 760</cite></div><p>Ramadhan adalah bulan diturunkannya Al-Qur'an (QS. Al-Baqarah: 185). Carilah Lailatul Qadar di malam-malam ganjil sepuluh hari terakhir (HR. Bukhari no. 2017). Di bulan ini LCA menggelar Pesantren Kilat Ramadhan dan tadarus bersama.</p><h2>Enam hari di bulan Syawal</h2><div class="dalil"><p class="ar">مَنْ صَامَ رَمَضَانَ ثُمَّ أَتْبَعَهُ سِتًّا مِنْ شَوَّالٍ كَانَ كَصِيَامِ الدَّهْرِ</p><p class="tr">"Siapa yang berpuasa Ramadhan lalu mengiringinya dengan enam hari di bulan Syawal, maka seperti berpuasa setahun penuh."</p><cite>HR. Muslim no. 1164</cite></div><p>Dimulai paling cepat tanggal 2 Syawal, karena 1 Syawal (Idul Fitri) haram berpuasa.</p><h2>Sepuluh hari pertama Dzulhijjah, Arafah, dan Qurban</h2><div class="dalil"><p class="ar">صِيَامُ يَوْمِ عَرَفَةَ أَحْتَسِبُ عَلَى اللَّهِ أَنْ يُكَفِّرَ السَّنَةَ الَّتِي قَبْلَهُ وَالسَّنَةَ الَّتِي بَعْدَهُ</p><p class="tr">"Puasa hari Arafah, aku berharap kepada Allah agar menghapus dosa setahun sebelumnya dan setahun sesudahnya."</p><cite>HR. Muslim no. 1162</cite></div><p>Tidak ada hari-hari yang amal shalih di dalamnya lebih dicintai Allah daripada sepuluh hari pertama Dzulhijjah (HR. Bukhari no. 969). Hari Tasyrik (11–13 Dzulhijjah) adalah hari makan, minum, dan berdzikir (HR. Muslim no. 1141), sehingga tidak berpuasa. Salurkan qurban Anda melalui <a href="#kegiatan">Qurban Bahagia LCA</a>.</p>
   <p class="src">Peringatan Maulid Nabi ﷺ dan Isra Mi'raj dicantumkan karena menjadi hari libur nasional di Indonesia.</p>
+</section>
+
+<!-- ============ SIRAH ============ -->
+<section class="page" id="p-sirah" data-title="Sirah Nabi &amp; Kisah Sahabat" data-sec="Sirah" hidden>
+  <span class="eyebrow">Sirah</span>
+  <h1>Sirah Nabawiyah <em>&amp; Kisah 60 Sahabat</em></h1>
+  <p class="lead">Perjalanan hidup Rasulullah ﷺ dari kelahiran hingga wafat, dan kisah para sahabat yang menjaga serta menyebarkan Al-Qur'an. Disarikan dari kitab-kitab sirah dan tarajim klasik oleh Redaksi LCA. Kisah sahabat bertambah satu setiap Jumat.</p>
+  <div class="secthead"><h2>Kisah sahabat terbaru</h2></div>
+  <div data-sahabat-now></div>
+  <h2>Sirah Nabawiyah: 21 bab</h2>
+  <ol class="toc"><li><a href="#sirah-1"><b>Bab 1.</b> Jazirah Arab dan Nasab Mulia</a><small>Sebelum kelahiran</small></li><li><a href="#sirah-2"><b>Bab 2.</b> Tahun Gajah dan Kelahiran</a><small>± 570 M</small></li><li><a href="#sirah-3"><b>Bab 3.</b> Masa Muda Al-Amin</a><small>Usia 12–35 tahun</small></li><li><a href="#sirah-4"><b>Bab 4.</b> Wahyu Pertama di Gua Hira</a><small>13 tahun sebelum Hijrah (± 610 M)</small></li><li><a href="#sirah-5"><b>Bab 5.</b> Dakwah Secara Diam-diam</a><small>± 3 tahun pertama</small></li><li><a href="#sirah-6"><b>Bab 6.</b> Dakwah Terang-terangan dan Ujian</a><small>Tahun ke-4 kenabian</small></li><li><a href="#sirah-7"><b>Bab 7.</b> Hijrah ke Habasyah</a><small>Tahun ke-5 kenabian</small></li><li><a href="#sirah-8"><b>Bab 8.</b> Islamnya Hamzah dan Umar, lalu Pemboikotan</a><small>Tahun ke-6 hingga ke-10 kenabian</small></li><li><a href="#sirah-9"><b>Bab 9.</b> Tahun Kesedihan dan Perjalanan ke Thaif</a><small>Tahun ke-10 kenabian</small></li><li><a href="#sirah-10"><b>Bab 10.</b> Isra dan Mi&#x27;raj</a><small>Sebelum Hijrah</small></li><li><a href="#sirah-11"><b>Bab 11.</b> Bai&#x27;at Aqabah dan Cahaya dari Yatsrib</a><small>Tahun ke-11 hingga ke-13 kenabian</small></li><li><a href="#sirah-12"><b>Bab 12.</b> Hijrah ke Madinah</a><small>1 Hijriah (622 M)</small></li><li><a href="#sirah-13"><b>Bab 13.</b> Membangun Masyarakat Madinah</a><small>1–2 Hijriah</small></li><li><a href="#sirah-14"><b>Bab 14.</b> Perang Badar</a><small>17 Ramadhan 2 H</small></li><li><a href="#sirah-15"><b>Bab 15.</b> Perang Uhud</a><small>Syawal 3 H</small></li><li><a href="#sirah-16"><b>Bab 16.</b> Perang Khandaq</a><small>5 H</small></li><li><a href="#sirah-17"><b>Bab 17.</b> Perjanjian Hudaibiyah</a><small>Dzulqa&#x27;dah 6 H</small></li><li><a href="#sirah-18"><b>Bab 18.</b> Fathu Makkah</a><small>Ramadhan 8 H</small></li><li><a href="#sirah-19"><b>Bab 19.</b> Tabuk dan Tahun Delegasi</a><small>9 H</small></li><li><a href="#sirah-20"><b>Bab 20.</b> Haji Wada&#x27;</a><small>Dzulhijjah 10 H</small></li><li><a href="#sirah-21"><b>Bab 21.</b> Wafatnya Rasulullah ﷺ</a><small>Rabiul Awal 11 H (632 M)</small></li></ol>
+  <h2>Kisah 60 Sahabat</h2>
+  <p>Nama yang sudah bertaut bisa dibaca sekarang. Yang lain akan terbit setiap Jumat.</p>
+  <ol class="toc sah" id="sahabat-list"></ol>
+  <h2>Kitab rujukan</h2>
+  <p>Untuk pendalaman, kitab-kitab ini dapat dikaji bersama asatidz. Dua buku modern terakhir sangat dianjurkan untuk dimiliki dalam terjemahan resminya.</p>
+  <div class="grid"><div class="card"><span class="k">Ibnu Hisyam (w. 218 H)</span><h3>As-Sirah an-Nabawiyah</h3><p>Ringkasan sirah Ibnu Ishaq, rujukan sirah tertua yang sampai kepada kita.</p></div><div class="card"><span class="k">Ibnu Sa'd (w. 230 H)</span><h3>Ath-Thabaqat al-Kubra</h3><p>Biografi Nabi ﷺ dan para sahabat berdasarkan generasi.</p></div><div class="card"><span class="k">Ibnu Katsir (w. 774 H)</span><h3>Al-Bidayah wa an-Nihayah</h3><p>Sejarah sejak penciptaan, termasuk sirah dan masa sahabat.</p></div><div class="card"><span class="k">Ibnu Qayyim al-Jauziyyah (w. 751 H)</span><h3>Zad al-Ma'ad</h3><p>Sirah dengan penjelasan fikih dan hikmah setiap peristiwa.</p></div><div class="card"><span class="k">Ibnu Abdil Barr (w. 463 H)</span><h3>Al-Isti'ab fi Ma'rifat al-Ashhab</h3><p>Ensiklopedia biografi para sahabat.</p></div><div class="card"><span class="k">Adz-Dzahabi (w. 748 H)</span><h3>Siyar A'lam an-Nubala'</h3><p>Biografi tokoh-tokoh Islam, dimulai dari para sahabat.</p></div><div class="card"><span class="k">Ibnu Hajar al-'Asqalani (w. 852 H)</span><h3>Al-Ishabah fi Tamyiz ash-Shahabah</h3><p>Ensiklopedia sahabat terlengkap.</p></div><div class="card"><span class="k">Shafiyurrahman al-Mubarakfuri</span><h3>Ar-Rahiq al-Makhtum</h3><p>Buku sirah modern pemenang lomba sirah Rabithah 'Alam Islami; tersedia terjemahan Indonesia.</p></div><div class="card"><span class="k">Khalid Muhammad Khalid</span><h3>Rijal Haula ar-Rasul</h3><p>Kisah para sahabat Rasulullah ﷺ; terjemahannya dikenal sebagai "60 Sahabat Rasulullah".</p></div></div>
+</section>
+<section class="page" id="p-sirah-1" data-title="Sirah 1: Jazirah Arab dan Nasab Mulia" data-sec="Sirah" data-bab="Sebelum kelahiran" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 1 dari 21 · Sebelum kelahiran</span>
+  <h1>Jazirah Arab dan Nasab Mulia</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 1: Jazirah Arab dan Nasab Mulia">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Sebelum Rasulullah ﷺ lahir, Jazirah Arab hidup dalam kesukuan. Ka'bah yang dibangun Nabi Ibrahim dan Ismail 'alaihimassalam telah dipenuhi berhala, walaupun sebagian kecil orang masih memegang ajaran tauhid Nabi Ibrahim (disebut kaum <i>hanif</i>).</p>
+<p>Beliau adalah Muhammad bin Abdullah bin Abdul Muththalib bin Hasyim, dari kabilah Quraisy, keturunan Nabi Ismail bin Ibrahim. Bani Hasyim dihormati karena mengurus pemberian minum (<i>siqayah</i>) dan jamuan bagi jamaah haji di Makkah.</p>
+<div class="dalil"><p class="tr">"Sesungguhnya Allah memilih Kinanah dari keturunan Ismail, memilih Quraisy dari Kinanah, memilih Bani Hasyim dari Quraisy, dan memilihku dari Bani Hasyim."</p><cite>HR. Muslim no. 2276</cite></div>
+<p>Pelajarannya: Allah menyiapkan lingkungan dan keturunan terbaik bagi pembawa risalah-Nya, dan risalah itu datang ketika manusia sangat membutuhkannya.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><span></span><a href="#sirah">Daftar isi</a><a href="#sirah-2">Bab 2 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-2" data-title="Sirah 2: Tahun Gajah dan Kelahiran" data-sec="Sirah" data-bab="± 570 M" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 2 dari 21 · ± 570 M</span>
+  <h1>Tahun Gajah dan Kelahiran</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 2: Tahun Gajah dan Kelahiran">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Rasulullah ﷺ lahir di Makkah pada hari Senin, bulan Rabiul Awal, Tahun Gajah, yaitu tahun ketika pasukan bergajah Abrahah datang hendak menghancurkan Ka'bah lalu dibinasakan Allah (QS. Al-Fil). Tahun itu bertepatan dengan sekitar 570–571 Masehi.</p>
+<p>Ayahnya, Abdullah, wafat sebelum beliau lahir. Sebagaimana kebiasaan bangsawan Makkah, beliau disusukan kepada wanita dusun, Halimah as-Sa'diyah dari Bani Sa'd, yang mendapati keberkahan melimpah sejak mengasuh beliau.</p>
+<div class="dalil"><p class="tr">"Rasulullah ﷺ ditanya tentang puasa hari Senin, beliau menjawab: "Itu adalah hari aku dilahirkan dan hari aku diutus (atau diturunkan wahyu kepadaku).""</p><cite>HR. Muslim no. 1162</cite></div>
+<p>Ketika berusia sekitar enam tahun, ibunda beliau, Aminah, wafat di Abwa' sepulang dari Yatsrib. Beliau lalu diasuh kakeknya, Abdul Muththalib, dan setelah sang kakek wafat ketika beliau berusia delapan tahun, diasuh pamannya, Abu Thalib.</p>
+<p>Yatim sejak kecil, beliau tumbuh dalam penjagaan Allah. Bagi anak-anak yatim yang belajar mengaji di majelis LCA, inilah teladan terbaik: keterbatasan bukan penghalang kemuliaan.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-1">‹ Bab 1</a><a href="#sirah">Daftar isi</a><a href="#sirah-3">Bab 3 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-3" data-title="Sirah 3: Masa Muda Al-Amin" data-sec="Sirah" data-bab="Usia 12–35 tahun" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 3 dari 21 · Usia 12–35 tahun</span>
+  <h1>Masa Muda Al-Amin</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 3: Masa Muda Al-Amin">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Masa muda Rasulullah ﷺ dipenuhi kerja keras dan kejujuran. Beliau pernah menggembalakan kambing penduduk Makkah dengan upah beberapa qirath (HR. Bukhari no. 2262), lalu berdagang hingga ke negeri Syam.</p>
+<p>Beliau ikut dalam <i>Hilful Fudhul</i>, sebuah perjanjian para pemuka Quraisy untuk membela orang yang dizalimi. Kejujuran beliau begitu dikenal sehingga penduduk Makkah menjulukinya <b>Al-Amin</b>, orang yang tepercaya.</p>
+<p>Pada usia 25 tahun, beliau menikah dengan Khadijah binti Khuwailid, saudagar mulia yang sebelumnya mempercayakan barang dagangannya kepada beliau. Menurut pendapat yang masyhur, Khadijah saat itu berusia 40 tahun.</p>
+<p>Ketika berusia 35 tahun, Quraisy merenovasi Ka'bah dan berselisih tentang siapa yang berhak meletakkan Hajar Aswad. Mereka sepakat menyerahkan keputusan kepada orang pertama yang masuk. Orang itu adalah Muhammad. Beliau meletakkan Hajar Aswad di atas sehelai kain, meminta setiap kepala kabilah memegang ujungnya, lalu beliau sendiri meletakkannya di tempatnya. Perselisihan pun selesai tanpa pertumpahan darah.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-2">‹ Bab 2</a><a href="#sirah">Daftar isi</a><a href="#sirah-4">Bab 4 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-4" data-title="Sirah 4: Wahyu Pertama di Gua Hira" data-sec="Sirah" data-bab="13 tahun sebelum Hijrah (± 610 M)" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 4 dari 21 · 13 tahun sebelum Hijrah (± 610 M)</span>
+  <h1>Wahyu Pertama di Gua Hira</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 4: Wahyu Pertama di Gua Hira">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Menjelang usia 40 tahun, Rasulullah ﷺ gemar menyendiri (<i>tahannuts</i>) di Gua Hira. Di sanalah malaikat Jibril datang membawa wahyu pertama.</p>
+<div class="dalil"><p class="ar">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ ۝ خَلَقَ الْإِنسَانَ مِنْ عَلَقٍ ۝ اقْرَأْ وَرَبُّكَ الْأَكْرَمُ ۝ الَّذِي عَلَّمَ بِالْقَلَمِ ۝ عَلَّمَ الْإِنسَانَ مَا لَمْ يَعْلَمْ</p><p class="tr">"Bacalah dengan nama Tuhanmu yang menciptakan. Dia menciptakan manusia dari segumpal darah. Bacalah, dan Tuhanmulah Yang Mahamulia, yang mengajar dengan pena, mengajarkan manusia apa yang tidak diketahuinya."</p><cite>QS. Al-'Alaq: 1–5</cite></div>
+<p>Beliau pulang dalam keadaan gemetar dan berkata, "Selimutilah aku." Khadijah menenangkan beliau dengan kalimat yang abadi: Allah tidak akan menghinakanmu, karena engkau menyambung silaturahim, menanggung beban orang lemah, memberi orang yang tidak punya, memuliakan tamu, dan menolong orang yang tertimpa musibah. Khadijah lalu membawa beliau kepada sepupunya, Waraqah bin Naufal, yang membenarkan bahwa itulah Namus (Jibril) yang dulu datang kepada Musa (HR. Bukhari no. 3).</p>
+<p>Wahyu pertama adalah perintah <b>membaca</b>. Inilah akar gerakan LCA: umat Nabi yang pertama kali diperintah "Iqra'" semestinya tidak ada yang buta huruf Al-Qur'an.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-3">‹ Bab 3</a><a href="#sirah">Daftar isi</a><a href="#sirah-5">Bab 5 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-5" data-title="Sirah 5: Dakwah Secara Diam-diam" data-sec="Sirah" data-bab="± 3 tahun pertama" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 5 dari 21 · ± 3 tahun pertama</span>
+  <h1>Dakwah Secara Diam-diam</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 5: Dakwah Secara Diam-diam">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Setelah wahyu berikutnya turun (QS. Al-Muddatstsir), Rasulullah ﷺ mulai berdakwah secara diam-diam kepada keluarga dan sahabat terdekat.</p>
+<p>Yang pertama beriman adalah Khadijah dari kalangan wanita, Abu Bakar ash-Shiddiq dari kalangan laki-laki dewasa, Ali bin Abi Thalib dari kalangan anak-anak, dan Zaid bin Haritsah dari kalangan bekas budak. Melalui dakwah Abu Bakar, masuk Islam pula Utsman bin Affan, Zubair bin Awwam, Abdurrahman bin Auf, Sa'd bin Abi Waqqash, dan Thalhah bin Ubaidillah.</p>
+<p>Kaum muslimin awal berkumpul belajar di rumah Al-Arqam bin Abil Arqam di dekat bukit Shafa. Rumah itu dikenal sebagai <b>Darul Arqam</b>, sekolah pertama dalam sejarah Islam.</p>
+<p>Darul Arqam adalah contoh majelis kecil di rumah: sedikit orangnya, tetapi melahirkan generasi terbaik. Majelis-majelis LCA di rumah warga mengikuti jejak itu.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-4">‹ Bab 4</a><a href="#sirah">Daftar isi</a><a href="#sirah-6">Bab 6 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-6" data-title="Sirah 6: Dakwah Terang-terangan dan Ujian" data-sec="Sirah" data-bab="Tahun ke-4 kenabian" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 6 dari 21 · Tahun ke-4 kenabian</span>
+  <h1>Dakwah Terang-terangan dan Ujian</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 6: Dakwah Terang-terangan dan Ujian">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Turun perintah untuk memperingatkan kerabat terdekat (QS. Asy-Syu'ara': 214). Rasulullah ﷺ naik ke bukit Shafa dan memanggil kabilah-kabilah Quraisy. Abu Lahab, pamannya sendiri, menolak dengan kasar, lalu turunlah surat Al-Lahab (HR. Bukhari no. 4770).</p>
+<p>Sejak itu, penentangan Quraisy makin keras. Kaum muslimin yang lemah disiksa: Bilal bin Rabah dijemur di padang pasir dan ditindih batu, namun ia terus berkata "Ahad, Ahad". Keluarga Yasir disiksa hingga Sumayyah, ibunda Ammar, gugur sebagai syahidah pertama dalam Islam.</p>
+<p>Rasulullah ﷺ juga mengalami gangguan: dicaci, dilempari kotoran saat shalat, dan dituduh penyihir serta penyair. Quraisy bahkan menawarkan harta, kedudukan, dan kekuasaan asalkan beliau berhenti berdakwah. Beliau menolak semuanya.</p>
+<p>Pelajarannya: kebenaran tidak selalu langsung diterima, dan kesabaran para pendahulu adalah alasan Islam sampai kepada kita.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-5">‹ Bab 5</a><a href="#sirah">Daftar isi</a><a href="#sirah-7">Bab 7 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-7" data-title="Sirah 7: Hijrah ke Habasyah" data-sec="Sirah" data-bab="Tahun ke-5 kenabian" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 7 dari 21 · Tahun ke-5 kenabian</span>
+  <h1>Hijrah ke Habasyah</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 7: Hijrah ke Habasyah">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Ketika penyiksaan makin berat, Rasulullah ﷺ mengizinkan sebagian sahabat berhijrah ke Habasyah (Etiopia), negeri yang dipimpin raja Nasrani yang adil, An-Najasyi.</p>
+<p>Rombongan pertama, termasuk Utsman bin Affan dan istrinya Ruqayyah putri Rasulullah, berangkat pada tahun kelima kenabian. Rombongan kedua yang lebih besar dipimpin Ja'far bin Abi Thalib.</p>
+<p>Quraisy mengutus Amr bin al-Ash untuk meminta An-Najasyi memulangkan mereka. Di hadapan raja, Ja'far menjelaskan keadaan jahiliyah dan ajaran Islam, lalu membacakan awal surat Maryam. An-Najasyi menangis dan menolak menyerahkan kaum muslimin. Kisah ini diriwayatkan Imam Ahmad dari Ummu Salamah.</p>
+<p>Hijrah ke Habasyah mengajarkan bahwa menjaga iman kadang menuntut pengorbanan meninggalkan kampung halaman, dan bahwa keadilan bisa ditemukan bahkan di negeri yang berbeda keyakinan.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-6">‹ Bab 6</a><a href="#sirah">Daftar isi</a><a href="#sirah-8">Bab 8 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-8" data-title="Sirah 8: Islamnya Hamzah dan Umar, lalu Pemboikotan" data-sec="Sirah" data-bab="Tahun ke-6 hingga ke-10 kenabian" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 8 dari 21 · Tahun ke-6 hingga ke-10 kenabian</span>
+  <h1>Islamnya Hamzah dan Umar, lalu Pemboikotan</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 8: Islamnya Hamzah dan Umar, lalu Pemboikotan">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Pada tahun keenam kenabian, dua tokoh Quraisy yang disegani masuk Islam: Hamzah bin Abdul Muththalib, paman Nabi, lalu Umar bin Khaththab. Kaum muslimin menjadi lebih berani beribadah secara terbuka.</p>
+<p>Merasa terdesak, Quraisy membuat perjanjian memboikot Bani Hasyim dan Bani Muththalib: tidak berjual beli, tidak menikah, dan tidak bergaul dengan mereka. Perjanjian itu digantung di Ka'bah. Rasulullah ﷺ beserta keluarganya terkepung di lembah <b>Syi'ib Abu Thalib</b> selama sekitar tiga tahun, hingga mereka memakan dedaunan karena kelaparan.</p>
+<p>Pemboikotan berakhir ketika sebagian tokoh Quraisy yang masih punya hati nurani bangkit membatalkannya, dan didapati lembaran perjanjian itu telah dimakan rayap kecuali tulisan nama Allah.</p>
+<p>Kesabaran dalam kekurangan adalah bagian dari sejarah dakwah. Banyak guru ngaji kampung hari ini mengajar dalam keterbatasan yang serupa.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-7">‹ Bab 7</a><a href="#sirah">Daftar isi</a><a href="#sirah-9">Bab 9 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-9" data-title="Sirah 9: Tahun Kesedihan dan Perjalanan ke Thaif" data-sec="Sirah" data-bab="Tahun ke-10 kenabian" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 9 dari 21 · Tahun ke-10 kenabian</span>
+  <h1>Tahun Kesedihan dan Perjalanan ke Thaif</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 9: Tahun Kesedihan dan Perjalanan ke Thaif">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Tak lama setelah pemboikotan berakhir, Abu Thalib wafat, lalu disusul Khadijah. Kehilangan dua pembela terdekat ini membuat tahun itu dikenal sebagai <b>'Amul Huzn</b>, tahun kesedihan.</p>
+<p>Rasulullah ﷺ kemudian berjalan ke Thaif bersama Zaid bin Haritsah untuk mengajak Bani Tsaqif. Mereka menolak, bahkan menyuruh anak-anak dan budak melempari beliau dengan batu hingga kaki beliau berdarah.</p>
+<p>Dalam perjalanan pulang, malaikat penjaga gunung datang menawarkan untuk menimpakan dua gunung kepada penduduk Thaif. Beliau menjawab:</p>
+<div class="dalil"><p class="tr">"Bahkan aku berharap Allah akan mengeluarkan dari tulang sulbi mereka orang-orang yang menyembah Allah semata dan tidak menyekutukan-Nya dengan sesuatu pun."</p><cite>HR. Bukhari no. 3231 dan Muslim no. 1795</cite></div>
+<p>Doa itu terkabul: Bani Tsaqif kelak masuk Islam. Inilah akhlak seorang pendakwah: ditolak, tetapi tetap mendoakan kebaikan.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-8">‹ Bab 8</a><a href="#sirah">Daftar isi</a><a href="#sirah-10">Bab 10 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-10" data-title="Sirah 10: Isra dan Mi&#x27;raj" data-sec="Sirah" data-bab="Sebelum Hijrah" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 10 dari 21 · Sebelum Hijrah</span>
+  <h1>Isra dan Mi'raj</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 10: Isra dan Mi&#x27;raj">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Di tengah kesedihan, Allah memuliakan Rasul-Nya dengan perjalanan malam dari Masjidil Haram ke Masjidil Aqsha (Isra), lalu naik ke langit hingga Sidratul Muntaha (Mi'raj).</p>
+<div class="dalil"><p class="ar">سُبْحَانَ الَّذِي أَسْرَىٰ بِعَبْدِهِ لَيْلًا مِّنَ الْمَسْجِدِ الْحَرَامِ إِلَى الْمَسْجِدِ الْأَقْصَى الَّذِي بَارَكْنَا حَوْلَهُ</p><p class="tr">"Mahasuci Allah yang telah memperjalankan hamba-Nya pada malam hari dari Masjidil Haram ke Masjidil Aqsha yang telah Kami berkahi sekelilingnya."</p><cite>QS. Al-Isra': 1</cite></div>
+<p>Dalam peristiwa inilah shalat lima waktu diwajibkan. Awalnya lima puluh, lalu atas saran Nabi Musa, Rasulullah ﷺ berulang kali memohon keringanan hingga menjadi lima waktu dengan pahala lima puluh (HR. Bukhari no. 349 dan Muslim no. 162).</p>
+<p>Keesokan harinya, kaum Quraisy mengejek kabar ini. Abu Bakar justru berkata bahwa jika beliau yang mengatakannya, maka itu benar. Sejak itu ia dijuluki <b>ash-Shiddiq</b>.</p>
+<p>Waktu peristiwa ini diperselisihkan para ulama. Di Indonesia, peringatannya ditetapkan setiap 27 Rajab.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-9">‹ Bab 9</a><a href="#sirah">Daftar isi</a><a href="#sirah-11">Bab 11 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-11" data-title="Sirah 11: Bai&#x27;at Aqabah dan Cahaya dari Yatsrib" data-sec="Sirah" data-bab="Tahun ke-11 hingga ke-13 kenabian" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 11 dari 21 · Tahun ke-11 hingga ke-13 kenabian</span>
+  <h1>Bai'at Aqabah dan Cahaya dari Yatsrib</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 11: Bai&#x27;at Aqabah dan Cahaya dari Yatsrib">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Pada musim haji, Rasulullah ﷺ menemui kabilah-kabilah yang datang ke Makkah. Sekelompok orang dari Yatsrib (Madinah), dari suku Khazraj, menerima ajakan beliau.</p>
+<p>Tahun berikutnya, dua belas orang dari Yatsrib berbai'at kepada beliau di bukit Aqabah (<b>Bai'at Aqabah pertama</b>) untuk tidak menyekutukan Allah, tidak mencuri, tidak berzina, dan tidak membunuh anak. Rasulullah ﷺ mengutus <b>Mush'ab bin Umair</b> untuk mengajarkan Al-Qur'an dan Islam kepada mereka.</p>
+<p>Mush'ab berhasil. Pada musim haji berikutnya, lebih dari tujuh puluh orang datang dan berbai'at untuk membela Rasulullah ﷺ sebagaimana membela keluarga mereka sendiri (<b>Bai'at Aqabah kedua</b>). Pintu hijrah pun terbuka.</p>
+<p>Mush'ab bin Umair adalah "guru ngaji" pertama yang diutus ke sebuah negeri. Dari satu guru, lahirlah masyarakat Madinah. Inilah teladan program pendidikan LCA: satu guru yang ikhlas bisa mengubah satu kampung.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-10">‹ Bab 10</a><a href="#sirah">Daftar isi</a><a href="#sirah-12">Bab 12 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-12" data-title="Sirah 12: Hijrah ke Madinah" data-sec="Sirah" data-bab="1 Hijriah (622 M)" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 12 dari 21 · 1 Hijriah (622 M)</span>
+  <h1>Hijrah ke Madinah</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 12: Hijrah ke Madinah">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Para sahabat berhijrah ke Madinah secara bertahap. Quraisy lalu bermufakat untuk membunuh Rasulullah ﷺ. Malam itu, Ali bin Abi Thalib tidur di ranjang beliau, sementara beliau keluar bersama Abu Bakar.</p>
+<p>Keduanya bersembunyi di Gua Tsur selama tiga malam. Ketika para pengejar sudah berada di mulut gua, Abu Bakar cemas, dan Rasulullah ﷺ menenangkannya.</p>
+<div class="dalil"><p class="ar">إِذْ يَقُولُ لِصَاحِبِهِ لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا</p><p class="tr">"Ketika dia berkata kepada sahabatnya, "Jangan engkau bersedih, sesungguhnya Allah bersama kita.""</p><cite>QS. At-Taubah: 40</cite></div>
+<p>Mereka tiba di Quba dan membangun masjid pertama, Masjid Quba, lalu memasuki Madinah disambut gembira kaum Anshar. Peristiwa hijrah kelak dijadikan awal penanggalan Islam oleh Khalifah Umar bin Khaththab, dimulai dari bulan Muharram tahun hijrah.</p>
+<p>Kalender Hijriah yang tampil di portal ini, KHGT, adalah kelanjutan dari keputusan para sahabat tersebut.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-11">‹ Bab 11</a><a href="#sirah">Daftar isi</a><a href="#sirah-13">Bab 13 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-13" data-title="Sirah 13: Membangun Masyarakat Madinah" data-sec="Sirah" data-bab="1–2 Hijriah" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 13 dari 21 · 1–2 Hijriah</span>
+  <h1>Membangun Masyarakat Madinah</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 13: Membangun Masyarakat Madinah">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Langkah pertama Rasulullah ﷺ di Madinah adalah membangun <b>Masjid Nabawi</b>, pusat ibadah, pendidikan, dan pemerintahan. Di sisinya ada <i>shuffah</i>, tempat para sahabat miskin tinggal sambil menuntut ilmu.</p>
+<p>Langkah kedua, beliau <b>mempersaudarakan kaum Muhajirin dan Anshar</b>. Sa'd bin ar-Rabi' dari Anshar, misalnya, menawarkan separuh hartanya kepada Abdurrahman bin Auf. Abdurrahman berterima kasih dan hanya meminta ditunjukkan jalan ke pasar (HR. Bukhari no. 2048).</p>
+<p>Langkah ketiga, beliau membuat perjanjian tertulis yang mengatur hubungan kaum muslimin, Yahudi, dan kabilah-kabilah Madinah, yang dikenal sebagai <b>Piagam Madinah</b>.</p>
+<p>Masjid, persaudaraan, dan aturan bersama adalah tiga pilar masyarakat. Gerakan GENCAR bertumpu pada pilar yang sama: majelis Al-Qur'an, kebersamaan warga, dan kesepakatan dengan desa.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-12">‹ Bab 12</a><a href="#sirah">Daftar isi</a><a href="#sirah-14">Bab 14 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-14" data-title="Sirah 14: Perang Badar" data-sec="Sirah" data-bab="17 Ramadhan 2 H" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 14 dari 21 · 17 Ramadhan 2 H</span>
+  <h1>Perang Badar</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 14: Perang Badar">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Perang Badar adalah pertempuran besar pertama antara kaum muslimin dan kaum musyrikin Quraisy. Sekitar 313 sahabat dengan perlengkapan sederhana berhadapan dengan sekitar seribu pasukan Quraisy.</p>
+<p>Malam sebelum perang, Rasulullah ﷺ bermunajat panjang memohon pertolongan Allah hingga selendang beliau jatuh dari pundaknya (HR. Muslim no. 1763). Allah menurunkan bantuan malaikat (QS. Al-Anfal: 9).</p>
+<div class="dalil"><p class="ar">وَلَقَدْ نَصَرَكُمُ اللَّهُ بِبَدْرٍ وَأَنتُمْ أَذِلَّةٌ</p><p class="tr">"Sungguh Allah telah menolong kamu dalam Perang Badar, padahal kamu dalam keadaan lemah."</p><cite>QS. Ali 'Imran: 123</cite></div>
+<p>Kaum muslimin menang. Tokoh-tokoh Quraisy seperti Abu Jahal terbunuh. Para tawanan diperlakukan dengan baik, dan sebagian dari mereka dibebaskan dengan tebusan mengajarkan baca-tulis kepada anak-anak Madinah.</p>
+<p>Tebusan berupa mengajar membaca: betapa tingginya nilai pendidikan dalam Islam sejak awal.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-13">‹ Bab 13</a><a href="#sirah">Daftar isi</a><a href="#sirah-15">Bab 15 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-15" data-title="Sirah 15: Perang Uhud" data-sec="Sirah" data-bab="Syawal 3 H" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 15 dari 21 · Syawal 3 H</span>
+  <h1>Perang Uhud</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 15: Perang Uhud">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Setahun setelah Badar, Quraisy datang membalas dengan sekitar tiga ribu pasukan. Rasulullah ﷺ menempatkan lima puluh pemanah di atas bukit dan berpesan agar mereka tidak meninggalkan posisi apa pun yang terjadi.</p>
+<p>Kaum muslimin sempat unggul. Namun sebagian besar pemanah turun mengira perang telah usai. Pasukan berkuda Quraisy di bawah Khalid bin Walid, yang saat itu belum masuk Islam, memutar dan menyerang dari belakang. Barisan kaum muslimin kocar-kacir, Rasulullah ﷺ terluka, dan tersiar kabar beliau terbunuh.</p>
+<p>Sekitar tujuh puluh sahabat gugur sebagai syuhada, di antaranya <b>Hamzah bin Abdul Muththalib</b>, Sayyidus Syuhada, dan Mush'ab bin Umair.</p>
+<p>Allah menurunkan ayat-ayat dalam surat Ali 'Imran sebagai pelajaran tentang ketaatan pada pemimpin, bahaya cinta dunia, dan cara bangkit setelah kekalahan. Disiplin pada amanah sekecil apa pun bisa menentukan nasib banyak orang.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-14">‹ Bab 14</a><a href="#sirah">Daftar isi</a><a href="#sirah-16">Bab 16 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-16" data-title="Sirah 16: Perang Khandaq" data-sec="Sirah" data-bab="5 H" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 16 dari 21 · 5 H</span>
+  <h1>Perang Khandaq</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 16: Perang Khandaq">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Kabilah-kabilah Arab bersekutu dengan Quraisy dan menyerang Madinah dengan sekitar sepuluh ribu pasukan. Peristiwa ini juga disebut Perang Ahzab (pasukan sekutu).</p>
+<p>Atas usul <b>Salman al-Farisi</b>, kaum muslimin menggali parit (<i>khandaq</i>) di sisi utara Madinah, strategi yang belum dikenal bangsa Arab. Rasulullah ﷺ ikut menggali bersama para sahabat dalam keadaan lapar hingga mengikat batu di perut. Ketika menghantam batu besar, beliau mengabarkan akan dibukanya negeri Syam, Persia, dan Yaman.</p>
+<p>Pengepungan berlangsung berminggu-minggu. Allah lalu mengirim angin kencang di malam yang dingin hingga perkemahan pasukan sekutu porak-poranda, dan mereka pulang tanpa hasil (QS. Al-Ahzab: 9).</p>
+<p>Pelajarannya: pemimpin bekerja bersama rakyatnya, ide yang baik diterima dari siapa pun, dan pertolongan Allah datang setelah ikhtiar maksimal.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-15">‹ Bab 15</a><a href="#sirah">Daftar isi</a><a href="#sirah-17">Bab 17 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-17" data-title="Sirah 17: Perjanjian Hudaibiyah" data-sec="Sirah" data-bab="Dzulqa&#x27;dah 6 H" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 17 dari 21 · Dzulqa&#x27;dah 6 H</span>
+  <h1>Perjanjian Hudaibiyah</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 17: Perjanjian Hudaibiyah">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Rasulullah ﷺ berangkat bersama sekitar 1.400 sahabat untuk berumrah. Quraisy menghadang mereka di Hudaibiyah, dekat Makkah.</p>
+<p>Setelah perundingan, disepakati perjanjian yang sekilas merugikan kaum muslimin: mereka harus pulang tahun itu dan baru boleh berumrah tahun depan, gencatan senjata sepuluh tahun, dan orang Makkah yang lari ke Madinah harus dikembalikan. Sebagian sahabat, termasuk Umar, merasa berat.</p>
+<p>Namun Allah menyebutnya sebagai kemenangan yang nyata (QS. Al-Fath: 1). Di masa damai, dakwah menyebar luas. Jumlah orang yang masuk Islam dalam dua tahun setelahnya melebihi jumlah sebelumnya. Rasulullah ﷺ juga mengirim surat ajakan masuk Islam kepada para raja, di antaranya Heraklius (Romawi), Kisra (Persia), Muqauqis (Mesir), dan An-Najasyi.</p>
+<p>Kemenangan tidak selalu tampak di awal. Kesabaran dan kesediaan berdamai sering membuka jalan dakwah yang lebih lebar.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-16">‹ Bab 16</a><a href="#sirah">Daftar isi</a><a href="#sirah-18">Bab 18 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-18" data-title="Sirah 18: Fathu Makkah" data-sec="Sirah" data-bab="Ramadhan 8 H" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 18 dari 21 · Ramadhan 8 H</span>
+  <h1>Fathu Makkah</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 18: Fathu Makkah">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Quraisy melanggar perjanjian Hudaibiyah dengan membantu sekutunya menyerang sekutu kaum muslimin. Rasulullah ﷺ lalu berangkat dengan sekitar sepuluh ribu pasukan menuju Makkah.</p>
+<p>Makkah ditaklukkan hampir tanpa pertumpahan darah. Rasulullah ﷺ memasukinya dengan menundukkan kepala karena tawadhu'. Beliau menghancurkan berhala-berhala di sekitar Ka'bah sambil membaca:</p>
+<div class="dalil"><p class="ar">وَقُلْ جَاءَ الْحَقُّ وَزَهَقَ الْبَاطِلُ ۚ إِنَّ الْبَاطِلَ كَانَ زَهُوقًا</p><p class="tr">"Dan katakanlah, "Kebenaran telah datang dan yang batil telah lenyap." Sungguh, yang batil itu pasti lenyap."</p><cite>QS. Al-Isra': 81; HR. Bukhari no. 4287</cite></div>
+<p>Kepada penduduk Makkah yang dulu mengusir dan memerangi beliau, Rasulullah ﷺ memberi pengampunan umum. Bilal bin Rabah, bekas budak yang dulu disiksa, naik ke atas Ka'bah mengumandangkan azan.</p>
+<p>Kemenangan terbesar dirayakan dengan tawadhu' dan pemaafan. Setelah itu, orang-orang masuk Islam berbondong-bondong (QS. An-Nashr).</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-17">‹ Bab 17</a><a href="#sirah">Daftar isi</a><a href="#sirah-19">Bab 19 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-19" data-title="Sirah 19: Tabuk dan Tahun Delegasi" data-sec="Sirah" data-bab="9 H" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 19 dari 21 · 9 H</span>
+  <h1>Tabuk dan Tahun Delegasi</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 19: Tabuk dan Tahun Delegasi">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Mendengar kabar Romawi bersiap menyerang, Rasulullah ﷺ menyerukan perang ke Tabuk di musim panas yang sangat terik dan saat paceklik. Pasukan ini disebut <b>Jaisyul 'Usrah</b>, pasukan masa sulit.</p>
+<p>Para sahabat berlomba berinfak. Utsman bin Affan membiayai sebagian besar perlengkapan pasukan. Abu Bakar membawa seluruh hartanya, dan Umar membawa separuhnya. Orang-orang miskin yang tidak punya kendaraan menangis karena tidak bisa ikut (QS. At-Taubah: 92). Pasukan tiba di Tabuk, tetapi Romawi tidak datang menghadapi mereka.</p>
+<p>Tahun kesembilan Hijriah juga disebut <b>'Amul Wufud</b>, tahun delegasi. Kabilah-kabilah dari seluruh Jazirah Arab datang ke Madinah untuk menyatakan keislaman dan belajar agama.</p>
+<p>Infak di masa sulit adalah ukuran iman. Para donatur yang tetap berinfak untuk Al-Qur'an saat ekonomi sedang berat meneladani para sahabat di masa Tabuk.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-18">‹ Bab 18</a><a href="#sirah">Daftar isi</a><a href="#sirah-20">Bab 20 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-20" data-title="Sirah 20: Haji Wada&#x27;" data-sec="Sirah" data-bab="Dzulhijjah 10 H" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 20 dari 21 · Dzulhijjah 10 H</span>
+  <h1>Haji Wada'</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 20: Haji Wada&#x27;">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Pada tahun kesepuluh Hijriah, Rasulullah ﷺ menunaikan haji bersama lebih dari seratus ribu kaum muslimin. Inilah satu-satunya haji beliau, yang dikenal sebagai <b>Haji Wada'</b> (haji perpisahan).</p>
+<p>Di Arafah, beliau berkhutbah menegaskan pokok-pokok ajaran Islam: kehormatan darah, harta, dan kehormatan manusia; penghapusan riba dan balas dendam jahiliyah; berbuat baik kepada wanita; dan berpegang teguh pada Kitabullah (HR. Muslim no. 1218).</p>
+<div class="dalil"><p class="ar">الْيَوْمَ أَكْمَلْتُ لَكُمْ دِينَكُمْ وَأَتْمَمْتُ عَلَيْكُمْ نِعْمَتِي وَرَضِيتُ لَكُمُ الْإِسْلَامَ دِينًا</p><p class="tr">"Pada hari ini telah Aku sempurnakan agamamu untukmu, telah Aku cukupkan nikmat-Ku bagimu, dan telah Aku ridai Islam sebagai agamamu."</p><cite>QS. Al-Ma'idah: 3, turun di Arafah (HR. Bukhari no. 45)</cite></div>
+<p>Dalam khutbah itu, beliau berpesan agar meninggalkan Kitabullah sebagai pegangan yang tidak akan menyesatkan selama dipegang teguh. Pesan ini menjadi alasan setiap muslim wajib dekat dengan Al-Qur'an: membacanya, memahaminya, dan mengamalkannya.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-19">‹ Bab 19</a><a href="#sirah">Daftar isi</a><a href="#sirah-21">Bab 21 ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sirah-21" data-title="Sirah 21: Wafatnya Rasulullah ﷺ" data-sec="Sirah" data-bab="Rabiul Awal 11 H (632 M)" hidden>
+  <span class="eyebrow">Sirah Nabawiyah · Bab 21 dari 21 · Rabiul Awal 11 H (632 M)</span>
+  <h1>Wafatnya Rasulullah ﷺ</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Sirah Nabawiyah Bab 21: Wafatnya Rasulullah ﷺ">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Sepulang dari Haji Wada', Rasulullah ﷺ jatuh sakit. Beliau meminta izin istri-istrinya untuk dirawat di rumah Aisyah, dan memerintahkan Abu Bakar menjadi imam shalat.</p>
+<p>Beliau wafat pada hari Senin bulan Rabiul Awal tahun 11 Hijriah dalam usia 63 tahun. Menurut pendapat yang masyhur, tanggalnya 12 Rabiul Awal. Beliau dimakamkan di kamar Aisyah, yang kini berada di dalam Masjid Nabawi.</p>
+<p>Para sahabat terguncang. Umar bahkan tidak mau menerima kabar itu. Abu Bakar lalu berdiri dan berkata: "Siapa yang menyembah Muhammad, sesungguhnya Muhammad telah wafat. Siapa yang menyembah Allah, sesungguhnya Allah Mahahidup dan tidak akan mati." Lalu ia membaca QS. Ali 'Imran: 144 (HR. Bukhari no. 3668).</p>
+<p>Rasulullah ﷺ telah wafat, tetapi warisannya tetap hidup: Al-Qur'an dan Sunnah. Tugas umat setelahnya, termasuk kita, adalah menjaga warisan itu sampai ke setiap rumah.</p>
+  <p class="src">Disarikan oleh Redaksi LCA dari kitab-kitab sirah klasik. Lihat daftar rujukan di halaman <a href="#sirah">Sirah</a>.</p>
+  <div class="snav"><a href="#sirah-20">‹ Bab 20</a><a href="#sirah">Daftar isi</a><a href="#sahabat-1">Kisah Sahabat ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sahabat-1" data-title="Abu Bakar ash-Shiddiq" data-sec="Sirah" data-sahabat="1|Ash-Shiddiq, sahabat dalam gua|Laki-laki dewasa pertama yang beriman, khalifah pertama." data-terbit="2026-10-09" hidden>
+  <span class="eyebrow">Kisah 60 Sahabat · No. 1 · Ash-Shiddiq, sahabat dalam gua</span>
+  <h1>Abu Bakar ash-Shiddiq</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Kisah Sahabat No. 1: Abu Bakar ash-Shiddiq">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Nama aslinya Abdullah bin Utsman bin Amir dari Bani Taim, Quraisy. Ayahnya dikenal dengan kunyah Abu Quhafah. Ia lebih muda sekitar dua tahun dari Rasulullah ﷺ dan sudah bersahabat dengan beliau sejak sebelum kenabian.</p>
+<h2>Yang pertama membenarkan</h2>
+<p>Abu Bakar adalah laki-laki dewasa pertama yang masuk Islam, tanpa ragu sedikit pun. Melalui dakwahnya, masuk Islam tokoh-tokoh besar seperti Utsman bin Affan, Zubair, Abdurrahman bin Auf, Sa'd bin Abi Waqqash, dan Thalhah. Ketika Quraisy mengejek kabar Isra Mi'raj, ia membenarkannya, sehingga dijuluki <b>ash-Shiddiq</b>.</p>
+<h2>Hartanya untuk Islam</h2>
+<p>Ia memerdekakan budak-budak muslim yang disiksa, di antaranya Bilal bin Rabah. Dalam persiapan Perang Tabuk, ia menyerahkan seluruh hartanya. Ketika ditanya apa yang ia tinggalkan untuk keluarganya, ia menjawab, "Aku tinggalkan untuk mereka Allah dan Rasul-Nya" (HR. Abu Dawud dan at-Tirmidzi).</p>
+<div class="dalil"><p class="tr">"Seandainya aku boleh mengambil seorang kekasih (khalil) selain Rabbku, niscaya aku mengambil Abu Bakar. Akan tetapi ia adalah saudaraku dan sahabatku."</p><cite>HR. Bukhari dan Muslim</cite></div>
+<h2>Khalifah pertama</h2>
+<p>Setelah Rasulullah ﷺ wafat, kaum muslimin membai'atnya sebagai khalifah. Dalam masa sekitar dua tahun (11–13 H), ia meneguhkan umat yang goyah, memerangi kaum murtad dan penolak zakat, serta memerintahkan <b>pengumpulan Al-Qur'an</b> dalam satu mushaf melalui Zaid bin Tsabit. Ia wafat pada tahun 13 H dalam usia 63 tahun dan dimakamkan di samping Rasulullah ﷺ.</p>
+<p>Jasa Abu Bakar menghimpun Al-Qur'an adalah sebab mushaf sampai ke tangan kita. Setiap mushaf yang diwakafkan LCA berutang pada keputusannya.</p>
+  <h2>Rujukan</h2><ul class="ruj"><li>Ibnu Hisyam, <i>As-Sirah an-Nabawiyah</i></li><li>Ibnu Sa'd, <i>Ath-Thabaqat al-Kubra</i></li><li>Adz-Dzahabi, <i>Siyar A'lam an-Nubala'</i></li><li>Ibnu Hajar al-'Asqalani, <i>Al-Ishabah fi Tamyiz ash-Shahabah</i></li></ul>
+  <p class="src">Ringkasan untuk pembelajaran umum, bukan pengganti membaca kitab aslinya bersama guru.</p>
+  <div class="snav"><a href="#sirah-21">‹ Sirah</a><a href="#sirah">Daftar sahabat</a><a href="#sahabat-2">Umar bin Khaththab ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sahabat-2" data-title="Umar bin Khaththab" data-sec="Sirah" data-sahabat="2|Al-Faruq, pembeda yang hak dan batil|Khalifah kedua, peletak penanggalan Hijriah." data-terbit="2026-10-09" hidden>
+  <span class="eyebrow">Kisah 60 Sahabat · No. 2 · Al-Faruq, pembeda yang hak dan batil</span>
+  <h1>Umar bin Khaththab</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Kisah Sahabat No. 2: Umar bin Khaththab">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Umar bin Khaththab dari Bani Adi, Quraisy, adalah sosok yang tegas dan disegani. Sebelum masuk Islam ia termasuk penentang keras. Rasulullah ﷺ berdoa agar Allah memuliakan Islam dengan salah satu dari dua Umar, dan Allah memilihnya.</p>
+<h2>Masuk Islam karena Al-Qur'an</h2>
+<p>Pada tahun keenam kenabian, Umar mendatangi rumah adik perempuannya, Fathimah binti al-Khaththab, yang telah masuk Islam bersama suaminya. Ia mendapati mereka membaca lembaran ayat-ayat awal surat Thaha. Hatinya luluh, lalu ia menemui Rasulullah ﷺ di Darul Arqam dan menyatakan keislamannya. Sejak itu kaum muslimin berani shalat secara terang-terangan di Ka'bah. Ia digelari <b>al-Faruq</b>.</p>
+<div class="dalil"><p class="tr">"Wahai Ibnul Khaththab, demi Dzat yang jiwaku di tangan-Nya, tidaklah setan menjumpaimu sedang menempuh suatu jalan, melainkan ia akan menempuh jalan selain jalanmu."</p><cite>HR. Bukhari dan Muslim</cite></div>
+<h2>Khalifah yang adil</h2>
+<p>Umar memimpin selama sekitar sepuluh tahun (13–23 H). Di masanya, Islam tersebar ke Syam, Irak, Persia, dan Mesir, dan Baitul Maqdis diserahkan secara damai. Ia membangun sistem administrasi negara (<i>diwan</i>), dan menetapkan <b>kalender Hijriah</b> yang dimulai dari peristiwa hijrah. Dialah yang mula-mula mengusulkan kepada Abu Bakar agar Al-Qur'an dikumpulkan.</p>
+<p>Ia dikenal sangat sederhana dan takut kepada Allah dalam memimpin. Ia wafat pada tahun 23 H setelah ditikam ketika mengimami shalat Subuh, lalu dimakamkan di samping Rasulullah ﷺ dan Abu Bakar.</p>
+<p>Kalender Hijriah yang menjadi dasar pengingat ibadah di portal ini adalah warisan keputusan Umar.</p>
+  <h2>Rujukan</h2><ul class="ruj"><li>Ibnu Hisyam, <i>As-Sirah an-Nabawiyah</i></li><li>Ibnu Sa'd, <i>Ath-Thabaqat al-Kubra</i></li><li>Adz-Dzahabi, <i>Siyar A'lam an-Nubala'</i></li><li>Ibnu Hajar al-'Asqalani, <i>Al-Ishabah fi Tamyiz ash-Shahabah</i></li></ul>
+  <p class="src">Ringkasan untuk pembelajaran umum, bukan pengganti membaca kitab aslinya bersama guru.</p>
+  <div class="snav"><a href="#sahabat-1">‹ Abu Bakar ash-Shiddiq</a><a href="#sirah">Daftar sahabat</a><a href="#sahabat-3">Utsman bin Affan ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sahabat-3" data-title="Utsman bin Affan" data-sec="Sirah" data-sahabat="3|Dzun Nurain, pemilik dua cahaya|Khalifah ketiga, dermawan, penyatu mushaf." data-terbit="2026-10-09" hidden>
+  <span class="eyebrow">Kisah 60 Sahabat · No. 3 · Dzun Nurain, pemilik dua cahaya</span>
+  <h1>Utsman bin Affan</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Kisah Sahabat No. 3: Utsman bin Affan">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Utsman bin Affan dari Bani Umayyah, Quraisy, masuk Islam melalui dakwah Abu Bakar. Ia saudagar kaya yang terkenal pemalu dan dermawan.</p>
+<h2>Dua cahaya</h2>
+<p>Ia menikahi Ruqayyah putri Rasulullah ﷺ. Setelah Ruqayyah wafat, ia dinikahkan dengan putri beliau yang lain, Ummu Kultsum. Karena itu ia digelari <b>Dzun Nurain</b>, pemilik dua cahaya. Bersama Ruqayyah, ia termasuk rombongan pertama yang berhijrah ke Habasyah.</p>
+<div class="dalil"><p class="tr">"Bagaimana aku tidak malu kepada seseorang yang para malaikat pun malu kepadanya?"</p><cite>HR. Muslim no. 2401</cite></div>
+<h2>Wakaf dan infak terbesar</h2>
+<p>Di Madinah, air bersih sulit didapat. Utsman membeli sumur Rumah dari pemiliknya dan mewakafkannya untuk kaum muslimin. Dalam persiapan Perang Tabuk di masa sulit, ia membiayai sebagian besar perlengkapan pasukan.</p>
+<h2>Mushaf Utsmani</h2>
+<p>Sebagai khalifah ketiga (23–35 H), Utsman menyatukan kaum muslimin dalam satu bacaan mushaf. Ia membentuk tim yang dipimpin Zaid bin Tsabit untuk menyalin mushaf dan mengirimkannya ke berbagai wilayah (HR. Bukhari no. 4987). Seluruh mushaf di dunia hari ini mengikuti rasm Utsmani. Ia wafat terbunuh oleh para pemberontak di rumahnya pada tahun 35 H.</p>
+<p>Utsman adalah teladan para pewakaf: sumur yang ia wakafkan dan mushaf yang ia satukan terus mengalirkan pahala hingga hari ini.</p>
+  <h2>Rujukan</h2><ul class="ruj"><li>Ibnu Hisyam, <i>As-Sirah an-Nabawiyah</i></li><li>Ibnu Sa'd, <i>Ath-Thabaqat al-Kubra</i></li><li>Adz-Dzahabi, <i>Siyar A'lam an-Nubala'</i></li><li>Ibnu Hajar al-'Asqalani, <i>Al-Ishabah fi Tamyiz ash-Shahabah</i></li></ul>
+  <p class="src">Ringkasan untuk pembelajaran umum, bukan pengganti membaca kitab aslinya bersama guru.</p>
+  <div class="snav"><a href="#sahabat-2">‹ Umar bin Khaththab</a><a href="#sirah">Daftar sahabat</a><a href="#sahabat-4">Ali bin Abi Thalib ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sahabat-4" data-title="Ali bin Abi Thalib" data-sec="Sirah" data-sahabat="4|Pintu ilmu dan kesatria Khaibar|Anak pertama yang beriman, khalifah keempat." data-terbit="2026-10-09" hidden>
+  <span class="eyebrow">Kisah 60 Sahabat · No. 4 · Pintu ilmu dan kesatria Khaibar</span>
+  <h1>Ali bin Abi Thalib</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Kisah Sahabat No. 4: Ali bin Abi Thalib">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Ali bin Abi Thalib adalah sepupu Rasulullah ﷺ, putra Abu Thalib yang mengasuh beliau. Sejak kecil Ali diasuh di rumah Rasulullah ﷺ, dan ia termasuk orang pertama yang masuk Islam dari kalangan anak-anak.</p>
+<h2>Berani sejak muda</h2>
+<p>Pada malam hijrah, ketika Quraisy mengepung rumah Rasulullah ﷺ, Ali tidur di ranjang beliau dengan berselimutkan selimut beliau. Setelah itu ia tinggal beberapa hari di Makkah untuk mengembalikan barang-barang titipan orang kepada Rasulullah ﷺ, lalu menyusul ke Madinah.</p>
+<p>Di Madinah, ia menikahi Fathimah az-Zahra, putri Rasulullah ﷺ, dan dari keduanya lahir Hasan dan Husain. Ia ikut hampir seluruh peperangan bersama Rasulullah ﷺ. Di Khaibar, Rasulullah ﷺ menyerahkan panji kepadanya, dan Allah memberikan kemenangan melalui tangannya (HR. Bukhari no. 4210).</p>
+<div class="dalil"><p class="tr">"Tidakkah engkau rida kedudukanmu di sisiku seperti kedudukan Harun di sisi Musa? Hanya saja tidak ada nabi setelahku."</p><cite>HR. Bukhari no. 4416 dan Muslim no. 2404</cite></div>
+<h2>Ilmu dan kepemimpinan</h2>
+<p>Ali dikenal sangat dalam ilmunya tentang Al-Qur'an dan hukum, sehingga para khalifah sebelumnya sering meminta pendapatnya. Ia menjadi khalifah keempat (35–40 H) di masa penuh fitnah, dan wafat setelah ditikam Abdurrahman bin Muljam di Kufah pada bulan Ramadhan tahun 40 H.</p>
+<p>Ali tumbuh dalam pendidikan langsung Rasulullah ﷺ sejak kecil. Pendidikan Al-Qur'an sejak dini adalah investasi terbesar bagi lahirnya generasi pemimpin.</p>
+  <h2>Rujukan</h2><ul class="ruj"><li>Ibnu Hisyam, <i>As-Sirah an-Nabawiyah</i></li><li>Ibnu Sa'd, <i>Ath-Thabaqat al-Kubra</i></li><li>Adz-Dzahabi, <i>Siyar A'lam an-Nubala'</i></li><li>Ibnu Hajar al-'Asqalani, <i>Al-Ishabah fi Tamyiz ash-Shahabah</i></li></ul>
+  <p class="src">Ringkasan untuk pembelajaran umum, bukan pengganti membaca kitab aslinya bersama guru.</p>
+  <div class="snav"><a href="#sahabat-3">‹ Utsman bin Affan</a><a href="#sirah">Daftar sahabat</a><a href="#sahabat-5">Bilal bin Rabah ›</a></div>
+  </div>
+</section>
+<section class="page" id="p-sahabat-5" data-title="Bilal bin Rabah" data-sec="Sirah" data-sahabat="5|Muadzin Rasulullah|Dari budak yang disiksa menjadi suara azan pertama." data-terbit="2026-10-09" hidden>
+  <span class="eyebrow">Kisah 60 Sahabat · No. 5 · Muadzin Rasulullah</span>
+  <h1>Bilal bin Rabah</h1>
+  <div class="meta"><span>Redaksi Materi LCA</span><a href="#" class="share" data-t="Kisah Sahabat No. 5: Bilal bin Rabah">Bagikan ke WhatsApp</a></div>
+  <div class="prose">
+  <p class="lead">Bilal bin Rabah berasal dari Habasyah. Ia budak milik Umayyah bin Khalaf, tokoh Quraisy yang keras memusuhi Islam. Ibunya bernama Hamamah.</p>
+<h2>"Ahad, Ahad"</h2>
+<p>Ketika Bilal masuk Islam, Umayyah menyiksanya: menjemurnya di padang pasir Makkah pada siang hari, lalu menindih dadanya dengan batu besar agar ia kembali kepada berhala. Bilal hanya mengulang satu kata, "Ahad, Ahad", Allah Maha Esa. Abu Bakar lalu membelinya dan memerdekakannya.</p>
+<h2>Suara azan pertama</h2>
+<p>Ketika azan disyariatkan di Madinah, Rasulullah ﷺ memilih Bilal karena suaranya yang lantang dan indah. Ia menjadi muadzin pertama dalam Islam. Pada hari Fathu Makkah, Bilal naik ke atas Ka'bah dan mengumandangkan azan, di kota yang dulu menjadi tempat ia disiksa.</p>
+<div class="dalil"><p class="tr">"Wahai Bilal, ceritakan kepadaku amalan yang paling engkau harapkan dalam Islam, karena aku mendengar suara sandalmu di depanku di surga." Bilal menjawab: "Tidaklah aku bersuci pada waktu siang atau malam, melainkan aku shalat dengan wudhu itu sebanyak yang ditetapkan untukku."</p><cite>HR. Bukhari no. 1149 dan Muslim no. 2458</cite></div>
+<h2>Setelah Rasulullah ﷺ wafat</h2>
+<p>Bilal merasa berat mengumandangkan azan di Madinah tanpa Rasulullah ﷺ. Ia kemudian berjihad ke negeri Syam dan wafat di sana sekitar tahun 20 H.</p>
+<p>Kisah Bilal mengajarkan bahwa kemuliaan dalam Islam tidak ditentukan oleh warna kulit, asal-usul, atau status sosial, tetapi oleh iman dan takwa. Pintu belajar Al-Qur'an di LCA terbuka gratis bagi siapa saja, apa pun latar belakangnya.</p>
+  <h2>Rujukan</h2><ul class="ruj"><li>Ibnu Hisyam, <i>As-Sirah an-Nabawiyah</i></li><li>Ibnu Sa'd, <i>Ath-Thabaqat al-Kubra</i></li><li>Adz-Dzahabi, <i>Siyar A'lam an-Nubala'</i></li><li>Ibnu Hajar al-'Asqalani, <i>Al-Ishabah fi Tamyiz ash-Shahabah</i></li></ul>
+  <p class="src">Ringkasan untuk pembelajaran umum, bukan pengganti membaca kitab aslinya bersama guru.</p>
+  <div class="snav"><a href="#sahabat-4">‹ Ali bin Abi Thalib</a><a href="#sirah">Daftar sahabat</a><a href="#sirah">Daftar sahabat</a></div>
+  </div>
 </section>
 
 <!-- ============ MATERI AL-QUR'AN ============ -->
@@ -1863,6 +2265,20 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
 
 
 
+
+  /* ===== Kisah 60 Sahabat ===== */
+  (function(){
+    var S60=["Abu Bakar ash-Shiddiq", "Umar bin Khaththab", "Utsman bin Affan", "Ali bin Abi Thalib", "Bilal bin Rabah", "Abu Ubaidah bin al-Jarrah", "Abdurrahman bin Auf", "Sa'd bin Abi Waqqash", "Zubair bin Awwam", "Thalhah bin Ubaidillah", "Sa'id bin Zaid", "Hamzah bin Abdul Muththalib", "Mush'ab bin Umair", "Ja'far bin Abi Thalib", "Zaid bin Haritsah", "Usamah bin Zaid", "Salman al-Farisi", "Abu Dzar al-Ghifari", "Ammar bin Yasir", "Mu'adz bin Jabal", "Ubay bin Ka'b", "Zaid bin Tsabit", "Abdullah bin Mas'ud", "Abdullah bin Abbas", "Abdullah bin Umar", "Abu Hurairah", "Anas bin Malik", "Khalid bin Walid", "Amr bin al-Ash", "Sa'd bin Mu'adz", "Sa'd bin Ubadah", "Abu Ayyub al-Anshari", "Hudzaifah bin al-Yaman", "Abu Musa al-Asy'ari", "Abu Darda'", "Khabbab bin al-Arat", "Shuhaib ar-Rumi", "Abdullah bin Rawahah", "Hassan bin Tsabit", "Ikrimah bin Abi Jahl", "Suhail bin Amr", "Thufail bin Amr ad-Dausi", "Al-Bara' bin Malik", "Abu Thalhah al-Anshari", "Ubadah bin ash-Shamit", "Abdullah bin Zubair", "Hakim bin Hizam", "Nu'aim bin Mas'ud", "Zaid bin al-Khaththab", "Abdullah bin Ummi Maktum", "Salim Maula Abi Hudzaifah", "Usaid bin Hudhair", "Abu Sa'id al-Khudri", "Jabir bin Abdullah", "Utbah bin Ghazwan", "Sa'id bin Amir al-Jumahi", "Umair bin Sa'd", "Tsabit bin Qais", "Abdullah bin Hudzafah as-Sahmi", "Habib bin Zaid al-Anshari"];
+    var secs=$$('[data-sahabat]');var pub={};secs.forEach(function(x){pub[+x.dataset.sahabat.split('|')[0]]=x});
+    var ul=$('#sahabat-list');
+    if(ul)ul.innerHTML=S60.map(function(n,i){var k=i+1,x=pub[k];return x?'<li><a href="#sahabat-'+k+'"><span class="no">'+k+'.</span>'+n+'</a><small>'+x.dataset.sahabat.split('|')[1]+'</small></li>':'<li class="soon"><span class="no">'+k+'.</span>'+n+'<small>Segera terbit</small></li>'}).join('');
+    var last=secs[secs.length-1];if(!last)return;
+    var p=last.dataset.sahabat.split('|');
+    $$('[data-sahabat-now]').forEach(function(b){var a=document.createElement('a');a.className='card big';a.href='#'+last.id.slice(2);
+      a.innerHTML='<span class="k"></span><h3></h3><p></p><span class="more">Baca kisahnya →</span>';
+      a.children[0].textContent='Kisah Sahabat No. '+p[0]+' · '+p[1];a.children[1].textContent=last.dataset.title;a.children[2].textContent=p[2];
+      if(b.classList.contains('as-card')){b.replaceWith(a)}else{b.appendChild(a)}});
+  })();
   /* ===== Kalender Hijriah KHGT & pengingat ===== */
   (function(){
     var KH=[[1447,1,"2025-06-26"],[1447,2,"2025-07-26"],[1447,3,"2025-08-24"],[1447,4,"2025-09-23"],[1447,5,"2025-10-23"],[1447,6,"2025-11-21"],[1447,7,"2025-12-21"],[1447,8,"2026-01-20"],[1447,9,"2026-02-18"],[1447,10,"2026-03-20"],[1447,11,"2026-04-18"],[1447,12,"2026-05-18"],[1448,1,"2026-06-16"],[1448,2,"2026-07-15"],[1448,3,"2026-08-14"],[1448,4,"2026-09-12"],[1448,5,"2026-10-12"],[1448,6,"2026-11-10"],[1448,7,"2026-12-10"],[1448,8,"2027-01-09"],[1448,9,"2027-02-08"],[1448,10,"2027-03-09"],[1448,11,"2027-04-08"],[1448,12,"2027-05-07"],[1449,1,"2027-06-06"],[1449,2,"2027-07-05"],[1449,3,"2027-08-03"],[1449,4,"2027-09-02"],[1449,5,"2027-10-01"],[1449,6,"2027-10-31"],[1449,7,"2027-11-29"],[1449,8,"2027-12-29"],[1449,9,"2028-01-28"],[1449,10,"2028-02-26"],[1449,11,"2028-03-27"],[1449,12,"2028-04-26"],[1450,1,"2028-05-25"],[1450,2,"2028-06-24"],[1450,3,"2028-07-23"],[1450,4,"2028-08-21"],[1450,5,"2028-09-20"],[1450,6,"2028-10-19"],[1450,7,"2028-11-18"],[1450,8,"2028-12-17"],[1450,9,"2029-01-16"],[1450,10,"2029-02-14"],[1450,11,"2029-03-16"],[1450,12,"2029-04-15"],[1451,1,"2029-05-14"],[1451,2,"2029-06-13"],[1451,3,"2029-07-13"],[1451,4,"2029-08-11"],[1451,5,"2029-09-09"],[1451,6,"2029-10-09"],[1451,7,"2029-11-07"],[1451,8,"2029-12-07"],[1451,9,"2030-01-05"],[1451,10,"2030-02-04"],[1451,11,"2030-03-05"],[1451,12,"2030-04-04"],[1452,1,"2030-05-03"],[1452,2,"2030-06-02"],[1452,3,"2030-07-02"],[1452,4,"2030-08-01"],[1452,5,"2030-08-30"],[1452,6,"2030-09-28"],[1452,7,"2030-10-28"],[1452,8,"2030-11-26"],[1452,9,"2030-12-26"],[1452,10,"2031-01-24"],[1452,11,"2031-02-22"],[1452,12,"2031-03-24"],[1453,1,"2031-04-23"],[1453,2,"2031-05-22"],[1453,3,"2031-06-21"],[1453,4,"2031-07-21"],[1453,5,"2031-08-19"],[1453,6,"2031-09-18"],[1453,7,"2031-10-17"],[1453,8,"2031-11-16"],[1453,9,"2031-12-15"],[1453,10,"2032-01-14"],[1453,11,"2032-02-12"],[1453,12,"2032-03-13"],[1454,1,"2032-04-11"],[1454,2,"2032-05-11"],[1454,3,"2032-06-09"],[1454,4,"2032-07-09"],[1454,5,"2032-08-07"],[1454,6,"2032-09-06"],[1454,7,"2032-10-06"],[1454,8,"2032-11-04"],[1454,9,"2032-12-04"],[1454,10,"2033-01-02"],[1454,11,"2033-02-01"],[1454,12,"2033-03-02"],[1455,1,"2033-04-01"],[1455,2,"2033-04-30"],[1455,3,"2033-05-29"],[1455,4,"2033-06-28"],[1455,5,"2033-07-27"],[1455,6,"2033-08-26"],[1455,7,"2033-09-25"],[1455,8,"2033-10-24"],[1455,9,"2033-11-23"],[1455,10,"2033-12-23"],[1455,11,"2034-01-21"],[1455,12,"2034-02-20"],[1456,1,"2034-03-21"]];
@@ -2074,7 +2490,7 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
   function go(){var id=(location.hash||'#beranda').slice(1);if(!map[id])id='beranda';
     pages.forEach(function(p){p.hidden=p!==map[id]});
     var p=map[id], sec=p.dataset.sec;
-    $$('.menu>li>a').forEach(function(a){a.classList.toggle('on',(a.textContent.trim()===sec)||(sec==='Data & Laporan'&&a.dataset.p==='dampak')||(sec==='Media'&&a.dataset.p==='medsos'))});
+    $$('.menu>li>a').forEach(function(a){a.classList.toggle('on',((a.dataset.sec||a.textContent.trim())===sec)||(sec==='Data & Laporan'&&a.dataset.p==='dampak')||(sec==='Media'&&a.dataset.p==='medsos'))});
     $('#crumb').innerHTML='<a href="#beranda">Beranda</a>'+(id==='beranda'?'':' / '+sec+(p.dataset.title!==sec?' / '+p.dataset.title:''));
     document.title=(id==='beranda'?'':p.dataset.title+' · ')+'Portal Lembaga Cerdas Al-Qur\'an';
     $('#menu').classList.remove('open');$('#burger').setAttribute('aria-expanded','false');
