@@ -396,6 +396,19 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
 .toc.sah li .no{display:inline-block;min-width:26px;color:var(--gold);font-weight:600}
 @media(min-width:861px){.menu>li>a{white-space:nowrap}}
 @media(min-width:861px) and (max-width:1180px){.menu>li>a{padding:13px 9px;font-size:13.5px}}
+.kata-card{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;background:var(--sheet);border:1px solid var(--rule);border-left:4px solid var(--gold);border-radius:10px;padding:18px 20px;text-decoration:none;color:var(--ink)}
+.kata-card .w{font-family:var(--f-ar);font-size:3rem;line-height:1.3;color:var(--green);direction:rtl;min-width:110px;text-align:center}
+.kata-card .k{font-family:var(--f-ui);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.kata-card h3{margin:2px 0;font-family:var(--f-display);font-weight:400;font-size:1.5rem}
+.kata-card h3 small{font-family:var(--f-ui);font-size:.9rem;color:var(--muted);margin-left:6px}
+.kata-card .ay{font-family:var(--f-ar);direction:rtl;font-size:1.35rem;line-height:1.9;margin:6px 0 2px}
+.kata-card .tr{font-style:italic;font-size:15px;margin:0;color:var(--muted)}
+.kata-card .ps{font-size:15px;margin:8px 0 0}
+.kata-big .kata-card .w{font-size:4.2rem}
+@media(max-width:600px){.kata-card{grid-template-columns:1fr}.kata-card .w{text-align:right}}
+.kata-mini{margin-top:8px;padding-top:8px;border-top:1px dashed var(--rule);font-size:13.5px}
+.kata-mini b{font-family:var(--f-ar);font-size:1.3rem;color:var(--green);font-weight:400}
+.kata-arsip li .a{font-family:var(--f-ar);font-size:1.3rem;color:var(--green);float:right}
 .mnow{display:grid;grid-template-columns:1.4fr 1fr;gap:12px}
 .mnow .card.big{border-left:4px solid var(--gold)}
 .mnow .side{display:flex;flex-direction:column;gap:12px}
@@ -475,7 +488,7 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
         <li><a href="#kajian-malaikat">Doa Malaikat untuk yang Berinfak</a></li>
       </ul></li>
     <li class="has"><a href="#materi" data-p="materi" data-sec="Materi Al-Qur'an">Materi</a>
-      <ul class="sub"><li><a href="#materi">Semua Seri &amp; Kitab Rujukan</a></li><li><a href="#materi-1">Seri 1: Al-Qur&#x27;an, Mukjizat Terbesar yang Masih Bisa Disentuh</a></li><li><a href="#materi-2">Seri 2: Adab Membaca Al-Qur&#x27;an Menurut Imam an-Nawawi</a></li><li><a href="#materi-3">Seri 3: Turunnya Al-Qur&#x27;an</a></li><li><a href="#materi-4">Seri 4: Tantangan yang Tak Pernah Terjawab</a></li><li><a href="#materi-5">Seri 5: Satu Huruf, Sepuluh Kebaikan</a></li><li><a href="#materi-6">Seri 6: Sejarah Pengumpulan Mushaf</a></li><li><a href="#materi">Seri lainnya…</a></li></ul></li>
+      <ul class="sub"><li><a href="#kata">Kata Al-Qur'an Hari Ini</a></li><li><a href="#materi">Semua Seri &amp; Kitab Rujukan</a></li><li><a href="#materi-1">Seri 1: Al-Qur&#x27;an, Mukjizat Terbesar yang Masih Bisa Disentuh</a></li><li><a href="#materi-2">Seri 2: Adab Membaca Al-Qur&#x27;an Menurut Imam an-Nawawi</a></li><li><a href="#materi-3">Seri 3: Turunnya Al-Qur&#x27;an</a></li><li><a href="#materi-4">Seri 4: Tantangan yang Tak Pernah Terjawab</a></li><li><a href="#materi-5">Seri 5: Satu Huruf, Sepuluh Kebaikan</a></li><li><a href="#materi-6">Seri 6: Sejarah Pengumpulan Mushaf</a></li><li><a href="#materi">Seri lainnya…</a></li></ul></li>
     <li class="has"><a href="#sirah" data-p="sirah">Sirah</a>
       <ul class="sub"><li><a href="#sirah">Daftar Isi Sirah &amp; Sahabat</a></li><li><a href="#sirah-1">Sirah Nabawiyah (21 bab)</a></li><li><a href="#sahabat-1">Kisah 60 Sahabat</a></li></ul></li>
     <li class="has"><a href="#kalender" data-p="kalender">Kalender</a>
@@ -523,6 +536,9 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
   <p class="src">Angka kumulatif per Juni 2026, sebagaimana dilaporkan di situs donasi GENCAR. Wilayah garapan per Agustus 2026 dari Laporan Sekretariat.</p>
 
   <div class="follow"><div><b>Ikuti LCA di media sosial</b><p>Kajian, murattal, dan kabar sensus setiap pekan. Ketuk ikon untuk langsung membuka.</p></div><div class="icons lg" data-social="tiktok,instagram,youtube,facebook,snack,x,whatsapp,linktree,googleplay"></div></div>
+
+  <div class="secthead"><h2>Kata Al-Qur'an Hari Ini</h2><a href="#kata">Semua kata →</a></div>
+  <div data-kata-now></div>
 
   <div class="secthead"><h2>Kalender Hijriah &amp; Pengingat</h2><a href="#kalender">Kalender lengkap →</a></div>
   <div class="kal-home"><div data-hijri-today></div><div><div class="kal-count" data-countdowns></div><ul class="evlist compact" data-next-events="5"></ul></div></div>
@@ -1057,6 +1073,17 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
   <p class="src">Peringatan Maulid Nabi ﷺ dan Isra Mi'raj dicantumkan karena menjadi hari libur nasional di Indonesia.</p>
 </section>
 
+<section class="page" id="p-kata" data-title="Kata Al-Qur'an Hari Ini" data-sec="Materi Al-Qur'an" hidden>
+  <span class="eyebrow">GEMAR · Gerakan Memahami Arti Kata Al-Qur'an</span>
+  <h1>Satu Kata Al-Qur'an <em>Setiap Subuh</em></h1>
+  <p class="lead">Setiap hari selepas Subuh, satu kata Al-Qur'an diluncurkan: lafaz, arti, akar kata, dan ayat tempat kata itu muncul. Sedikit demi sedikit, bacaan kita makin dipahami.</p>
+  <div data-kata-now class="kata-big"></div>
+  <div class="hero-cta" style="margin:16px 0"><a class="btn green" href="https://gencarlca.vibecoder.co.id/tadabbur" target="_blank" rel="noopener">Belajar lebih banyak di aplikasi GEMAR ↗</a><a href="#" class="btn" id="kata-share">Bagikan ke WhatsApp</a></div>
+  <h2>Kata-kata yang sudah diluncurkan</h2>
+  <p>Ulangi kata-kata sebelumnya agar makin melekat. Kata terbaru ada di paling atas.</p>
+  <ol class="toc kata-arsip" id="kata-arsip"></ol>
+  <p class="src">Arti kata disesuaikan dengan konteks ayat. Terjemah ayat mengikuti makna terjemahan Kementerian Agama RI dengan penyesuaian redaksi. Pendalaman lengkap seluruh 14.599 kata tersedia di aplikasi GEMAR LCA.</p>
+</section>
 <!-- ============ SIRAH ============ -->
 <section class="page" id="p-sirah" data-title="Sirah Nabi &amp; Kisah Sahabat" data-sec="Sirah" hidden>
   <span class="eyebrow">Sirah</span>
@@ -2162,7 +2189,7 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
 
 <!-- ============ REL SAMPING ============ -->
 <aside><div class="side">
-  <div class="box kal-side"><h4>Hari ini</h4><div data-hijri-mini></div><a href="#kalender" class="more">Kalender &amp; pengingat →</a></div>
+  <div class="box kal-side"><h4>Hari ini</h4><div data-hijri-mini></div><div data-kata-mini class="kata-mini"></div><a href="#kalender" class="more">Kalender &amp; pengingat →</a></div>
   <div class="box gold">
     <h4>Infak via QRIS</h4>
     <span class="side-qr" data-qrzoom role="button" tabindex="0" aria-label="Perbesar QRIS"><img data-qris alt="QRIS Lembaga Cerdas Al-Qur'an"></span>
@@ -2266,6 +2293,26 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
 
 
 
+
+  /* ===== Kata Al-Qur'an Hari Ini (GEMAR) ===== */
+  (function(){
+    if(!/^https?:$/.test(location.protocol))return;
+    fetch('kata.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(D){
+      var L=D.kata;if(!L||!L.length)return;
+      var hm=(D.jam_subuh||'04:30').split(':');
+      var nowW=new Date(Date.now()+7*3600e3-(+hm[0]*60+(+hm[1]))*60e3);
+      var today=Date.UTC(nowW.getUTCFullYear(),nowW.getUTCMonth(),nowW.getUTCDate());
+      var p=D.mulai.split('-'),st=Date.UTC(+p[0],p[1]-1,+p[2]);
+      var idx=Math.max(0,Math.round((today-st)/864e5));var cur=idx%L.length,w=L[cur];
+      function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}
+      var card='<a class="kata-card" href="#kata"><div class="w">'+esc(w.ar)+'</div><div><span class="k">Kata ke-'+(idx+1)+' · akar '+esc(w.akar)+' · '+esc(w.ref)+'</span><h3>'+esc(w.arti)+'<small>'+esc(w.lat)+'</small></h3><p class="ay">'+esc(w.ayat)+'</p><p class="tr">"'+esc(w.terj)+'" ('+esc(w.ref)+')</p><p class="ps">💡 '+esc(w.pesan)+'</p></div></a>';
+      $$('[data-kata-now]').forEach(function(b){b.innerHTML=card});
+      $$('[data-kata-mini]').forEach(function(b){b.innerHTML='Kata hari ini: <b>'+esc(w.ar)+'</b> <a href="#kata">'+esc(w.arti)+'</a>'});
+      var arsip=[];for(var i=Math.min(idx,L.length-1);i>=0&&arsip.length<120;i--){var x=L[i];arsip.push('<li><span class="a">'+esc(x.ar)+'</span><b>'+(i+1)+'.</b> '+esc(x.arti)+'<small>'+esc(x.lat)+' · '+esc(x.ref)+'</small></li>')}
+      var ar=$('#kata-arsip');if(ar)ar.innerHTML=arsip.join('');
+      var sh=$('#kata-share');if(sh){var t='🌅 *Kata Al-Qur\'an Hari Ini* (GEMAR LCA)\n\n'+w.ar+' ('+w.lat+') = *'+w.arti+'*\nAkar kata: '+w.akar+'\n\n'+w.ayat+'\n"'+w.terj+'" ('+w.ref+')\n\n💡 '+w.pesan+'\n\n'+location.origin+'/#kata';sh.href='https://api.whatsapp.com/send?text='+encodeURIComponent(t);sh.target='_blank';sh.rel='noopener'}
+    }).catch(function(){});
+  })();
   /* ===== Kisah 60 Sahabat ===== */
   (function(){
     var S60=["Abu Bakar ash-Shiddiq", "Umar bin Khaththab", "Utsman bin Affan", "Ali bin Abi Thalib", "Bilal bin Rabah", "Abu Ubaidah bin al-Jarrah", "Abdurrahman bin Auf", "Sa'd bin Abi Waqqash", "Zubair bin Awwam", "Thalhah bin Ubaidillah", "Sa'id bin Zaid", "Hamzah bin Abdul Muththalib", "Mush'ab bin Umair", "Ja'far bin Abi Thalib", "Zaid bin Haritsah", "Usamah bin Zaid", "Salman al-Farisi", "Abu Dzar al-Ghifari", "Ammar bin Yasir", "Mu'adz bin Jabal", "Ubay bin Ka'b", "Zaid bin Tsabit", "Abdullah bin Mas'ud", "Abdullah bin Abbas", "Abdullah bin Umar", "Abu Hurairah", "Anas bin Malik", "Khalid bin Walid", "Amr bin al-Ash", "Sa'd bin Mu'adz", "Sa'd bin Ubadah", "Abu Ayyub al-Anshari", "Hudzaifah bin al-Yaman", "Abu Musa al-Asy'ari", "Abu Darda'", "Khabbab bin al-Arat", "Shuhaib ar-Rumi", "Abdullah bin Rawahah", "Hassan bin Tsabit", "Ikrimah bin Abi Jahl", "Suhail bin Amr", "Thufail bin Amr ad-Dausi", "Al-Bara' bin Malik", "Abu Thalhah al-Anshari", "Ubadah bin ash-Shamit", "Abdullah bin Zubair", "Hakim bin Hizam", "Nu'aim bin Mas'ud", "Zaid bin al-Khaththab", "Abdullah bin Ummi Maktum", "Salim Maula Abi Hudzaifah", "Usaid bin Hudhair", "Abu Sa'id al-Khudri", "Jabir bin Abdullah", "Utbah bin Ghazwan", "Sa'id bin Amir al-Jumahi", "Umair bin Sa'd", "Tsabit bin Qais", "Abdullah bin Hudzafah as-Sahmi", "Habib bin Zaid al-Anshari"];

@@ -1,0 +1,626 @@
+{
+ "mulai": "2026-10-10",
+ "jam_subuh": "04:30",
+ "kata": [
+  {
+   "ar": "اللَّه",
+   "lat": "Allāh",
+   "arti": "Allah, nama Dzat Yang Maha Esa",
+   "akar": "أ ل ه",
+   "ref": "Al-Fatihah: 1",
+   "ayat": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+   "terj": "Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.",
+   "pesan": "Awali setiap pekerjaan hari ini dengan menyebut nama-Nya."
+  },
+  {
+   "ar": "رَبّ",
+   "lat": "rabb",
+   "arti": "Tuhan, Pemelihara, Pengatur",
+   "akar": "ر ب ب",
+   "ref": "Al-Fatihah: 2",
+   "ayat": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+   "terj": "Segala puji bagi Allah, Tuhan seluruh alam.",
+   "pesan": "Rabb berarti Dia yang terus memelihara dan mendidik kita, setiap saat."
+  },
+  {
+   "ar": "الْحَمْد",
+   "lat": "al-ḥamd",
+   "arti": "segala puji",
+   "akar": "ح م د",
+   "ref": "Al-Fatihah: 2",
+   "ayat": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+   "terj": "Segala puji bagi Allah, Tuhan seluruh alam.",
+   "pesan": "Ucapkan alhamdulillah dengan sadar artinya, minimal 17 kali dalam shalat hari ini."
+  },
+  {
+   "ar": "الرَّحْمَٰن",
+   "lat": "ar-Raḥmān",
+   "arti": "Yang Maha Pengasih",
+   "akar": "ر ح م",
+   "ref": "Al-Fatihah: 3",
+   "ayat": "الرَّحْمَٰنِ الرَّحِيمِ",
+   "terj": "Yang Maha Pengasih, Maha Penyayang.",
+   "pesan": "Kasih sayang Allah mendahului segalanya; sebarkan kasih sayang kepada sesama."
+  },
+  {
+   "ar": "يَوْم",
+   "lat": "yaum",
+   "arti": "hari",
+   "akar": "ي و م",
+   "ref": "Al-Fatihah: 4",
+   "ayat": "مَالِكِ يَوْمِ الدِّينِ",
+   "terj": "Pemilik hari pembalasan.",
+   "pesan": "Setiap hari yang kita jalani mendekatkan kita kepada Hari Pembalasan."
+  },
+  {
+   "ar": "الدِّين",
+   "lat": "ad-dīn",
+   "arti": "agama; pembalasan",
+   "akar": "د ي ن",
+   "ref": "Al-Fatihah: 4",
+   "ayat": "مَالِكِ يَوْمِ الدِّينِ",
+   "terj": "Pemilik hari pembalasan.",
+   "pesan": "Dalam Al-Fatihah, ad-din berarti pembalasan: setiap amal akan dibalas."
+  },
+  {
+   "ar": "نَعْبُدُ",
+   "lat": "na‘budu",
+   "arti": "kami menyembah",
+   "akar": "ع ب د",
+   "ref": "Al-Fatihah: 5",
+   "ayat": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+   "terj": "Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami mohon pertolongan.",
+   "pesan": "Kata ganti 'kami' mengingatkan: ibadah itu dikerjakan bersama umat."
+  },
+  {
+   "ar": "الصِّرَاط",
+   "lat": "aṣ-ṣirāṭ",
+   "arti": "jalan",
+   "akar": "ص ر ط",
+   "ref": "Al-Fatihah: 6",
+   "ayat": "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
+   "terj": "Tunjukilah kami jalan yang lurus.",
+   "pesan": "Doa paling sering kita ucapkan: memohon jalan yang lurus."
+  },
+  {
+   "ar": "هُدًى",
+   "lat": "hudan",
+   "arti": "petunjuk",
+   "akar": "ه د ي",
+   "ref": "Al-Baqarah: 2",
+   "ayat": "ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِّلْمُتَّقِينَ",
+   "terj": "Kitab (Al-Qur'an) ini tidak ada keraguan padanya; petunjuk bagi mereka yang bertakwa.",
+   "pesan": "Petunjuk baru terasa bila Al-Qur'an dibaca dan dipahami."
+  },
+  {
+   "ar": "الْكِتَاب",
+   "lat": "al-kitāb",
+   "arti": "kitab, sesuatu yang ditulis",
+   "akar": "ك ت ب",
+   "ref": "Al-Baqarah: 2",
+   "ayat": "ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِّلْمُتَّقِينَ",
+   "terj": "Kitab (Al-Qur'an) ini tidak ada keraguan padanya; petunjuk bagi mereka yang bertakwa.",
+   "pesan": "Dari akar yang sama lahir kata maktab (tempat menulis) dan kātib (penulis)."
+  },
+  {
+   "ar": "قُلْ",
+   "lat": "qul",
+   "arti": "katakanlah",
+   "akar": "ق و ل",
+   "ref": "Al-Ikhlas: 1",
+   "ayat": "قُلْ هُوَ اللَّهُ أَحَدٌ",
+   "terj": "Katakanlah (Muhammad), \"Dialah Allah, Yang Maha Esa.\"",
+   "pesan": "Kata qul muncul ratusan kali: Al-Qur'an mengajari kita apa yang harus diucapkan."
+  },
+  {
+   "ar": "أَحَد",
+   "lat": "aḥad",
+   "arti": "Esa, satu",
+   "akar": "أ ح د",
+   "ref": "Al-Ikhlas: 1",
+   "ayat": "قُلْ هُوَ اللَّهُ أَحَدٌ",
+   "terj": "Katakanlah (Muhammad), \"Dialah Allah, Yang Maha Esa.\"",
+   "pesan": "Kata yang diulang Bilal bin Rabah saat disiksa: Ahad, Ahad."
+  },
+  {
+   "ar": "أَعُوذُ",
+   "lat": "a‘ūdzu",
+   "arti": "aku berlindung",
+   "akar": "ع و ذ",
+   "ref": "An-Nas: 1",
+   "ayat": "قُلْ أَعُوذُ بِرَبِّ النَّاسِ",
+   "terj": "Katakanlah, \"Aku berlindung kepada Tuhannya manusia.\"",
+   "pesan": "Dari akar ini lahir kata ta'awudz: a'udzu billahi minasy syaithanir rajim."
+  },
+  {
+   "ar": "النَّاس",
+   "lat": "an-nās",
+   "arti": "manusia",
+   "akar": "ن و س",
+   "ref": "An-Nas: 1",
+   "ayat": "قُلْ أَعُوذُ بِرَبِّ النَّاسِ",
+   "terj": "Katakanlah, \"Aku berlindung kepada Tuhannya manusia.\"",
+   "pesan": "Surat terakhir Al-Qur'an menyebut 'an-nas' lima kali: Allah dekat dengan seluruh manusia."
+  },
+  {
+   "ar": "الْفَلَق",
+   "lat": "al-falaq",
+   "arti": "waktu subuh, fajar yang menyingsing",
+   "akar": "ف ل ق",
+   "ref": "Al-Falaq: 1",
+   "ayat": "قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",
+   "terj": "Katakanlah, \"Aku berlindung kepada Tuhan yang menguasai subuh (fajar).\"",
+   "pesan": "Saat ini waktu subuh: falaq adalah cahaya yang membelah gelapnya malam."
+  },
+  {
+   "ar": "اقْرَأْ",
+   "lat": "iqra’",
+   "arti": "bacalah",
+   "akar": "ق ر أ",
+   "ref": "Al-'Alaq: 1",
+   "ayat": "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ",
+   "terj": "Bacalah dengan (menyebut) nama Tuhanmu yang menciptakan.",
+   "pesan": "Perintah pertama dalam Islam: membaca. Inilah ruh gerakan GENCAR."
+  },
+  {
+   "ar": "خَلَقَ",
+   "lat": "khalaqa",
+   "arti": "(Dia) menciptakan",
+   "akar": "خ ل ق",
+   "ref": "Al-'Alaq: 1",
+   "ayat": "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ",
+   "terj": "Bacalah dengan (menyebut) nama Tuhanmu yang menciptakan.",
+   "pesan": "Dari akar yang sama: khāliq (Pencipta), makhlūq (ciptaan), dan akhlāq (budi pekerti)."
+  },
+  {
+   "ar": "عَلَّمَ",
+   "lat": "‘allama",
+   "arti": "(Dia) mengajarkan",
+   "akar": "ع ل م",
+   "ref": "Al-'Alaq: 4",
+   "ayat": "الَّذِي عَلَّمَ بِالْقَلَمِ",
+   "terj": "Yang mengajar (manusia) dengan pena.",
+   "pesan": "Allah sendiri disebut sebagai Yang Mengajar. Mengajar adalah pekerjaan yang mulia."
+  },
+  {
+   "ar": "الْقَلَم",
+   "lat": "al-qalam",
+   "arti": "pena",
+   "akar": "ق ل م",
+   "ref": "Al-'Alaq: 4",
+   "ayat": "الَّذِي عَلَّمَ بِالْقَلَمِ",
+   "terj": "Yang mengajar (manusia) dengan pena.",
+   "pesan": "Pena adalah sarana ilmu; ada surat yang bernama Al-Qalam."
+  },
+  {
+   "ar": "الْإِنسَان",
+   "lat": "al-insān",
+   "arti": "manusia",
+   "akar": "أ ن س",
+   "ref": "Al-'Alaq: 5",
+   "ayat": "عَلَّمَ الْإِنسَانَ مَا لَمْ يَعْلَمْ",
+   "terj": "Dia mengajarkan manusia apa yang tidak diketahuinya.",
+   "pesan": "Manusia lahir tanpa tahu apa-apa; belajar adalah fitrahnya."
+  },
+  {
+   "ar": "الْعَصْر",
+   "lat": "al-‘aṣr",
+   "arti": "masa, waktu",
+   "akar": "ع ص ر",
+   "ref": "Al-'Ashr: 1",
+   "ayat": "وَالْعَصْرِ",
+   "terj": "Demi masa.",
+   "pesan": "Allah bersumpah dengan waktu: jangan biarkan hari ini berlalu tanpa membaca Al-Qur'an."
+  },
+  {
+   "ar": "خُسْر",
+   "lat": "khusr",
+   "arti": "kerugian",
+   "akar": "خ س ر",
+   "ref": "Al-'Ashr: 2",
+   "ayat": "إِنَّ الْإِنسَانَ لَفِي خُسْرٍ",
+   "terj": "Sungguh, manusia berada dalam kerugian.",
+   "pesan": "Semua manusia rugi, kecuali yang mengisi waktunya dengan empat hal di ayat berikutnya."
+  },
+  {
+   "ar": "آمَنُوا",
+   "lat": "āmanū",
+   "arti": "(mereka) beriman",
+   "akar": "أ م ن",
+   "ref": "Al-'Ashr: 3",
+   "ayat": "إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ",
+   "terj": "Kecuali orang-orang yang beriman dan mengerjakan kebajikan.",
+   "pesan": "Akar yang sama melahirkan amān (aman) dan amānah: iman membuat jiwa tenteram."
+  },
+  {
+   "ar": "الصَّالِحَات",
+   "lat": "aṣ-ṣāliḥāt",
+   "arti": "amal-amal kebajikan",
+   "akar": "ص ل ح",
+   "ref": "Al-'Ashr: 3",
+   "ayat": "إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ",
+   "terj": "Kecuali orang-orang yang beriman dan mengerjakan kebajikan.",
+   "pesan": "Iman dan amal saleh hampir selalu disebut berdampingan dalam Al-Qur'an."
+  },
+  {
+   "ar": "الْحَقّ",
+   "lat": "al-ḥaqq",
+   "arti": "kebenaran",
+   "akar": "ح ق ق",
+   "ref": "Al-'Ashr: 3",
+   "ayat": "وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ",
+   "terj": "Serta saling menasihati untuk kebenaran dan saling menasihati untuk kesabaran.",
+   "pesan": "Al-Haqq juga salah satu nama Allah: Yang Mahabenar."
+  },
+  {
+   "ar": "الصَّبْر",
+   "lat": "aṣ-ṣabr",
+   "arti": "sabar, keteguhan",
+   "akar": "ص ب ر",
+   "ref": "Al-'Ashr: 3",
+   "ayat": "وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ",
+   "terj": "Serta saling menasihati untuk kebenaran dan saling menasihati untuk kesabaran.",
+   "pesan": "Sabar bukan diam pasrah, tetapi teguh bertahan dalam kebaikan."
+  },
+  {
+   "ar": "الصَّلَاة",
+   "lat": "aṣ-ṣalāh",
+   "arti": "shalat",
+   "akar": "ص ل و",
+   "ref": "Al-'Ankabut: 45",
+   "ayat": "إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ",
+   "terj": "Sesungguhnya shalat itu mencegah dari (perbuatan) keji dan mungkar.",
+   "pesan": "Shalat Subuh baru saja ditunaikan: semoga menjaga kita sepanjang hari."
+  },
+  {
+   "ar": "ذِكْر",
+   "lat": "dzikr",
+   "arti": "mengingat, menyebut",
+   "akar": "ذ ك ر",
+   "ref": "Ar-Ra'd: 28",
+   "ayat": "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+   "terj": "Ingatlah, hanya dengan mengingat Allah hati menjadi tenteram.",
+   "pesan": "Adz-Dzikr juga salah satu nama Al-Qur'an: membacanya adalah dzikir terbaik."
+  },
+  {
+   "ar": "الْقُلُوب",
+   "lat": "al-qulūb",
+   "arti": "hati-hati (jamak dari qalb)",
+   "akar": "ق ل ب",
+   "ref": "Ar-Ra'd: 28",
+   "ayat": "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+   "terj": "Ingatlah, hanya dengan mengingat Allah hati menjadi tenteram.",
+   "pesan": "Qalb berarti 'yang berbolak-balik': hati perlu terus dijaga."
+  },
+  {
+   "ar": "نُور",
+   "lat": "nūr",
+   "arti": "cahaya",
+   "akar": "ن و ر",
+   "ref": "An-Nur: 35",
+   "ayat": "اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ",
+   "terj": "Allah (pemberi) cahaya (kepada) langit dan bumi.",
+   "pesan": "Al-Qur'an juga disebut nur: cahaya yang menerangi jalan hidup."
+  },
+  {
+   "ar": "السَّمَاوَات",
+   "lat": "as-samāwāt",
+   "arti": "langit-langit",
+   "akar": "س م و",
+   "ref": "An-Nur: 35",
+   "ayat": "اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ",
+   "terj": "Allah (pemberi) cahaya (kepada) langit dan bumi.",
+   "pesan": "Langit sering disebut dalam bentuk jamak, bumi dalam bentuk tunggal."
+  },
+  {
+   "ar": "الْأَرْض",
+   "lat": "al-arḍ",
+   "arti": "bumi",
+   "akar": "أ ر ض",
+   "ref": "An-Nur: 35",
+   "ayat": "اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ",
+   "terj": "Allah (pemberi) cahaya (kepada) langit dan bumi.",
+   "pesan": "Bumi tempat kita berpijak adalah amanah untuk dijaga."
+  },
+  {
+   "ar": "الْعُسْر",
+   "lat": "al-‘usr",
+   "arti": "kesulitan",
+   "akar": "ع س ر",
+   "ref": "Al-Insyirah: 5",
+   "ayat": "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",
+   "terj": "Maka sesungguhnya beserta kesulitan ada kemudahan.",
+   "pesan": "Kesulitan disebut dengan 'al' (tertentu), kemudahan tanpa 'al': satu kesulitan, banyak kemudahan."
+  },
+  {
+   "ar": "يُسْر",
+   "lat": "yusr",
+   "arti": "kemudahan",
+   "akar": "ي س ر",
+   "ref": "Al-Insyirah: 5",
+   "ayat": "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",
+   "terj": "Maka sesungguhnya beserta kesulitan ada kemudahan.",
+   "pesan": "Kemudahan itu bukan sesudah, tetapi beserta (ma'a) kesulitan."
+  },
+  {
+   "ar": "رَحْمَة",
+   "lat": "raḥmah",
+   "arti": "rahmat, kasih sayang",
+   "akar": "ر ح م",
+   "ref": "Al-Anbiya': 107",
+   "ayat": "وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ",
+   "terj": "Dan Kami tidak mengutus engkau (Muhammad) melainkan untuk (menjadi) rahmat bagi seluruh alam.",
+   "pesan": "Akarnya sama dengan rahim: kasih sayang yang melindungi."
+  },
+  {
+   "ar": "الْعَالَمِين",
+   "lat": "al-‘ālamīn",
+   "arti": "seluruh alam",
+   "akar": "ع ل م",
+   "ref": "Al-Anbiya': 107",
+   "ayat": "وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ",
+   "terj": "Dan Kami tidak mengutus engkau (Muhammad) melainkan untuk (menjadi) rahmat bagi seluruh alam.",
+   "pesan": "'Alam berasal dari akar yang sama dengan 'alāmah (tanda): alam adalah tanda kebesaran Allah."
+  },
+  {
+   "ar": "أَتْقَاكُمْ",
+   "lat": "atqākum",
+   "arti": "yang paling bertakwa di antara kalian",
+   "akar": "و ق ي",
+   "ref": "Al-Hujurat: 13",
+   "ayat": "إِنَّ أَكْرَمَكُمْ عِندَ اللَّهِ أَتْقَاكُمْ",
+   "terj": "Sesungguhnya yang paling mulia di antara kamu di sisi Allah ialah orang yang paling bertakwa.",
+   "pesan": "Takwa berasal dari akar 'menjaga diri'. Kemuliaan bukan karena harta atau keturunan."
+  },
+  {
+   "ar": "جَنَّة",
+   "lat": "jannah",
+   "arti": "surga, taman",
+   "akar": "ج ن ن",
+   "ref": "Ali 'Imran: 133",
+   "ayat": "وَسَارِعُوا إِلَىٰ مَغْفِرَةٍ مِّن رَّبِّكُمْ وَجَنَّةٍ",
+   "terj": "Dan bersegeralah kamu mencari ampunan dari Tuhanmu dan (mendapatkan) surga.",
+   "pesan": "Akar j-n-n bermakna 'tertutup': surga tertutup dari pandangan, kenikmatannya belum terbayangkan."
+  },
+  {
+   "ar": "مَغْفِرَة",
+   "lat": "maghfirah",
+   "arti": "ampunan",
+   "akar": "غ ف ر",
+   "ref": "Ali 'Imran: 133",
+   "ayat": "وَسَارِعُوا إِلَىٰ مَغْفِرَةٍ مِّن رَّبِّكُمْ",
+   "terj": "Dan bersegeralah kamu mencari ampunan dari Tuhanmu.",
+   "pesan": "Akarnya bermakna 'menutupi': Allah menutupi dosa hamba yang memohon ampun."
+  },
+  {
+   "ar": "الْقُرْآن",
+   "lat": "al-qur’ān",
+   "arti": "bacaan; Al-Qur'an",
+   "akar": "ق ر أ",
+   "ref": "Al-Baqarah: 185",
+   "ayat": "شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ",
+   "terj": "Bulan Ramadhan adalah (bulan) yang di dalamnya diturunkan Al-Qur'an.",
+   "pesan": "Al-Qur'an berarti 'yang banyak dibaca': ia memang diturunkan untuk dibaca."
+  },
+  {
+   "ar": "يَتَدَبَّرُونَ",
+   "lat": "yatadabbarūn",
+   "arti": "(mereka) menghayati, merenungi",
+   "akar": "د ب ر",
+   "ref": "An-Nisa': 82",
+   "ayat": "أَفَلَا يَتَدَبَّرُونَ الْقُرْآنَ",
+   "terj": "Maka tidakkah mereka menghayati (mendalami) Al-Qur'an?",
+   "pesan": "Inilah inti GEMAR: memahami arti kata agar bisa menghayati ayat."
+  },
+  {
+   "ar": "شَكَرْتُمْ",
+   "lat": "syakartum",
+   "arti": "kalian bersyukur",
+   "akar": "ش ك ر",
+   "ref": "Ibrahim: 7",
+   "ayat": "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+   "terj": "Sesungguhnya jika kamu bersyukur, niscaya Aku akan menambah (nikmat) kepadamu.",
+   "pesan": "Syukur yang paling sederhana pagi ini: alhamdulillah masih diberi waktu."
+  },
+  {
+   "ar": "يَتَوَكَّلْ",
+   "lat": "yatawakkal",
+   "arti": "bertawakal, berserah diri",
+   "akar": "و ك ل",
+   "ref": "Ath-Thalaq: 3",
+   "ayat": "وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ",
+   "terj": "Dan barang siapa bertawakal kepada Allah, niscaya Allah akan mencukupkan (keperluan)nya.",
+   "pesan": "Tawakal datang setelah ikhtiar: berangkatlah bekerja, lalu serahkan hasilnya kepada Allah."
+  },
+  {
+   "ar": "أَنفِقُوا",
+   "lat": "anfiqū",
+   "arti": "infakkanlah",
+   "akar": "ن ف ق",
+   "ref": "Al-Munafiqun: 10",
+   "ayat": "وَأَنفِقُوا مِن مَّا رَزَقْنَاكُم مِّن قَبْلِ أَن يَأْتِيَ أَحَدَكُمُ الْمَوْتُ",
+   "terj": "Dan infakkanlah sebagian dari apa yang telah Kami berikan kepadamu sebelum kematian datang kepada salah seorang di antara kamu.",
+   "pesan": "Dua malaikat mendoakan orang yang berinfak setiap pagi."
+  },
+  {
+   "ar": "رَزَقْنَاكُم",
+   "lat": "razaqnākum",
+   "arti": "Kami beri rezeki kepada kalian",
+   "akar": "ر ز ق",
+   "ref": "Al-Munafiqun: 10",
+   "ayat": "وَأَنفِقُوا مِن مَّا رَزَقْنَاكُم",
+   "terj": "Dan infakkanlah sebagian dari apa yang telah Kami berikan kepadamu.",
+   "pesan": "Rezeki itu pemberian Allah; sebagiannya titipan untuk orang lain."
+  },
+  {
+   "ar": "عِلْمًا",
+   "lat": "‘ilman",
+   "arti": "ilmu",
+   "akar": "ع ل م",
+   "ref": "Thaha: 114",
+   "ayat": "وَقُل رَّبِّ زِدْنِي عِلْمًا",
+   "terj": "Dan katakanlah, \"Ya Tuhanku, tambahkanlah ilmu kepadaku.\"",
+   "pesan": "Satu-satunya hal yang Nabi diperintah untuk minta ditambah: ilmu."
+  },
+  {
+   "ar": "الْكَوْثَر",
+   "lat": "al-kautsar",
+   "arti": "nikmat yang sangat banyak",
+   "akar": "ك ث ر",
+   "ref": "Al-Kautsar: 1",
+   "ayat": "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ",
+   "terj": "Sungguh, Kami telah memberimu (Muhammad) nikmat yang banyak.",
+   "pesan": "Akar k-ts-r bermakna banyak; Al-Kautsar juga nama telaga Nabi di akhirat."
+  },
+  {
+   "ar": "نَصْر",
+   "lat": "naṣr",
+   "arti": "pertolongan",
+   "akar": "ن ص ر",
+   "ref": "An-Nashr: 1",
+   "ayat": "إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ",
+   "terj": "Apabila telah datang pertolongan Allah dan kemenangan.",
+   "pesan": "Kaum Anshar di Madinah dinamai dari akar yang sama: para penolong."
+  },
+  {
+   "ar": "الْفَتْح",
+   "lat": "al-fatḥ",
+   "arti": "kemenangan, pembukaan",
+   "akar": "ف ت ح",
+   "ref": "An-Nashr: 1",
+   "ayat": "إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ",
+   "terj": "Apabila telah datang pertolongan Allah dan kemenangan.",
+   "pesan": "Akarnya sama dengan Al-Fatihah: surat pembuka."
+  },
+  {
+   "ar": "سَلَام",
+   "lat": "salām",
+   "arti": "kedamaian, keselamatan",
+   "akar": "س ل م",
+   "ref": "Al-Qadr: 5",
+   "ayat": "سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
+   "terj": "Sejahteralah (malam itu) sampai terbit fajar.",
+   "pesan": "Islam, salam, dan muslim berasal dari akar yang sama."
+  },
+  {
+   "ar": "الْفَجْر",
+   "lat": "al-fajr",
+   "arti": "fajar",
+   "akar": "ف ج ر",
+   "ref": "Al-Fajr: 1",
+   "ayat": "وَالْفَجْرِ",
+   "terj": "Demi fajar.",
+   "pesan": "Allah bersumpah dengan waktu fajar: waktu yang sedang kita jalani pagi ini."
+  },
+  {
+   "ar": "لَيْلَة",
+   "lat": "lailah",
+   "arti": "malam",
+   "akar": "ل ي ل",
+   "ref": "Al-Qadr: 1",
+   "ayat": "إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ",
+   "terj": "Sesungguhnya Kami telah menurunkannya (Al-Qur'an) pada malam qadar.",
+   "pesan": "Al-Qur'an turun di malam hari; malam adalah waktu terbaik bermunajat."
+  },
+  {
+   "ar": "الْقَدْر",
+   "lat": "al-qadr",
+   "arti": "kemuliaan; ketetapan",
+   "akar": "ق د ر",
+   "ref": "Al-Qadr: 1",
+   "ayat": "إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ",
+   "terj": "Sesungguhnya Kami telah menurunkannya (Al-Qur'an) pada malam qadar.",
+   "pesan": "Malam itu mulia karena di dalamnya turun Kitab yang mulia."
+  },
+  {
+   "ar": "خَيْر",
+   "lat": "khair",
+   "arti": "baik, lebih baik",
+   "akar": "خ ي ر",
+   "ref": "Al-Qadr: 3",
+   "ayat": "لَيْلَةُ الْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ",
+   "terj": "Malam qadar itu lebih baik daripada seribu bulan.",
+   "pesan": "Khairukum man ta'allamal Qur'an: sebaik-baik kalian adalah yang belajar dan mengajarkan Al-Qur'an."
+  },
+  {
+   "ar": "شَهْر",
+   "lat": "syahr",
+   "arti": "bulan",
+   "akar": "ش ه ر",
+   "ref": "Al-Qadr: 3",
+   "ayat": "لَيْلَةُ الْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ",
+   "terj": "Malam qadar itu lebih baik daripada seribu bulan.",
+   "pesan": "Seribu bulan sekitar 83 tahun: lebih panjang dari usia kebanyakan manusia."
+  },
+  {
+   "ar": "الْمَلَائِكَة",
+   "lat": "al-malā’ikah",
+   "arti": "para malaikat",
+   "akar": "م ل ك / أ ل ك",
+   "ref": "Al-Qadr: 4",
+   "ayat": "تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِم",
+   "terj": "Pada malam itu turun para malaikat dan Ruh (Jibril) dengan izin Tuhannya.",
+   "pesan": "Malaikat mengelilingi majelis yang membaca dan mempelajari Al-Qur'an (HR. Muslim)."
+  },
+  {
+   "ar": "نَفْس",
+   "lat": "nafs",
+   "arti": "jiwa, diri",
+   "akar": "ن ف س",
+   "ref": "Ali 'Imran: 185",
+   "ayat": "كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ",
+   "terj": "Setiap yang bernyawa akan merasakan mati.",
+   "pesan": "Nafs juga bermakna diri: tazkiyatun nafs adalah menyucikan diri."
+  },
+  {
+   "ar": "الْمَوْت",
+   "lat": "al-maut",
+   "arti": "kematian",
+   "akar": "م و ت",
+   "ref": "Ali 'Imran: 185",
+   "ayat": "كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ",
+   "terj": "Setiap yang bernyawa akan merasakan mati.",
+   "pesan": "Bangun tidur adalah 'hidup kembali': doa bangun tidur menyebut kebangkitan."
+  },
+  {
+   "ar": "الدُّنْيَا",
+   "lat": "ad-dunyā",
+   "arti": "dunia, yang dekat/rendah",
+   "akar": "د ن و",
+   "ref": "Ali 'Imran: 185",
+   "ayat": "وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا مَتَاعُ الْغُرُورِ",
+   "terj": "Kehidupan dunia hanyalah kesenangan yang memperdaya.",
+   "pesan": "Dunyā berarti 'yang dekat': dekat waktunya, juga singkat."
+  },
+  {
+   "ar": "الْآخِرَة",
+   "lat": "al-ākhirah",
+   "arti": "akhirat, yang kemudian",
+   "akar": "أ خ ر",
+   "ref": "Adh-Dhuha: 4",
+   "ayat": "وَلَلْآخِرَةُ خَيْرٌ لَّكَ مِنَ الْأُولَىٰ",
+   "terj": "Dan sungguh, yang kemudian itu lebih baik bagimu daripada yang permulaan.",
+   "pesan": "Ayat ini menghibur Nabi; juga menghibur kita: yang terbaik masih di depan."
+  },
+  {
+   "ar": "الضُّحَىٰ",
+   "lat": "adh-dhuḥā",
+   "arti": "waktu dhuha, pagi yang terang",
+   "akar": "ض ح و",
+   "ref": "Adh-Dhuha: 1",
+   "ayat": "وَالضُّحَىٰ",
+   "terj": "Demi waktu dhuha.",
+   "pesan": "Setelah subuh datang dhuha: waktu shalat sunnah dan memulai rezeki."
+  },
+  {
+   "ar": "تُحَدِّثُ",
+   "lat": "tuḥaddits",
+   "arti": "(bumi) menceritakan",
+   "akar": "ح د ث",
+   "ref": "Az-Zalzalah: 4",
+   "ayat": "يَوْمَئِذٍ تُحَدِّثُ أَخْبَارَهَا",
+   "terj": "Pada hari itu bumi menceritakan beritanya.",
+   "pesan": "Dari akar yang sama lahir kata hadits: berita, perkataan."
+  }
+ ]
+}
