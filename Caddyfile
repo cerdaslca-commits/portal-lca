@@ -14,6 +14,7 @@
 	header @media Cache-Control "public, max-age=604800"
 	header /index.html Cache-Control "no-cache"
 	header /kata.json Cache-Control "no-cache"
+	header /kisah.json Cache-Control "no-cache"
 	header {
 		X-Content-Type-Options nosniff
 		Referrer-Policy strict-origin-when-cross-origin
