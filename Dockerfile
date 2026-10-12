@@ -1,8 +1,8 @@
-FROM caddy:2-alpine
-COPY Caddyfile /etc/caddy/Caddyfile
-COPY index.html /srv/index.html
-COPY kata.json /srv/kata.json
-COPY kisah.json /srv/kisah.json
-COPY sitemap.xml /srv/sitemap.xml
-COPY robots.txt /srv/robots.txt
-COPY media /srv/media
+FROM node:22-alpine
+ENV NODE_ENV=production PUBLIC_DIR=/app/public DATA_DIR=/data
+WORKDIR /app
+COPY server.js /app/server.js
+COPY index.html admin.html kata.json kisah.json sitemap.xml robots.txt /app/public/
+COPY media /app/public/media
+EXPOSE 3000
+CMD ["node", "server.js"]

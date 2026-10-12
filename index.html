@@ -457,6 +457,35 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
 .toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);transform:translateX(-50%);background:var(--ink);color:var(--paper);font-family:var(--f-ui);font-size:14px;padding:10px 16px;border-radius:6px;z-index:50}
 .totop{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:40}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+/* Formulir relawan */
+.rf{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:20px;margin:18px 0;font-family:var(--f-ui);font-size:15px;line-height:1.5}
+.rf fieldset{border:0;border-top:1px solid var(--rule);margin:18px 0 0;padding:16px 0 0}
+.rf fieldset:first-of-type{border-top:0;margin-top:0;padding-top:0}
+.rf legend{font-weight:700;color:var(--green);font-size:16px;padding:0;margin-bottom:6px}
+.rf .hint{color:var(--muted);font-size:13.5px;margin:0 0 10px}
+.rf label.f{display:block;margin:12px 0 4px;font-weight:600}
+.rf label.f i{color:#C0392B;font-style:normal}
+.rf input[type=text],.rf input[type=tel],.rf input[type=email],.rf input[type=date],.rf input[type=url],.rf select,.rf textarea{width:100%;box-sizing:border-box;font:inherit;padding:10px 12px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink)}
+.rf textarea{min-height:90px;resize:vertical}
+.rf .row2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+@media(max-width:640px){.rf .row2{grid-template-columns:1fr}}
+.rf .opts{display:flex;flex-wrap:wrap;gap:8px}
+.rf .opts label{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--rule);border-radius:999px;padding:6px 12px;background:var(--paper);cursor:pointer;font-size:14px}
+.rf .opts input{accent-color:var(--green)}
+.rf .opts label:has(input:checked){border-color:var(--green);background:var(--green-soft)}
+.rf .big label{border-radius:10px;padding:12px 14px;flex:1 1 220px;align-items:flex-start}
+.rf .big small{display:block;color:var(--muted);font-weight:400}
+.rf .chk{display:flex;gap:10px;align-items:flex-start;margin:8px 0}
+.rf .chk input{margin-top:4px;accent-color:var(--green)}
+.rf .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.rf .msg{margin-top:14px;padding:12px 14px;border-radius:8px;display:none}
+.rf .msg.err{display:block;background:#FDECEA;color:#8A1F11}
+.rf .msg.ok{display:block;background:var(--green-soft);color:var(--ink)}
+.rf button[type=submit]{margin-top:16px;font-size:16px;padding:12px 20px;cursor:pointer}
+.rf [data-for]{display:none}
+.rf.guru [data-for=guru],.rf.sensus [data-for=sensus]{display:block}
+.syarat{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:12px 0}
+.syarat .card ul{margin:6px 0 0;padding-left:18px;font-family:var(--f-ui);font-size:14.5px;line-height:1.55}
 </style>
 
 <div class="top"><div class="top-in">
@@ -2125,7 +2154,7 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
   <div class="grid">
     <a class="card" href="https://donasi-gencar.cerdaslca.chatgpt.site/" target="_blank" rel="noopener"><span class="k">Situs donasi</span><h3>Donasi GENCAR</h3><p>Infak dan wakaf via QRIS atau transfer, beserta laporan dampak.</p></a>
     <a class="card" href="https://play.google.com/store/apps/details?id=com.siakad.lcaonline" target="_blank" rel="noopener"><span class="k">Play Store</span><h3>LCA Online</h3><p>Aplikasi pendidikan: santri, guru, dan pertemuan belajar.</p></a>
-    <a class="card" href="https://gencarlca.id/" target="_blank" rel="noopener"><span class="k">Situs</span><h3>gencarlca.id</h3><p>Situs program GENCAR dan formulir relawan.</p></a>
+    <a class="card" href="#gabung"><span class="k">Formulir</span><h3>Daftar relawan</h3><p>Pendaftaran relawan Guru Ngaji dan Petugas Sensus Al-Qur'an.</p></a>
     <a class="card" href="https://linktr.ee/lembagacerdasalquran23" target="_blank" rel="noopener"><span class="k">Linktree</span><h3>Semua tautan LCA</h3><p>Peta kantor, situs, dan akun resmi.</p></a>
     <a class="card" href="https://cerdasalquran.wordpress.com/" target="_blank" rel="noopener"><span class="k">Arsip</span><h3>Blog Cerdas Al-Qur'an</h3><p>Arsip lama: Balai Al-Qur'an, Koperasi Mitra Berkah, Perpustakaan Cerdas.</p></a>
   </div>
@@ -2144,12 +2173,93 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
     <div class="card"><span class="k">Pos kerja sama</span><h3>Jaringan Layanan Umat</h3><p>Perorangan atau lembaga yang membuka pos GENCAR di lingkungannya.</p></div>
     <div class="card"><span class="k">Mitra</span><h3>Mediator, fasilitator, sponsor</h3><p>Membuka jalan ke desa baru, perusahaan, atau komunitas.</p></div>
   </div>
-  <h2>Panduan menjadi relawan</h2>
-  <ol class="steps">
-    <li><b>Buka situs</b> <a href="https://gencarlca.id/" target="_blank" rel="noopener">gencarlca.id</a> atau gencarlca.com.</li>
-    <li><b>Isi formulir</b> Relawan GENCAR LCA.</li>
-    <li><b>Tunggu konfirmasi</b> dari Lembaga Cerdas Al-Qur'an, atau hubungi WhatsApp 0819-3132-4346.</li>
-  </ol>
+  <h2 id="daftar-relawan">Daftar menjadi relawan</h2>
+  <p>Relawan Guru Ngaji dan Petugas Sensus Al-Qur'an adalah ujung tombak GENCAR: datang ke rumah-rumah warga, mengajak, mendata, dan mengajar. Karena itu ada beberapa kesiapan yang kami harapkan.</p>
+  <div class="syarat">
+    <div class="card"><span class="k">Relawan</span><h3>Guru Ngaji</h3><ul>
+      <li>Membaca Al-Qur'an dengan lancar dan sesuai kaidah tajwid.</li>
+      <li>Sabar, lembut, dan telaten membimbing anak-anak maupun orang dewasa.</li>
+      <li>Bersedia datang ke rumah warga atau majelis sesuai jadwal yang disepakati.</li>
+      <li>Bersedia mengikuti tes bacaan serta pembinaan rutin (halaqoh, Diklat Kode Etik Guru Ngaji, TOT Tajwid).</li>
+      <li>Menjaga adab, akhlak, dan amanah sebagai pengajar Al-Qur'an.</li></ul></div>
+    <div class="card"><span class="k">Relawan</span><h3>Petugas Sensus Al-Qur'an</h3><ul>
+      <li>Mampu berkomunikasi dengan santun dan ramah kepada warga yang belum dikenal.</li>
+      <li>Mampu membaca Al-Qur'an, agar bisa memotivasi dan menyimak warga.</li>
+      <li>Teliti dan jujur dalam mendata; menjaga kerahasiaan data warga.</li>
+      <li>Memiliki HP Android untuk aplikasi Sensus, dan bersedia mengikuti pelatihan petugas.</li>
+      <li>Bersedia bertugas di RT/RW yang ditentukan dengan membawa surat tugas dan kartu Penggerak LCA.</li></ul></div>
+  </div>
+
+  <form class="rf" id="rf" novalidate>
+    <fieldset><legend>1. Peran yang dipilih</legend>
+      <p class="hint">Boleh memilih keduanya.</p>
+      <div class="opts big"><label><input type="checkbox" name="peran" value="Guru Ngaji"> <span><b>Guru Ngaji</b><small>Mengajar baca Al-Qur'an di rumah warga atau majelis</small></span></label><label><input type="checkbox" name="peran" value="Petugas Sensus"> <span><b>Petugas Sensus Al-Qur'an</b><small>Mendata dan memotivasi keluarga dari rumah ke rumah</small></span></label></div>
+    </fieldset>
+
+    <fieldset><legend>2. Data diri</legend>
+      <label class="f" for="rf-nama">Nama lengkap <i>*</i></label><input type="text" id="rf-nama" name="nama" autocomplete="name" maxlength="100" required>
+      <div class="row2">
+        <div><label class="f">Jenis kelamin <i>*</i></label><div class="opts"><label><input type="radio" name="jk" value="Laki-laki"> Laki-laki</label><label><input type="radio" name="jk" value="Perempuan"> Perempuan</label></div></div>
+        <div><label class="f" for="rf-tgl">Tanggal lahir <i>*</i></label><input type="date" id="rf-tgl" name="tgl_lahir" required></div>
+      </div>
+      <div class="row2">
+        <div><label class="f" for="rf-wa">Nomor WhatsApp <i>*</i></label><input type="tel" id="rf-wa" name="wa" inputmode="tel" placeholder="0812xxxxxxxx" autocomplete="tel" required></div>
+        <div><label class="f" for="rf-email">Email (opsional)</label><input type="email" id="rf-email" name="email" autocomplete="email"></div>
+      </div>
+      <label class="f" for="rf-alamat">Alamat (jalan, RT/RW)</label><input type="text" id="rf-alamat" name="alamat" autocomplete="street-address" maxlength="300">
+      <div class="row2">
+        <div><label class="f" for="rf-desa">Desa/kelurahan <i>*</i></label><input type="text" id="rf-desa" name="desa" required></div>
+        <div><label class="f" for="rf-kec">Kecamatan <i>*</i></label><input type="text" id="rf-kec" name="kecamatan" required></div>
+      </div>
+      <label class="f" for="rf-kota">Kota/kabupaten <i>*</i></label><input type="text" id="rf-kota" name="kota" placeholder="mis. Kab. Bandung Barat" required>
+      <div class="row2">
+        <div><label class="f" for="rf-pend">Pendidikan terakhir</label><select id="rf-pend" name="pendidikan"><option value="">— pilih —</option><option>SD/sederajat</option><option>SMP/sederajat</option><option>SMA/SMK/sederajat</option><option>Pesantren</option><option>D1–D3</option><option>S1</option><option>S2/S3</option></select></div>
+        <div><label class="f" for="rf-kerja">Pekerjaan/kesibukan</label><input type="text" id="rf-kerja" name="pekerjaan" placeholder="mis. mahasiswa, ibu rumah tangga"></div>
+      </div>
+    </fieldset>
+
+    <fieldset><legend>3. Kemampuan Al-Qur'an</legend>
+      <label class="f">Kemampuan membaca Al-Qur'an saat ini <i>*</i></label><div class="opts"><label><input type="radio" name="baca" value="Masih belajar (Iqro/terbata-bata)"> Masih belajar (Iqro/terbata-bata)</label><label><input type="radio" name="baca" value="Lancar, tajwid belum sempurna"> Lancar, tajwid belum sempurna</label><label><input type="radio" name="baca" value="Lancar dan sesuai kaidah tajwid"> Lancar dan sesuai kaidah tajwid</label></div>
+      <label class="f" for="rf-tajwid">Belajar tajwid di mana atau dengan siapa?</label><input type="text" id="rf-tajwid" name="belajar_tajwid" placeholder="mis. Pesantren X, Ustadz Y, majelis di masjid Z">
+      <label class="f" for="rf-hafal">Hafalan Al-Qur'an</label><select id="rf-hafal" name="hafalan"><option value="">— pilih —</option><option>Belum ada</option><option>Sebagian Juz 30</option><option>Juz 30</option><option>2–5 juz</option><option>Lebih dari 5 juz</option><option>30 juz</option></select>
+      <label class="f">Metode belajar membaca yang dikuasai</label><div class="opts"><label><input type="checkbox" name="metode" value="Iqro"> Iqro</label><label><input type="checkbox" name="metode" value="Ummi"> Ummi</label><label><input type="checkbox" name="metode" value="Tilawati"> Tilawati</label><label><input type="checkbox" name="metode" value="Qiroati"> Qiroati</label><label><input type="checkbox" name="metode" value="Wafa"> Wafa</label><label><input type="checkbox" name="metode" value="Al-Bana"> Al-Bana</label><label><input type="checkbox" name="metode" value="Yanbu'a"> Yanbu'a</label><label><input type="checkbox" name="metode" value="Lainnya"> Lainnya</label></div>
+      <label class="f" for="rf-rek">Link rekaman bacaan Anda (opsional)</label><input type="url" id="rf-rek" name="rekaman" placeholder="Link Google Drive/YouTube, mis. membaca QS. Al-Mulk 1–5">
+      <p class="hint">Rekaman membantu tim kami menilai bacaan lebih awal. Tes bacaan langsung tetap dilakukan.</p>
+    </fieldset>
+
+    <fieldset data-for="guru"><legend>4a. Khusus Guru Ngaji</legend>
+      <label class="f">Pengalaman mengajar Al-Qur'an <i>*</i></label><div class="opts"><label><input type="radio" name="pengalaman_mengajar" value="Belum pernah"> Belum pernah</label><label><input type="radio" name="pengalaman_mengajar" value="Kurang dari 1 tahun"> Kurang dari 1 tahun</label><label><input type="radio" name="pengalaman_mengajar" value="1–3 tahun"> 1–3 tahun</label><label><input type="radio" name="pengalaman_mengajar" value="Lebih dari 3 tahun"> Lebih dari 3 tahun</label></div>
+      <label class="f">Siapa yang siap Anda ajar?</label><div class="opts"><label><input type="checkbox" name="sasaran" value="Anak-anak"> Anak-anak</label><label><input type="checkbox" name="sasaran" value="Remaja"> Remaja</label><label><input type="checkbox" name="sasaran" value="Dewasa"> Dewasa</label><label><input type="checkbox" name="sasaran" value="Lansia"> Lansia</label><label><input type="checkbox" name="sasaran" value="Khusus muslimah"> Khusus muslimah</label></div>
+      <label class="f">Bersedia datang mengajar ke rumah warga/majelis?</label><div class="opts"><label><input type="radio" name="datang_ke_rumah" value="Ya"> Ya</label><label><input type="radio" name="datang_ke_rumah" value="Tidak"> Tidak</label></div>
+    </fieldset>
+
+    <fieldset data-for="sensus"><legend>4b. Khusus Petugas Sensus</legend>
+      <label class="f">Seberapa nyaman Anda menyapa dan berbincang dengan warga yang belum dikenal? <i>*</i></label><div class="opts"><label><input type="radio" name="komunikasi" value="Sangat nyaman"> Sangat nyaman</label><label><input type="radio" name="komunikasi" value="Cukup nyaman"> Cukup nyaman</label><label><input type="radio" name="komunikasi" value="Masih canggung"> Masih canggung</label></div>
+      <label class="f">Bahasa yang dikuasai</label><div class="opts"><label><input type="checkbox" name="bahasa" value="Indonesia"> Indonesia</label><label><input type="checkbox" name="bahasa" value="Sunda"> Sunda</label><label><input type="checkbox" name="bahasa" value="Jawa"> Jawa</label><label><input type="checkbox" name="bahasa" value="Lainnya"> Lainnya</label></div>
+      <label class="f">Pengalaman survei/pendataan sebelumnya</label><div class="opts"><label><input type="radio" name="pengalaman_survei" value="Belum pernah"> Belum pernah</label><label><input type="radio" name="pengalaman_survei" value="Pernah sekali"> Pernah sekali</label><label><input type="radio" name="pengalaman_survei" value="Sering"> Sering</label></div>
+      <div class="row2">
+        <div><label class="f">Punya HP Android?</label><div class="opts"><label><input type="radio" name="hp_android" value="Ya"> Ya</label><label><input type="radio" name="hp_android" value="Tidak"> Tidak</label></div></div>
+        <div><label class="f">Punya kendaraan (motor)?</label><div class="opts"><label><input type="radio" name="kendaraan" value="Ya"> Ya</label><label><input type="radio" name="kendaraan" value="Tidak"> Tidak</label></div></div>
+      </div>
+      <label class="f" for="rf-wil">Wilayah yang bisa Anda jangkau</label><input type="text" id="rf-wil" name="wilayah" placeholder="mis. Kec. Ngamprah dan sekitarnya">
+    </fieldset>
+
+    <fieldset><legend>5. Waktu yang tersedia</legend>
+      <label class="f">Hari <i>*</i></label><div class="opts"><label><input type="checkbox" name="hari" value="Senin"> Senin</label><label><input type="checkbox" name="hari" value="Selasa"> Selasa</label><label><input type="checkbox" name="hari" value="Rabu"> Rabu</label><label><input type="checkbox" name="hari" value="Kamis"> Kamis</label><label><input type="checkbox" name="hari" value="Jumat"> Jumat</label><label><input type="checkbox" name="hari" value="Sabtu"> Sabtu</label><label><input type="checkbox" name="hari" value="Ahad"> Ahad</label></div>
+      <label class="f">Waktu</label><div class="opts"><label><input type="checkbox" name="waktu" value="Pagi"> Pagi</label><label><input type="checkbox" name="waktu" value="Siang"> Siang</label><label><input type="checkbox" name="waktu" value="Sore"> Sore</label><label><input type="checkbox" name="waktu" value="Ba'da Maghrib"> Ba'da Maghrib</label><label><input type="checkbox" name="waktu" value="Malam"> Malam</label></div>
+    </fieldset>
+
+    <fieldset><legend>6. Motivasi dan komitmen</legend>
+      <label class="f" for="rf-mot">Mengapa Anda ingin menjadi relawan LCA? <i>*</i></label><textarea id="rf-mot" name="motivasi" maxlength="1500" required></textarea>
+      <label class="f" for="rf-tahu">Mengenal LCA dari mana?</label><select id="rf-tahu" name="tahu"><option value="">— pilih —</option><option>Majelis/guru ngaji LCA</option><option>Teman/keluarga</option><option>Grup WhatsApp</option><option>Media sosial</option><option>Website LCA</option><option>Lainnya</option></select>
+      <label class="chk"><input type="checkbox" name="setuju" value="1"> <span>Saya menyatakan data di atas benar. Saya bersedia mengikuti tes bacaan Al-Qur'an, pelatihan, dan pembinaan LCA, serta menjaga adab dan amanah sebagai Penggerak LCA. Saya setuju data ini disimpan LCA hanya untuk keperluan seleksi dan koordinasi relawan. <i style="color:#C0392B;font-style:normal">*</i></span></label>
+    </fieldset>
+    <div class="hp" aria-hidden="true"><label>Jangan diisi <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <button type="submit" class="btn green">Kirim pendaftaran</button>
+    <div class="msg" id="rf-msg" role="status" aria-live="polite"></div>
+  </form>
+  <p class="src">Setelah mendaftar, tim LCA akan menghubungi Anda lewat WhatsApp untuk jadwal tes bacaan dan pelatihan. Pertanyaan: WhatsApp <a href="https://wa.me/6281931324346" target="_blank" rel="noopener">0819-3132-4346</a>.</p>
+
   <h2>Ingin GENCAR hadir di desa Anda?</h2>
   <p>Pemerintah desa, MUI desa, DKM, atau tokoh masyarakat dapat mengundang LCA untuk silaturahim dan sosialisasi, seperti GENCAR Rancatungku pada Oktober 2025. Hubungi <a href="#kontak">sekretariat</a>.</p>
 
@@ -2347,6 +2457,25 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
       var ar=$('#kata-arsip');if(ar)ar.innerHTML=arsip.join('');
       var sh=$('#kata-share');if(sh){var t='🌅 *Kata Al-Qur\'an Hari Ini* (GEMAR LCA)\n\n'+w.ar+' ('+w.lat+') = *'+w.arti+'*\nAkar kata: '+w.akar+'\n\n'+w.ayat+'\n"'+w.terj+'" ('+w.ref+')\n\n💡 '+w.pesan+'\n\n'+location.origin+'/#kata';sh.href='https://api.whatsapp.com/send?text='+encodeURIComponent(t);sh.target='_blank';sh.rel='noopener'}
     }).catch(function(){});
+  })();
+  /* ===== Formulir relawan ===== */
+  (function(){
+    var f=document.getElementById('rf');if(!f)return;var msg=document.getElementById('rf-msg');
+    function sync(){var v=$$('input[name=peran]:checked',f).map(function(x){return x.value});f.classList.toggle('guru',v.indexOf('Guru Ngaji')>-1);f.classList.toggle('sensus',v.indexOf('Petugas Sensus')>-1)}
+    f.addEventListener('change',function(e){if(e.target.name==='peran')sync()});sync();
+    f.addEventListener('submit',function(e){e.preventDefault();
+      var d={},multi=['peran','metode','sasaran','bahasa','hari','waktu'];multi.forEach(function(k){d[k]=[]});
+      $$('input,select,textarea',f).forEach(function(el){if(!el.name)return;
+        if(el.type==='checkbox'){if(el.name==='setuju')d.setuju=el.checked;else if(el.checked)d[el.name].push(el.value)}
+        else if(el.type==='radio'){if(el.checked)d[el.name]=el.value}
+        else d[el.name]=el.value});
+      var btn=f.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Mengirim…';msg.className='msg';
+      fetch('/api/relawan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){return r.json().then(function(j){return{s:r.status,j:j}})}).then(function(x){
+        if(x.j&&x.j.ok){f.reset();sync();msg.className='msg ok';msg.innerHTML='<b>Jazakumullahu khairan, pendaftaran Anda sudah kami terima.</b><br>Tim LCA akan menghubungi Anda lewat WhatsApp untuk jadwal tes bacaan dan pelatihan, in syaa Allah.';
+          try{gtag('event','daftar_relawan',{peran:d.peran.join('+')})}catch(_){}}
+        else{msg.className='msg err';msg.textContent=(x.j&&x.j.error)||'Pendaftaran belum terkirim. Coba lagi.'}
+      }).catch(function(){msg.className='msg err';msg.textContent='Koneksi terputus. Periksa internet Anda lalu coba lagi.'}).then(function(){btn.disabled=false;btn.textContent='Kirim pendaftaran';msg.scrollIntoView({behavior:'smooth',block:'center'})});
+    });
   })();
   /* ===== 100 Kisah Sirah (harian) ===== */
   (function(){

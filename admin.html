@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin Relawan · Portal LCA</title>
+<style>
+:root{--paper:#F4F6F1;--sheet:#fff;--ink:#15221E;--muted:#5A6862;--rule:#DAE0D8;--green:#0E5A47;--green-soft:#E2EEE7;--gold:#A6731C;--gold-soft:#F5EAD3;--red:#B03A2E;--f:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#0E1412;--sheet:#151D1A;--ink:#E5ECE8;--muted:#98A79F;--rule:#28342F;--green:#5EC2A2;--green-soft:#17302A;--gold:#DDB25F;--gold-soft:#2B2416;--red:#E07A6E}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f);font-size:15px;line-height:1.5}
+header{background:var(--green);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header h1{font-size:17px;margin:0;flex:1}
+header a,header button{color:#fff;background:transparent;border:1px solid rgba(255,255,255,.4);border-radius:6px;padding:6px 10px;font:inherit;font-size:13.5px;text-decoration:none;cursor:pointer}
+main{max-width:1200px;margin:0 auto;padding:16px}
+.card{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:16px}
+.login{max-width:380px;margin:60px auto}
+input,select,textarea,button{font:inherit}
+input[type=password],input[type=search],select,textarea{width:100%;padding:9px 11px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink)}
+.btn{background:var(--green);color:#fff;border:0;border-radius:8px;padding:9px 14px;cursor:pointer;font-weight:600}
+.btn.o{background:transparent;color:var(--green);border:1px solid var(--green)}
+.btn.r{background:transparent;color:var(--red);border:1px solid var(--red)}
+.err{color:var(--red);margin-top:8px;min-height:1.2em}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+.stats div{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:10px 12px}
+.stats b{display:block;font-size:22px;color:var(--green)}
+.stats span{color:var(--muted);font-size:13px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.bar>*{flex:1 1 160px}
+.bar .btn{flex:0 0 auto}
+table{width:100%;border-collapse:collapse;background:var(--sheet);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--paper)}
+tr.row{cursor:pointer}tr.row:hover td{background:var(--green-soft)}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;background:var(--green-soft);color:var(--green);margin:1px 2px 1px 0;white-space:nowrap}
+.st{font-size:12.5px;font-weight:600;padding:2px 8px;border-radius:6px;background:var(--gold-soft);white-space:nowrap}
+.st.Diterima{background:var(--green-soft);color:var(--green)}.st.Baru{background:#E3ECFA;color:#1F4E9A}
+@media (prefers-color-scheme:dark){.st.Baru{background:#1B2A40;color:#9DBDF0}}
+.muted{color:var(--muted);font-size:13px}
+.wrap{overflow-x:auto}
+@media(max-width:720px){.hide-m{display:none}}
+dialog{border:0;border-radius:12px;padding:0;width:min(720px,96vw);max-height:92vh;background:var(--sheet);color:var(--ink)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+.dh{position:sticky;top:0;background:var(--sheet);padding:14px 16px;border-bottom:1px solid var(--rule);display:flex;gap:10px;align-items:center}
+.dh h2{margin:0;font-size:18px;flex:1}
+.db{padding:14px 16px}
+dl{display:grid;grid-template-columns:200px 1fr;gap:6px 12px;margin:0}
+dt{color:var(--muted);font-size:13.5px}dd{margin:0;white-space:pre-wrap;word-break:break-word}
+@media(max-width:560px){dl{grid-template-columns:1fr}dt{margin-top:6px}}
+h3{font-size:14px;color:var(--green);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.05em}
+.act{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><h1>Admin Pendaftaran Relawan · Portal LCA</h1><a href="/">← Portal</a><button id="out" hidden>Keluar</button></header>
+<main>
+  <section id="v-login" class="card login" hidden>
+    <h2 style="margin-top:0;font-size:18px">Masuk admin</h2>
+    <form id="lf"><label for="pw">Kata sandi admin</label><input type="password" id="pw" autocomplete="current-password" required style="margin:6px 0 12px"><button class="btn" type="submit">Masuk</button><div class="err" id="lerr"></div></form>
+  </section>
+  <section id="v-list" hidden>
+    <div class="stats" id="stats"></div>
+    <div class="bar">
+      <input type="search" id="q" placeholder="Cari nama, desa, nomor WA…">
+      <select id="fp"><option value="">Semua peran</option><option>Guru Ngaji</option><option>Petugas Sensus</option></select>
+      <select id="fs"><option value="">Semua status</option></select>
+      <select id="fb"><option value="">Semua kemampuan baca</option></select>
+      <a class="btn o" href="/api/admin/relawan.csv">Unduh Excel (CSV)</a>
+    </div>
+    <div class="wrap"><table><thead><tr><th>Tanggal</th><th>Nama</th><th>Peran</th><th class="hide-m">Wilayah</th><th class="hide-m">Bacaan</th><th>Status</th></tr></thead><tbody id="tb"></tbody></table></div>
+  </section>
+</main>
+<dialog id="dlg"><div class="dh"><h2 id="dn"></h2><button class="btn o" id="dx" type="button">Tutup</button></div><div class="db" id="dbody"></div></dialog>
+<script>
+(function(){
+  var ST=['Baru','Dihubungi','Tes bacaan','Diterima','Belum sesuai','Mengundurkan diri'];
+  var BACA=['Masih belajar (Iqro/terbata-bata)','Lancar, tajwid belum sempurna','Lancar dan sesuai kaidah tajwid'];
+  var D=[],$=function(s){return document.querySelector(s)};
+  function esc(t){var d=document.createElement('div');d.textContent=t==null?'':Array.isArray(t)?t.join(', '):String(t);return d.innerHTML}
+  function api(u,o){o=o||{};o.headers=Object.assign({'X-LCA':'1','Content-Type':'application/json'},o.headers||{});o.credentials='same-origin';return fetch(u,o).then(function(r){return r.json().catch(function(){return{}}).then(function(j){j._s=r.status;return j})})}
+  function show(v){$('#v-login').hidden=v!=='login';$('#v-list').hidden=v!=='list';$('#out').hidden=v!=='list'}
+  ST.forEach(function(s){$('#fs').insertAdjacentHTML('beforeend','<option>'+s+'</option>')});
+  BACA.forEach(function(s){$('#fb').insertAdjacentHTML('beforeend','<option>'+s+'</option>')});
+  function tgl(iso){var d=new Date(iso);return d.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric',timeZone:'Asia/Jakarta'})+' '+d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Jakarta'})}
+  function umur(t){if(!t)return'';var b=new Date(t),n=new Date(),a=n.getFullYear()-b.getFullYear();if(n<new Date(n.getFullYear(),b.getMonth(),b.getDate()))a--;return a+' th'}
+  function load(){api('/api/admin/relawan').then(function(j){if(j._s===401){show('login');if(j.aktif===false)$('#lerr').textContent='Admin belum diaktifkan: atur variabel ADMIN_PASSWORD di Railway.';return}D=j.data||[];show('list');render()})}
+  function render(){
+    var q=$('#q').value.toLowerCase(),fp=$('#fp').value,fs=$('#fs').value,fb=$('#fb').value;
+    var L=D.filter(function(r){return(!fp||r.peran.indexOf(fp)>-1)&&(!fs||r.status===fs)&&(!fb||r.baca===fb)&&(!q||[r.nama,r.desa,r.kecamatan,r.kota,r.wa,r.email].join(' ').toLowerCase().indexOf(q)>-1)});
+    var c=function(f){return D.filter(f).length};
+    $('#stats').innerHTML=[['Total pendaftar',D.length],['Baru',c(function(r){return r.status==='Baru'})],['Guru Ngaji',c(function(r){return r.peran.indexOf('Guru Ngaji')>-1})],['Petugas Sensus',c(function(r){return r.peran.indexOf('Petugas Sensus')>-1})],['Bacaan sesuai tajwid',c(function(r){return r.baca===BACA[2]})],['Diterima',c(function(r){return r.status==='Diterima'})]].map(function(x){return'<div><b>'+x[1]+'</b><span>'+x[0]+'</span></div>'}).join('');
+    $('#tb').innerHTML=L.length?L.map(function(r){return'<tr class="row" data-id="'+r.id+'"><td class="muted">'+esc(tgl(r.didaftar))+'</td><td><b>'+esc(r.nama)+'</b><div class="muted">'+esc(r.jk)+(r.tgl_lahir?' · '+umur(r.tgl_lahir):'')+'</div></td><td>'+r.peran.map(function(p){return'<span class="tag">'+esc(p)+'</span>'}).join('')+'</td><td class="hide-m">'+esc(r.desa)+', '+esc(r.kecamatan)+'<div class="muted">'+esc(r.kota)+'</div></td><td class="hide-m">'+esc(r.baca)+'</td><td><span class="st '+esc(r.status).replace(/ /g,'')+'">'+esc(r.status)+'</span></td></tr>'}).join(''):'<tr><td colspan="6" class="empty">'+(D.length?'Tidak ada yang cocok dengan filter.':'Belum ada pendaftar.')+'</td></tr>';
+  }
+  ['#q','#fp','#fs','#fb'].forEach(function(s){$(s).addEventListener('input',render)});
+  function wa(n){n=String(n||'').replace(/\D/g,'');if(n[0]==='0')n='62'+n.slice(1);return'https://wa.me/'+n}
+  function open(id){var r=D.filter(function(x){return x.id===id})[0];if(!r)return;
+    var F=function(rows){return'<dl>'+rows.filter(function(x){var v=x[1];return v&&(!Array.isArray(v)||v.length)}).map(function(x){return'<dt>'+x[0]+'</dt><dd>'+esc(x[1])+'</dd>'}).join('')+'</dl>'};
+    var h='<h3>Data diri</h3>'+F([['Peran',r.peran],['Jenis kelamin',r.jk],['Tanggal lahir',r.tgl_lahir+(r.tgl_lahir?' ('+umur(r.tgl_lahir)+')':'')],['WhatsApp',r.wa],['Email',r.email],['Alamat',r.alamat],['Desa/kelurahan',r.desa],['Kecamatan',r.kecamatan],['Kota/kabupaten',r.kota],['Pendidikan',r.pendidikan],['Pekerjaan',r.pekerjaan]])
+      +'<h3>Kemampuan Al-Qur\'an</h3>'+F([['Kemampuan baca',r.baca],['Belajar tajwid',r.belajar_tajwid],['Hafalan',r.hafalan],['Metode dikuasai',r.metode],['Rekaman bacaan',r.rekaman]]);
+    if(r.peran.indexOf('Guru Ngaji')>-1)h+='<h3>Guru Ngaji</h3>'+F([['Pengalaman mengajar',r.pengalaman_mengajar],['Siap mengajar',r.sasaran],['Datang ke rumah warga',r.datang_ke_rumah]]);
+    if(r.peran.indexOf('Petugas Sensus')>-1)h+='<h3>Petugas Sensus</h3>'+F([['Nyaman berkomunikasi',r.komunikasi],['Bahasa',r.bahasa],['Pengalaman survei',r.pengalaman_survei],['HP Android',r.hp_android],['Kendaraan',r.kendaraan],['Wilayah jangkauan',r.wilayah]]);
+    h+='<h3>Waktu & motivasi</h3>'+F([['Hari',r.hari],['Waktu',r.waktu],['Motivasi',r.motivasi],['Mengenal LCA dari',r.tahu],['Mendaftar',tgl(r.didaftar)]]);
+    h+='<h3>Tindak lanjut</h3><label class="muted">Status</label><select id="ds">'+ST.map(function(s){return'<option'+(s===r.status?' selected':'')+'>'+s+'</option>'}).join('')+'</select><label class="muted" style="display:block;margin-top:8px">Catatan admin (hasil tes bacaan, jadwal, dll.)</label><textarea id="dc" rows="4">'+esc(r.catatan)+'</textarea>'
+      +'<div class="act"><button class="btn" id="dsave">Simpan</button><a class="btn o" target="_blank" rel="noopener" href="'+wa(r.wa)+'?text='+encodeURIComponent('Assalamu\'alaikum '+r.nama+', kami dari Lembaga Cerdas Al-Qur\'an (LCA). Terima kasih telah mendaftar sebagai relawan '+r.peran.join(' dan ')+'.')+'">Hubungi via WhatsApp</a><button class="btn r" id="ddel">Hapus</button><span class="muted" id="dmsg"></span></div>';
+    if(r.rekaman&&/^https?:\/\//.test(r.rekaman))h=h.replace(esc(r.rekaman),'<a href="'+esc(r.rekaman)+'" target="_blank" rel="noopener noreferrer">'+esc(r.rekaman)+'</a>');
+    $('#dn').textContent=r.nama;$('#dbody').innerHTML=h;$('#dlg').showModal();
+    $('#dsave').onclick=function(){api('/api/admin/relawan/'+r.id,{method:'PATCH',body:JSON.stringify({status:$('#ds').value,catatan:$('#dc').value})}).then(function(j){if(j.ok){Object.assign(r,j.data);render();$('#dmsg').textContent='Tersimpan ✓'}else $('#dmsg').textContent='Gagal menyimpan'})};
+    $('#ddel').onclick=function(){if(!confirm('Hapus data '+r.nama+'? Tindakan ini tidak bisa dibatalkan.'))return;api('/api/admin/relawan/'+r.id,{method:'DELETE'}).then(function(j){if(j.ok){D=D.filter(function(x){return x.id!==r.id});render();$('#dlg').close()}})};
+  }
+  $('#tb').addEventListener('click',function(e){var tr=e.target.closest('tr.row');if(tr)open(tr.dataset.id)});
+  $('#dx').onclick=function(){$('#dlg').close()};
+  $('#lf').addEventListener('submit',function(e){e.preventDefault();$('#lerr').textContent='';api('/api/admin/login',{method:'POST',body:JSON.stringify({password:$('#pw').value})}).then(function(j){if(j.ok){$('#pw').value='';load()}else $('#lerr').textContent=j.error||'Gagal masuk'})});
+  $('#out').onclick=function(){api('/api/admin/logout',{method:'POST'}).then(function(){D=[];show('login')})};
+  load();
+})();
+</script>
+</body>
+</html>
