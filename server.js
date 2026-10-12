@@ -94,6 +94,7 @@ function clean(b) {
     hari: ARR(b.hari, O.hari), waktu: ARR(b.waktu, O.waktu),
     motivasi: STR(b.motivasi, 1500), tahu: ONE(b.tahu, O.tahu),
     setuju: b.setuju === true,
+    independen: b.independen === true,
   };
   const err = [];
   if (!r.peran.length) err.push('Pilih minimal satu peran.');
@@ -108,6 +109,7 @@ function clean(b) {
   if (r.peran.includes('Guru Ngaji') && !r.pengalaman_mengajar) err.push('Pengalaman mengajar wajib dipilih.');
   if (r.peran.includes('Petugas Sensus') && !r.komunikasi) err.push('Kenyamanan berkomunikasi wajib dipilih.');
   if (r.motivasi.length < 10) err.push('Ceritakan motivasi Anda (minimal satu kalimat).');
+  if (!r.independen) err.push('Relawan LCA disyaratkan tidak terkait dan tidak terikat dengan ormas/orpol Islam mana pun. Mohon centang pernyataan tersebut bila Anda memenuhinya.');
   if (!r.setuju) err.push('Mohon centang pernyataan persetujuan.');
   return { r, err };
 }
@@ -128,8 +130,8 @@ function pwOk(p) {
 const COOKIE = 'Path=/; HttpOnly; Secure; SameSite=Strict';
 
 function csv(list) {
-  const cols = ['didaftar', 'status', 'peran', 'nama', 'jk', 'tgl_lahir', 'wa', 'email', 'alamat', 'desa', 'kecamatan', 'kota', 'pendidikan', 'pekerjaan', 'baca', 'belajar_tajwid', 'hafalan', 'metode', 'rekaman', 'pengalaman_mengajar', 'sasaran', 'datang_ke_rumah', 'komunikasi', 'bahasa', 'pengalaman_survei', 'hp_android', 'kendaraan', 'wilayah', 'hari', 'waktu', 'motivasi', 'tahu', 'catatan'];
-  const esc = v => { v = Array.isArray(v) ? v.join('; ') : (v == null ? '' : String(v)); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; };
+  const cols = ['didaftar', 'status', 'peran', 'nama', 'jk', 'tgl_lahir', 'wa', 'email', 'alamat', 'desa', 'kecamatan', 'kota', 'pendidikan', 'pekerjaan', 'baca', 'belajar_tajwid', 'hafalan', 'metode', 'rekaman', 'pengalaman_mengajar', 'sasaran', 'datang_ke_rumah', 'komunikasi', 'bahasa', 'pengalaman_survei', 'hp_android', 'kendaraan', 'wilayah', 'hari', 'waktu', 'motivasi', 'tahu', 'independen', 'catatan'];
+  const esc = v => { if (v === true) v = 'Ya'; else if (v === false) v = 'Tidak'; v = Array.isArray(v) ? v.join('; ') : (v == null ? '' : String(v)); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; };
   return '﻿' + cols.join(',') + '\r\n' + list.map(r => cols.map(c => esc(r[c])).join(',')).join('\r\n');
 }
 

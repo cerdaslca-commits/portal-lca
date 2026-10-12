@@ -2175,19 +2175,22 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
   </div>
   <h2 id="daftar-relawan">Daftar menjadi relawan</h2>
   <p>Relawan Guru Ngaji dan Petugas Sensus Al-Qur'an adalah ujung tombak GENCAR: datang ke rumah-rumah warga, mengajak, mendata, dan mengajar. Karena itu ada beberapa kesiapan yang kami harapkan.</p>
+  <div class="note"><b>Syarat utama untuk semua relawan:</b> tidak terkait dan tidak terikat dengan organisasi kemasyarakatan (ormas) maupun organisasi politik (orpol) Islam mana pun. LCA melayani seluruh umat tanpa membawa bendera golongan, sehingga para relawannya pun harus netral.</div>
   <div class="syarat">
     <div class="card"><span class="k">Relawan</span><h3>Guru Ngaji</h3><ul>
       <li>Membaca Al-Qur'an dengan lancar dan sesuai kaidah tajwid.</li>
       <li>Sabar, lembut, dan telaten membimbing anak-anak maupun orang dewasa.</li>
       <li>Bersedia datang ke rumah warga atau majelis sesuai jadwal yang disepakati.</li>
       <li>Bersedia mengikuti tes bacaan serta pembinaan rutin (halaqoh, Diklat Kode Etik Guru Ngaji, TOT Tajwid).</li>
-      <li>Menjaga adab, akhlak, dan amanah sebagai pengajar Al-Qur'an.</li></ul></div>
+      <li>Menjaga adab, akhlak, dan amanah sebagai pengajar Al-Qur'an.</li>
+      <li>Tidak terkait dan tidak terikat dengan ormas/orpol Islam mana pun.</li></ul></div>
     <div class="card"><span class="k">Relawan</span><h3>Petugas Sensus Al-Qur'an</h3><ul>
       <li>Mampu berkomunikasi dengan santun dan ramah kepada warga yang belum dikenal.</li>
       <li>Mampu membaca Al-Qur'an, agar bisa memotivasi dan menyimak warga.</li>
       <li>Teliti dan jujur dalam mendata; menjaga kerahasiaan data warga.</li>
       <li>Memiliki HP Android untuk aplikasi Sensus, dan bersedia mengikuti pelatihan petugas.</li>
-      <li>Bersedia bertugas di RT/RW yang ditentukan dengan membawa surat tugas dan kartu Penggerak LCA.</li></ul></div>
+      <li>Bersedia bertugas di RT/RW yang ditentukan dengan membawa surat tugas dan kartu Penggerak LCA.</li>
+      <li>Tidak terkait dan tidak terikat dengan ormas/orpol Islam mana pun.</li></ul></div>
   </div>
 
   <form class="rf" id="rf" novalidate>
@@ -2252,6 +2255,7 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
     <fieldset><legend>6. Motivasi dan komitmen</legend>
       <label class="f" for="rf-mot">Mengapa Anda ingin menjadi relawan LCA? <i>*</i></label><textarea id="rf-mot" name="motivasi" maxlength="1500" required></textarea>
       <label class="f" for="rf-tahu">Mengenal LCA dari mana?</label><select id="rf-tahu" name="tahu"><option value="">— pilih —</option><option>Majelis/guru ngaji LCA</option><option>Teman/keluarga</option><option>Grup WhatsApp</option><option>Media sosial</option><option>Website LCA</option><option>Lainnya</option></select>
+      <label class="chk"><input type="checkbox" name="independen" value="1"> <span>Saya menyatakan <b>tidak terkait dan tidak terikat</b> dengan organisasi kemasyarakatan (ormas) maupun organisasi politik (orpol) Islam mana pun, dan selama menjadi relawan tidak akan membawa kepentingan golongan ke dalam kegiatan LCA. <i style="color:#C0392B;font-style:normal">*</i></span></label>
       <label class="chk"><input type="checkbox" name="setuju" value="1"> <span>Saya menyatakan data di atas benar. Saya bersedia mengikuti tes bacaan Al-Qur'an, pelatihan, dan pembinaan LCA, serta menjaga adab dan amanah sebagai Penggerak LCA. Saya setuju data ini disimpan LCA hanya untuk keperluan seleksi dan koordinasi relawan. <i style="color:#C0392B;font-style:normal">*</i></span></label>
     </fieldset>
     <div class="hp" aria-hidden="true"><label>Jangan diisi <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
@@ -2466,7 +2470,7 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
     f.addEventListener('submit',function(e){e.preventDefault();
       var d={},multi=['peran','metode','sasaran','bahasa','hari','waktu'];multi.forEach(function(k){d[k]=[]});
       $$('input,select,textarea',f).forEach(function(el){if(!el.name)return;
-        if(el.type==='checkbox'){if(el.name==='setuju')d.setuju=el.checked;else if(el.checked)d[el.name].push(el.value)}
+        if(el.type==='checkbox'){if(el.name==='setuju'||el.name==='independen')d[el.name]=el.checked;else if(el.checked)d[el.name].push(el.value)}
         else if(el.type==='radio'){if(el.checked)d[el.name]=el.value}
         else d[el.name]=el.value});
       var btn=f.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Mengirim…';msg.className='msg';
