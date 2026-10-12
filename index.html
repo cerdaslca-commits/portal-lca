@@ -9,7 +9,7 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-4S8X1VRZ5D', {send_page_view:false});
-  (function(){var last='';function pv(){var id=(location.hash||'#beranda').slice(1)||'beranda';if(id===last)return;last=id;
+  (function(){var last='';function pv(){var id=(location.hash.slice(1)||location.pathname.replace(/^\/+|\/+$/g,'')||'beranda');if(id===last)return;last=id;
     setTimeout(function(){gtag('event','page_view',{page_location:location.origin+'/'+id,page_path:'/'+id,page_title:document.title})},400)}
     window.addEventListener('hashchange',pv);if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',pv);else pv()})();
 </script>
@@ -22,6 +22,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://cerdaslca.org/">
+<link rel="canonical" id="canon" href="https://cerdaslca.org/">
 <meta property="og:site_name" content="Lembaga Cerdas Al-Qur'an">
 <meta property="og:locale" content="id_ID">
 <meta property="og:type" content="website">
@@ -2613,12 +2614,13 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
 
   /* Router */
   var pages=$$('.page'), map={};pages.forEach(function(p){map[p.id.slice(2)]=p});
-  function go(){var id=(location.hash||'#beranda').slice(1),kn=/^kisah-(\d+)$/.exec(id);if(kn&&window.LCAKisah){id='kisah-baca';window.LCAKisah(+kn[1])}if(!map[id])id='beranda';
+  function go(){var id=(location.hash.slice(1)||location.pathname.replace(/^\/+|\/+$/g,'')||'beranda'),kn=/^kisah-(\d+)$/.exec(id);if(kn&&window.LCAKisah){id='kisah-baca';window.LCAKisah(+kn[1])}if(!map[id])id='beranda';
     pages.forEach(function(p){p.hidden=p!==map[id]});
     var p=map[id], sec=p.dataset.sec;
     $$('.menu>li>a').forEach(function(a){a.classList.toggle('on',((a.dataset.sec||a.textContent.trim())===sec)||(sec==='Data & Laporan'&&a.dataset.p==='dampak')||(sec==='Media'&&a.dataset.p==='medsos'))});
     $('#crumb').innerHTML='<a href="#beranda">Beranda</a>'+(id==='beranda'?'':' / '+sec+(p.dataset.title!==sec?' / '+p.dataset.title:''));
     document.title=(id==='beranda'?'':p.dataset.title+' · ')+'Portal Lembaga Cerdas Al-Qur\'an';
+    var cn=document.getElementById('canon');if(cn)cn.href='https://cerdaslca.org/'+(id==='beranda'?'':(kn?kn[0]:id));
     $('#menu').classList.remove('open');$('#burger').setAttribute('aria-expanded','false');
     window.scrollTo(0,0);$('#totop').hidden=id==='beranda';
   }
