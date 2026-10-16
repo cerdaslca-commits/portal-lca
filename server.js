@@ -206,7 +206,13 @@ function serveFile(req, res, file, status) {
   });
 }
 
-http.createServer((req, res) => {
+http.createServer((req, res) => {const host = (req.headers.host || '').split(':')[0].toLowerCase();
+const keepHosts = ['cerdaslca.org', 'portal-lca-production.up.railway.app', 'localhost', '127.0.0.1'];
+if (!keepHosts.includes(host)) {
+  res.writeHead(301, { Location: 'https://cerdaslca.org' + req.url });
+  res.end();
+  return;
+}
   let url; try { url = new URL(req.url, 'http://x'); } catch (e) { return send(res, 400, 'Bad request'); }
   if (url.pathname === '/health') return send(res, 200, 'ok');
   if (url.pathname.startsWith('/api/')) return api(req, res, url).catch(e => { console.error(e); json(res, 500, { ok: false, error: 'Terjadi kesalahan server.' }); });
