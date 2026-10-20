@@ -135,6 +135,52 @@ function csv(list) {
   return '﻿' + cols.join(',') + '\r\n' + list.map(r => cols.map(c => esc(r[c])).join(',')).join('\r\n');
 }
 
+/* ---------- statistik pengunjung ---------- */
+const SFILE = path.join(DATA, 'pengunjung.json');
+let ST = { mulai: '', days: {}, pages: {} };
+try { ST = Object.assign(ST, JSON.parse(fs.readFileSync(SFILE, 'utf8'))); } catch (e) {}
+const SALT = crypto.randomBytes(16).toString('hex');
+let uvToday = { d: '', set: new Set() };
+const online = new Map();
+let sDirty = false;
+const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|whatsapp|telegram|discord|curl|wget|python|node-fetch|headless|lighthouse|monitor|uptime/i;
+function wibDate(t) { return new Date((t || Date.now()) + 7 * 3600e3).toISOString().slice(0, 10); }
+function hit(req, p) {
+  const ua = String(req.headers['user-agent'] || '');
+  if (!ua || BOT.test(ua)) return;
+  const now = Date.now(), d = wibDate(now);
+  if (!ST.mulai) ST.mulai = d;
+  const key = crypto.createHash('sha256').update(SALT + d + ip(req) + ua).digest('hex').slice(0, 16);
+  if (uvToday.d !== d) { uvToday = { d, set: new Set() }; const day = ST.days[d]; if (day && day.uvk) day.uvk.forEach(k => uvToday.set.add(k)); }
+  const day = ST.days[d] || (ST.days[d] = { pv: 0, uv: 0, pages: {} });
+  day.pv++;
+  if (!uvToday.set.has(key)) { uvToday.set.add(key); day.uv++; }
+  day.uvk = Array.from(uvToday.set);
+  p = String(p || '/').slice(0, 60).replace(/[^\w\-\/]/g, '') || '/';
+  if (Object.keys(day.pages).length < 300 || day.pages[p]) day.pages[p] = (day.pages[p] || 0) + 1;
+  if (Object.keys(ST.pages).length < 1000 || ST.pages[p]) ST.pages[p] = (ST.pages[p] || 0) + 1;
+  online.set(key, now);
+  sDirty = true;
+}
+function onlineCount() { const lim = Date.now() - 5 * 60e3; let n = 0; for (const [k, t] of online) { if (t < lim) online.delete(k); else n++; } return n; }
+function saveStats() {
+  if (!sDirty) return; sDirty = false;
+  const today = wibDate();
+  for (const d in ST.days) if (d !== today && ST.days[d].uvk) delete ST.days[d].uvk; // simpan kunci hanya untuk hari ini
+  const keys = Object.keys(ST.days).sort(); while (keys.length > 800) delete ST.days[keys.shift()];
+  for (const d of keys.slice(0, -60)) if (ST.days[d] && ST.days[d].pages) delete ST.days[d].pages;
+  try { fs.writeFileSync(SFILE + '.tmp', JSON.stringify(ST)); fs.renameSync(SFILE + '.tmp', SFILE); } catch (e) { console.error('gagal simpan statistik', e); }
+}
+setInterval(saveStats, 30e3).unref();
+process.on('SIGTERM', () => { saveStats(); process.exit(0); });
+process.on('SIGINT', () => { saveStats(); process.exit(0); });
+function sumDays(from, to) { let uv = 0, pv = 0; for (const d in ST.days) if (d >= from && d <= to) { uv += ST.days[d].uv; pv += ST.days[d].pv; } return { uv, pv }; }
+function publicStats() {
+  const t = wibDate(), y = wibDate(Date.now() - 864e5), m = t.slice(0, 8) + '01';
+  const T = ST.days[t] || { uv: 0, pv: 0 }, Y = ST.days[y] || { uv: 0, pv: 0 };
+  return { online: onlineCount(), hari_ini: { uv: T.uv, pv: T.pv }, kemarin: { uv: Y.uv, pv: Y.pv }, bulan_ini: sumDays(m, t), total: sumDays('0000', '9999'), sejak: ST.mulai || t };
+}
+
 /* ---------- API ---------- */
 async function api(req, res, url) {
   const p = url.pathname, m = req.method;
@@ -149,6 +195,11 @@ async function api(req, res, url) {
     console.log('pendaftar baru', rec.id, rec.peran.join('+'));
     return json(res, 201, { ok: true, id: rec.id });
   }
+  if (p === '/api/hit' && m === 'POST') {
+    if (!limited('hit:' + ip(req), 240, 600e3)) { let b = {}; try { b = JSON.parse(await readBody(req, 500) || '{}'); } catch (e) {} hit(req, b.p); }
+    return send(res, 204, '', { 'Cache-Control': 'no-store' });
+  }
+  if (p === '/api/stats' && m === 'GET') return json(res, 200, Object.assign({ ok: true }, publicStats()));
   if (p === '/api/admin/login' && m === 'POST') {
     if (!ADMIN_PW) return json(res, 503, { ok: false, error: 'Admin belum diaktifkan. Atur variabel ADMIN_PASSWORD di Railway.' });
     if (limited('login:' + ip(req), 10, 900e3)) return json(res, 429, { ok: false, error: 'Terlalu banyak percobaan. Tunggu 15 menit.' });
@@ -162,6 +213,13 @@ async function api(req, res, url) {
     if (!isAdmin(req)) return json(res, 401, { ok: false, error: 'Silakan masuk.', aktif: !!ADMIN_PW });
     if (m !== 'GET' && req.headers['x-lca'] !== '1') return json(res, 403, { ok: false });
     if (p === '/api/admin/me') return json(res, 200, { ok: true });
+    if (p === '/api/admin/stats') {
+      const days = Object.keys(ST.days).sort().slice(-90).map(d => ({ d, uv: ST.days[d].uv, pv: ST.days[d].pv }));
+      const from = wibDate(Date.now() - 29 * 864e5), pg = {};
+      for (const d in ST.days) if (d >= from && ST.days[d].pages) for (const k in ST.days[d].pages) pg[k] = (pg[k] || 0) + ST.days[d].pages[k];
+      const top = Object.entries(pg).sort((a, b) => b[1] - a[1]).slice(0, 25);
+      return json(res, 200, Object.assign({ ok: true, days, top30: top }, publicStats()));
+    }
     if (p === '/api/admin/relawan' && m === 'GET') return json(res, 200, { ok: true, data: rows.slice().reverse() });
     if (p === '/api/admin/relawan.csv' && m === 'GET') return send(res, 200, csv(rows), { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="pendaftar-relawan-lca.csv"', 'Cache-Control': 'no-store' });
     const mm = /^\/api\/admin\/relawan\/([a-f0-9]{12})$/.exec(p);

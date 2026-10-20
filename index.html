@@ -10,6 +10,7 @@
   gtag('js', new Date());
   gtag('config', 'G-4S8X1VRZ5D', {send_page_view:false});
   (function(){var last='';function pv(){var id=(location.hash.slice(1)||location.pathname.replace(/^\/+|\/+$/g,'')||'beranda');if(id===last)return;last=id;
+    try{navigator.sendBeacon('/api/hit',new Blob([JSON.stringify({p:'/'+id})],{type:'application/json'}))}catch(_){}
     setTimeout(function(){gtag('event','page_view',{page_location:location.origin+'/'+id,page_path:'/'+id,page_title:document.title})},400)}
     window.addEventListener('hashchange',pv);if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',pv);else pv()})();
 </script>
@@ -489,6 +490,15 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
 .syarat-utama{border:2px solid var(--gold);background:var(--gold-soft);margin:24px 0 8px}
 .syarat-utama h3{margin:4px 0 8px}
 .syarat-utama p{margin:0;color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.6}
+.vis{font-family:var(--f-ui)}
+.vis .on{display:flex;align-items:center;gap:8px;font-size:14px;margin-bottom:10px}
+.vis .on i{width:9px;height:9px;border-radius:50%;background:#2EB872;box-shadow:0 0 0 0 rgba(46,184,114,.6);animation:visp 2s infinite}
+@keyframes visp{70%{box-shadow:0 0 0 8px rgba(46,184,114,0)}100%{box-shadow:0 0 0 0 rgba(46,184,114,0)}}
+@media (prefers-reduced-motion:reduce){.vis .on i{animation:none}}
+.vis .g{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vis .g div{background:var(--paper);border-radius:6px;padding:8px 10px}
+.vis .g b{display:block;font-size:20px;color:var(--green);font-variant-numeric:tabular-nums;line-height:1.2}
+.vis .g span{font-size:12px;color:var(--muted)}
 </style>
 
 <div class="top"><div class="top-in">
@@ -2409,6 +2419,10 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
     <div class="bars" id="side-wil"></div>
     <p class="src" style="margin:10px 0 0">85 dari 613 desa/kelurahan di Bandung Raya, Agustus 2026.</p>
   </div>
+  <div class="box vis-box">
+    <h4>Pengunjung Portal</h4>
+    <div class="vis" data-visitors><p class="src" style="margin:0">Memuat…</p></div>
+  </div>
   <div class="box">
     <h4>Ikuti LCA</h4>
     <div class="icons" data-social="tiktok,instagram,youtube,facebook,snack,x,whatsapp,linktree,googleplay"></div>
@@ -2494,6 +2508,16 @@ html[data-theme=dark] .kal .c.ev{background:#3b3216;border-color:#8a6d1f}
       var ar=$('#kata-arsip');if(ar)ar.innerHTML=arsip.join('');
       var sh=$('#kata-share');if(sh){var t='🌅 *Kata Al-Qur\'an Hari Ini* (GEMAR LCA)\n\n'+w.ar+' ('+w.lat+') = *'+w.arti+'*\nAkar kata: '+w.akar+'\n\n'+w.ayat+'\n"'+w.terj+'" ('+w.ref+')\n\n💡 '+w.pesan+'\n\n'+location.origin+'/#kata';sh.href='https://api.whatsapp.com/send?text='+encodeURIComponent(t);sh.target='_blank';sh.rel='noopener'}
     }).catch(function(){});
+  })();
+  /* ===== Panel pengunjung ===== */
+  (function(){
+    var el=document.querySelectorAll('[data-visitors]');if(!el.length||!/^https?:$/.test(location.protocol))return;
+    function f(n){return (n||0).toLocaleString('id-ID')}
+    function load(){fetch('/api/stats',{cache:'no-store'}).then(function(r){return r.json()}).then(function(s){if(!s.ok)return;
+      var d=new Date(s.sejak+'T00:00:00+07:00'),sj=d.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+      var h='<div class="on"><i aria-hidden="true"></i><span><b>'+f(s.online)+'</b> sedang membaca</span></div><div class="g"><div><b>'+f(s.hari_ini.uv)+'</b><span>Hari ini</span></div><div><b>'+f(s.kemarin.uv)+'</b><span>Kemarin</span></div><div><b>'+f(s.bulan_ini.uv)+'</b><span>Bulan ini</span></div><div><b>'+f(s.total.uv)+'</b><span>Total kunjungan</span></div></div><p class="src" style="margin:8px 0 0">'+f(s.total.pv)+' halaman dibaca sejak '+sj+'.</p>';
+      [].forEach.call(el,function(x){x.innerHTML=h})}).catch(function(){})}
+    setTimeout(load,1200);setInterval(function(){if(!document.hidden)load()},60000);
   })();
   /* ===== Formulir relawan ===== */
   (function(){
