@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin
+Disallow: /kasbon
 Disallow: /api/
 
 Sitemap: https://cerdaslca.org/sitemap.xml

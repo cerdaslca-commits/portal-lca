@@ -181,9 +181,159 @@ function publicStats() {
   return { online: onlineCount(), hari_ini: { uv: T.uv, pv: T.pv }, kemarin: { uv: Y.uv, pv: Y.pv }, bulan_ini: sumDays(m, t), total: sumDays('0000', '9999'), sejak: ST.mulai || t };
 }
 
+/* ---------- kasbon Penggerak ---------- */
+// Data Penggerak disimpan di server (bukan di folder publik) supaya daftar nama & NIK tidak bisa diunduh.
+let PG = [];
+try { PG = JSON.parse(fs.readFileSync(path.join(__dirname, 'penggerak.json'), 'utf8')); } catch (e) { console.error('penggerak.json tidak terbaca', e.message); }
+const PGMAP = new Map(PG.map(x => [x.nik.toUpperCase(), x]));
+const KFILE = path.join(DATA, 'kasbon.json'), IMFILE = path.join(DATA, 'im.json'), BUKTI = path.join(DATA, 'kasbon-bukti');
+try { fs.mkdirSync(BUKTI, { recursive: true }); } catch (e) {}
+let KB = []; try { KB = JSON.parse(fs.readFileSync(KFILE, 'utf8')); if (!Array.isArray(KB)) KB = []; } catch (e) { KB = []; }
+let IM = {}; try { IM = JSON.parse(fs.readFileSync(IMFILE, 'utf8')) || {}; } catch (e) { IM = {}; }
+let kSaving = Promise.resolve();
+function writeJson(file, obj) {
+  kSaving = kSaving.then(() => new Promise(res => {
+    fs.writeFile(file + '.tmp', JSON.stringify(obj), err => {
+      if (err) { console.error('gagal simpan', file, err); return res(); }
+      fs.rename(file + '.tmp', file, e2 => { if (e2) console.error('gagal rename', e2); res(); });
+    });
+  }));
+  return kSaving;
+}
+const K_ST = ['Diajukan', 'Disetujui', 'Dicairkan', 'Ditolak'];
+const BULAN = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+// Bulan buku LCA: tanggal 26 s/d 25. Diberi nama menurut bulan berakhirnya.
+function bulanBuku(t) {
+  const d = new Date((t || Date.now()) + 7 * 3600e3);
+  let y = d.getUTCFullYear(), mo = d.getUTCMonth();
+  if (d.getUTCDate() >= 26) { mo++; if (mo > 11) { mo = 0; y++; } }
+  const py = mo === 0 ? y - 1 : y, pm = mo === 0 ? 11 : mo - 1;
+  return { kode: y + '-' + String(mo + 1).padStart(2, '0'), label: BULAN[mo] + ' ' + y, rentang: '26 ' + BULAN[pm] + ' ' + py + ' – 25 ' + BULAN[mo] + ' ' + y };
+}
+function terpakai(nik, kode, kecuali) { return KB.filter(k => k.nik === nik && k.periode === kode && k.status !== 'Ditolak' && k.id !== kecuali).reduce((s, k) => s + k.nominal, 0); }
+function plafon(nik) { const im = +IM[nik] || 0; return im > 0 ? Math.floor(im * 0.25) : null; }
+function kRow(k) { return Object.assign({}, k, { im_tercatat: !!(+IM[k.nik]), plafon: plafon(k.nik), terpakai_periode: terpakai(k.nik, k.periode) }); }
+function kErp(k) { const { bukti, erp, ...rest } = k; return Object.assign(rest, { jumlah_bukti: (bukti || []).length, sumber: 'Portal LCA · Kasbon Penggerak' }); }
+function toErp(k, event) {
+  const u = process.env.ERP_WEBHOOK_URL; if (!u) return;
+  fetch(u, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-LCA-Token': process.env.ERP_TOKEN || '' }, body: JSON.stringify({ event, kasbon: kErp(k) }), signal: AbortSignal.timeout(10000) })
+    .then(r => { k.erp = { terkirim: r.ok, kode: r.status, waktu: new Date().toISOString() }; writeJson(KFILE, KB); })
+    .catch(e => { k.erp = { terkirim: false, galat: String(e.message || e).slice(0, 120), waktu: new Date().toISOString() }; writeJson(KFILE, KB); });
+}
+function jpeg(dataUrl) {
+  const m = /^data:image\/jpeg;base64,([A-Za-z0-9+/=]+)$/.exec(typeof dataUrl === 'string' ? dataUrl : '');
+  if (!m) return null; const b = Buffer.from(m[1], 'base64');
+  return b.length > 200 && b.length < 2.5e6 && b[0] === 0xFF && b[1] === 0xD8 ? b : null;
+}
+function waNum(n) { n = String(n || '').replace(/\D/g, ''); if (n.startsWith('0')) n = '62' + n.slice(1); return n; }
+function kCsv(list) {
+  const cols = ['kode', 'diajukan', 'periode_label', 'nama', 'nik', 'kantor', 'bagian', 'no_anggota', 'kategori', 'wa', 'nominal', 'keperluan', 'status', 'plafon', 'catatan'];
+  const esc = v => { v = v == null ? '' : String(v); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; };
+  return '﻿' + cols.join(',') + '\r\n' + list.map(r => cols.map(c => esc(r[c])).join(',')).join('\r\n');
+}
+function erpAuth(req, url) {
+  const t = process.env.ERP_TOKEN; if (!t) return false;
+  const got = String(req.headers['x-lca-token'] || (req.headers.authorization || '').replace(/^Bearer\s+/i, '') || url.searchParams.get('token') || '');
+  const a = crypto.createHash('sha256').update(got).digest(), b = crypto.createHash('sha256').update(t).digest();
+  return crypto.timingSafeEqual(a, b);
+}
+
+async function kasbonApi(req, res, url) {
+  const p = url.pathname, m = req.method;
+  if (p === '/api/kasbon/config' && m === 'GET') {
+    return json(res, 200, { ok: true, wa_bendahara: waNum(process.env.BENDAHARA_WA || '081931324346'), bendahara_diatur: !!process.env.BENDAHARA_WA, periode: bulanBuku() });
+  }
+  if (p === '/api/kasbon/cek' && m === 'GET') {
+    if (limited('kcek:' + ip(req), 30, 600e3)) return json(res, 429, { ok: false, error: 'Terlalu banyak percobaan. Tunggu 10 menit.' });
+    const g = PGMAP.get(STR(url.searchParams.get('nik'), 20).toUpperCase());
+    if (!g) return json(res, 404, { ok: false, error: 'NIK tidak ditemukan dalam daftar Penggerak LCA. Periksa kembali penulisannya (contoh: KP.0819012) atau hubungi Bendahara.' });
+    return json(res, 200, { ok: true, data: g, periode: bulanBuku() });
+  }
+  if (p === '/api/kasbon' && m === 'POST') {
+    if (limited('kajukan:' + ip(req), 6, 3600e3)) return json(res, 429, { ok: false, error: 'Terlalu banyak pengajuan dari perangkat ini. Coba lagi nanti.' });
+    let b; try { b = JSON.parse(await readBody(req, 9e6)); } catch (e) { return json(res, 400, { ok: false, error: e.message === 'too_large' ? 'Ukuran tangkapan layar terlalu besar.' : 'Data tidak terbaca.' }); }
+    b = b || {};
+    const g = PGMAP.get(STR(b.nik, 20).toUpperCase());
+    const err = [];
+    if (!g) err.push('NIK tidak terdaftar sebagai Penggerak LCA.');
+    const nominal = Math.round(+b.nominal);
+    if (!(nominal >= 10000 && nominal <= 100e6)) err.push('Nominal kasbon belum diisi dengan benar (minimal Rp10.000).');
+    const keperluan = STR(b.keperluan, 500); if (keperluan.length < 5) err.push('Tuliskan keperluan kasbon.');
+    const wa = STR(b.wa, 20).replace(/[^\d+]/g, ''); if (!/^(\+?62|0)8\d{7,12}$/.test(wa)) err.push('Nomor WhatsApp tidak valid (contoh: 0812xxxxxxx).');
+    const t = b.tugas || {};
+    if (!t.portal) err.push('Tugas membuka Portal LCA belum diselesaikan.');
+    const MED = ['youtube', 'instagram', 'tiktok', 'facebook'];
+    if (!Array.isArray(t.medsos) || MED.some(x => !t.medsos.includes(x))) err.push('Tugas media sosial LCA belum lengkap.');
+    const sStatus = jpeg(b.bukti_status);
+    const sMed = (Array.isArray(b.bukti_medsos) ? b.bukti_medsos : []).slice(0, 4).map(jpeg).filter(Boolean);
+    if (!sStatus) err.push('Unggah tangkapan layar status WhatsApp yang memuat link Portal LCA.');
+    if (!sMed.length) err.push('Unggah minimal satu tangkapan layar interaksi di media sosial LCA.');
+    if (err.length) return json(res, 422, { ok: false, error: err.join(' ') });
+    const per = bulanBuku(), pl = plafon(g.nik);
+    if (pl !== null) {
+      const sisa = pl - terpakai(g.nik, per.kode);
+      if (nominal > sisa) return json(res, 422, { ok: false, error: 'Nominal melebihi batas kasbon bulan buku ini (maksimal 25% dari Ihsanul Mas\'ul, dihitung bersama kasbon lain yang belum ditolak). Silakan kurangi nominal atau hubungi Bendahara untuk mengetahui sisa batas Anda.' });
+    }
+    const id = crypto.randomBytes(6).toString('hex');
+    const kode = 'KSB-' + per.kode.replace('-', '') + '-' + id.slice(0, 4).toUpperCase();
+    const files = [];
+    const all = [['status', sStatus]].concat(sMed.map((x, i) => ['medsos' + (i + 1), x]));
+    for (const [nm, buf] of all) { const f = id + '-' + nm + '.jpg'; await fs.promises.writeFile(path.join(BUKTI, f), buf); files.push({ jenis: nm === 'status' ? 'Status WhatsApp' : 'Media sosial', file: f }); }
+    const rec = { id, kode, diajukan: new Date().toISOString(), periode: per.kode, periode_label: per.label, nik: g.nik, nama: g.nama, kantor: g.kantor, bagian: g.bagian, no_anggota: g.no_anggota, kategori: g.kategori, wa, nominal, keperluan, tugas: { portal: true, medsos: MED }, bukti: files, status: 'Diajukan', catatan: '' };
+    KB.push(rec); await writeJson(KFILE, KB);
+    console.log('kasbon baru', rec.kode);
+    toErp(rec, 'kasbon.diajukan');
+    return json(res, 201, { ok: true, kode, periode: per, wa_bendahara: waNum(process.env.BENDAHARA_WA || '081931324346') });
+  }
+  // Umpan data untuk LCA ERP / Radar Siklus Payroll (butuh ERP_TOKEN)
+  if (p === '/api/erp/kasbon' && m === 'GET') {
+    if (!process.env.ERP_TOKEN) return json(res, 503, { ok: false, error: 'ERP_TOKEN belum diatur di Railway.' });
+    if (!erpAuth(req, url)) return json(res, 401, { ok: false });
+    const since = url.searchParams.get('since') || '', per = url.searchParams.get('periode') || '';
+    const L = KB.filter(k => (!since || (k.diubah || k.diajukan) > since) && (!per || k.periode === per)).map(k => Object.assign(kErp(k), { plafon: plafon(k.nik) }));
+    return json(res, 200, { ok: true, periode_berjalan: bulanBuku(), jumlah: L.length, data: L });
+  }
+  return null;
+}
+
+async function kasbonAdmin(req, res, p, m) {
+  if (p === '/api/admin/kasbon' && m === 'GET') return json(res, 200, { ok: true, data: KB.slice().reverse().map(kRow), periode: bulanBuku(), erp: { webhook: !!process.env.ERP_WEBHOOK_URL, feed: !!process.env.ERP_TOKEN }, bendahara_diatur: !!process.env.BENDAHARA_WA });
+  if (p === '/api/admin/kasbon.csv' && m === 'GET') return send(res, 200, kCsv(KB.map(kRow)), { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="kasbon-penggerak-lca.csv"', 'Cache-Control': 'no-store' });
+  if (p === '/api/admin/kasbon/im' && m === 'GET') return json(res, 200, { ok: true, data: PG.map(g => ({ nik: g.nik, nama: g.nama, kantor: g.kantor, im: +IM[g.nik] || 0 })) });
+  if (p === '/api/admin/kasbon/im' && m === 'PUT') {
+    let b; try { b = JSON.parse(await readBody(req, 50000)); } catch (e) { b = {}; }
+    const n = {}; for (const [k, v] of Object.entries(b.im || {})) { const g = PGMAP.get(String(k).toUpperCase()); const x = Math.round(+v); if (g && x > 0 && x < 1e9) n[g.nik] = x; }
+    IM = n; await writeJson(IMFILE, IM);
+    return json(res, 200, { ok: true, jumlah: Object.keys(IM).length });
+  }
+  const fb = /^\/api\/admin\/kasbon\/bukti\/([a-f0-9]{12}-(?:status|medsos[1-4])\.jpg)$/.exec(p);
+  if (fb && m === 'GET') {
+    return fs.readFile(path.join(BUKTI, fb[1]), (e, buf) => e ? send(res, 404, 'Not found') : send(res, 200, buf, { 'Content-Type': 'image/jpeg', 'Cache-Control': 'private, max-age=3600' }));
+  }
+  const mm = /^\/api\/admin\/kasbon\/([a-f0-9]{12})$/.exec(p);
+  if (mm) {
+    const i = KB.findIndex(k => k.id === mm[1]); if (i < 0) return json(res, 404, { ok: false });
+    if (m === 'PATCH') {
+      let b; try { b = JSON.parse(await readBody(req, 5000)); } catch (e) { b = {}; }
+      const old = KB[i].status;
+      if (K_ST.includes(b.status)) KB[i].status = b.status;
+      if (typeof b.catatan === 'string') KB[i].catatan = STR(b.catatan, 2000);
+      KB[i].diubah = new Date().toISOString(); await writeJson(KFILE, KB);
+      if (old !== KB[i].status) toErp(KB[i], 'kasbon.status');
+      return json(res, 200, { ok: true, data: kRow(KB[i]) });
+    }
+    if (m === 'DELETE') {
+      for (const f of KB[i].bukti || []) fs.unlink(path.join(BUKTI, f.file), () => {});
+      KB.splice(i, 1); await writeJson(KFILE, KB); return json(res, 200, { ok: true });
+    }
+  }
+  return null;
+}
+
 /* ---------- API ---------- */
 async function api(req, res, url) {
   const p = url.pathname, m = req.method;
+  if (p.startsWith('/api/kasbon') || p.startsWith('/api/erp/')) { const r = await kasbonApi(req, res, url); if (r !== null) return r; return json(res, 404, { ok: false }); }
   if (p === '/api/relawan' && m === 'POST') {
     if (limited('daftar:' + ip(req), 5, 3600e3)) return json(res, 429, { ok: false, error: 'Terlalu banyak pendaftaran dari perangkat ini. Coba lagi nanti atau hubungi WhatsApp LCA.' });
     let b; try { b = JSON.parse(await readBody(req, 20000)); } catch (e) { return json(res, 400, { ok: false, error: 'Data tidak terbaca.' }); }
@@ -213,6 +363,7 @@ async function api(req, res, url) {
     if (!isAdmin(req)) return json(res, 401, { ok: false, error: 'Silakan masuk.', aktif: !!ADMIN_PW });
     if (m !== 'GET' && req.headers['x-lca'] !== '1') return json(res, 403, { ok: false });
     if (p === '/api/admin/me') return json(res, 200, { ok: true });
+    if (p.startsWith('/api/admin/kasbon')) { const r = await kasbonAdmin(req, res, p, m); if (r !== null) return r; return json(res, 404, { ok: false }); }
     if (p === '/api/admin/stats') {
       const days = Object.keys(ST.days).sort().slice(-90).map(d => ({ d, uv: ST.days[d].uv, pv: ST.days[d].pv }));
       const from = wibDate(Date.now() - 29 * 864e5), pg = {};
@@ -249,6 +400,7 @@ function serveFile(req, res, file, status) {
     const rel = path.relative(PUB, file).split(path.sep).join('/');
     const cc = rel.startsWith('media/') ? 'public, max-age=604800' : (ext === '.html' || ext === '.json' ? 'no-cache' : 'public, max-age=3600');
     const h = { 'Content-Type': type, 'Cache-Control': cc };
+    if (rel === 'kasbon.html') h['X-Robots-Tag'] = 'noindex, nofollow';
     if (rel === 'admin.html') { h['X-Robots-Tag'] = 'noindex, nofollow'; h['Cache-Control'] = 'no-store'; }
     const gz = /\bgzip\b/.test(req.headers['accept-encoding'] || '') && /text|json|xml|svg|javascript/.test(type);
     if (gz) {
@@ -277,6 +429,7 @@ if (!keepHosts.includes(host)) {
   if (req.method !== 'GET' && req.method !== 'HEAD') return send(res, 405, 'Method not allowed');
   let rel; try { rel = decodeURIComponent(url.pathname); } catch (e) { return send(res, 400, 'Bad request'); }
   if (rel === '/admin' || rel === '/admin/') rel = '/admin.html';
+  if (rel === '/kasbon' || rel === '/kasbon/') rel = '/kasbon.html';
   const file = path.resolve(PUB, '.' + rel);
   if (!file.startsWith(PUB + path.sep) && file !== PUB) return send(res, 403, 'Forbidden');
   fs.stat(file, (err, st) => {

@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Kasbon Penggerak LCA</title>
+<meta name="description" content="Pengajuan kasbon bagi Penggerak Lembaga Cerdas Al-Qur'an.">
+<meta name="theme-color" content="#0E5A47">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Source+Serif+4:opsz,wght@8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{--paper:#F4F6F1;--sheet:#fff;--ink:#15221E;--muted:#5A6862;--rule:#DAE0D8;--green:#0E5A47;--green-soft:#E2EEE7;--gold:#A6731C;--gold-soft:#F5EAD3;--red:#B03A2E;--red-soft:#F8E4E1;--on-green:#F4F6F1;--bar:#0A4334;
+--sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--serif:"Source Serif 4",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#0E1412;--sheet:#151D1A;--ink:#E5ECE8;--muted:#98A79F;--rule:#28342F;--green:#5EC2A2;--green-soft:#17302A;--gold:#DDB25F;--gold-soft:#2B2416;--red:#E07A6E;--red-soft:#3A1F1B;--on-green:#0E1412;--bar:#0B1A15}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
+a{color:var(--green)}
+.top{background:var(--bar);color:#F4F6F1;padding:18px 16px 22px}
+.top .in{max-width:620px;margin:0 auto}
+.top .bis{font-family:Amiri,serif;font-size:20px;opacity:.85;margin:0 0 6px;direction:rtl;text-align:right}
+.top .eye{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.top h1{font-family:var(--serif);font-weight:600;font-size:clamp(26px,7vw,34px);line-height:1.15;margin:4px 0 8px}
+.top p{margin:0;opacity:.88;font-size:15px}
+.per{display:inline-block;margin-top:12px;font-size:13px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:4px 12px}
+main{max-width:620px;margin:0 auto;padding:16px 16px 60px}
+.step{background:var(--sheet);border:1px solid var(--rule);border-radius:14px;padding:18px 16px;margin-bottom:14px;position:relative}
+.step h2{font-family:var(--serif);font-weight:600;font-size:20px;line-height:1.25;margin:0 0 4px;display:flex;gap:10px;align-items:flex-start}
+.num{flex:0 0 28px;height:28px;border-radius:50%;background:var(--green-soft);color:var(--green);font:600 14px/28px var(--sans);text-align:center;margin-top:-1px}
+.step.done .num{background:var(--green);color:var(--on-green)}
+.step .lead{color:var(--muted);font-size:14.5px;margin:0 0 14px 38px}
+.step.locked{opacity:.55}
+.step.locked .body{pointer-events:none}
+.lockmsg{margin:0 0 0 38px;font-size:14px;color:var(--muted)}
+label{display:block;font-weight:500;font-size:14.5px;margin:12px 0 6px}
+input[type=text],input[type=tel],input[type=search],textarea{width:100%;font:inherit;font-size:16px;padding:12px 13px;border:1px solid var(--rule);border-radius:10px;background:var(--paper);color:var(--ink)}
+input:focus,textarea:focus{outline:2px solid var(--green);outline-offset:1px;border-color:transparent}
+.row{display:flex;gap:8px}
+.row input{flex:1;min-width:0}
+.btn{appearance:none;border:0;border-radius:10px;background:var(--green);color:var(--on-green);font:600 15px var(--sans);padding:12px 16px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;min-height:46px}
+.btn.o{background:transparent;color:var(--green);border:1.5px solid var(--green)}
+.btn.w{width:100%}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.err{color:var(--red);font-size:14px;margin-top:8px;min-height:0}
+.err:empty{display:none}
+.id{margin-top:14px;border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.id .hd{background:var(--green);color:var(--on-green);padding:12px 14px}
+.id .hd b{display:block;font-family:var(--serif);font-size:20px;line-height:1.2}
+.id .hd span{font-family:var(--mono);font-size:13px;opacity:.85}
+.id dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0;padding:12px 14px;font-size:14.5px}
+.id dt{color:var(--muted)}.id dd{margin:0;font-weight:500}
+.id .ft{padding:0 14px 12px;font-size:13.5px}
+.id .ft button{background:none;border:0;color:var(--green);font:inherit;text-decoration:underline;padding:0;cursor:pointer}
+.task{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--rule)}
+.task:first-of-type{border-top:0}
+.chk{flex:0 0 26px;height:26px;border-radius:50%;border:2px solid var(--rule);display:grid;place-items:center;color:transparent;font-size:14px;font-weight:700}
+.task.ok .chk{background:var(--green);border-color:var(--green);color:var(--on-green)}
+.task .tx{flex:1;min-width:0}
+.task .tx b{display:block;font-weight:600}
+.task .tx small{display:block;color:var(--muted);font-size:13.5px;line-height:1.4}
+.task .btn{flex:0 0 auto;padding:9px 14px;min-height:40px;font-size:14px}
+.pf{display:inline-flex;align-items:center;gap:6px}
+.pf svg{width:18px;height:18px;flex:0 0 18px}
+.copy{background:var(--gold-soft);border:1px dashed var(--gold);border-radius:10px;padding:12px;font-size:14.5px;margin:6px 0 10px;white-space:pre-wrap;word-break:break-word}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.btns .btn{flex:1 1 140px}
+.up{margin-top:12px;border:1.5px dashed var(--rule);border-radius:12px;padding:12px}
+.up.ok{border-color:var(--green);background:var(--green-soft)}
+.up p{margin:0 0 8px;font-size:14px}
+.up input{display:none}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.thumbs div{position:relative;width:76px;height:110px;border-radius:8px;overflow:hidden;border:1px solid var(--rule);background:var(--paper)}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.thumbs button{position:absolute;top:3px;right:3px;width:24px;height:24px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font-size:15px;line-height:24px;cursor:pointer;padding:0}
+.prog{height:6px;background:var(--rule);border-radius:3px;overflow:hidden;margin:4px 0 10px}
+.prog i{display:block;height:100%;background:var(--green);width:0;transition:width .3s}
+.rule{background:var(--gold-soft);border-radius:10px;padding:10px 12px;font-size:14px;margin:4px 0 4px}
+.rp{position:relative}
+.rp span{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:500}
+.rp input{padding-left:40px;font-family:var(--mono);font-size:18px}
+.hint{font-size:13px;color:var(--muted);margin-top:4px}
+.ok-card{text-align:center;padding:26px 18px}
+.ok-card .big{width:56px;height:56px;border-radius:50%;background:var(--green);color:var(--on-green);display:grid;place-items:center;font-size:28px;margin:0 auto 12px}
+.ok-card h2{display:block;font-size:24px}
+.kode{font-family:var(--mono);font-size:18px;background:var(--green-soft);color:var(--green);border-radius:8px;padding:6px 12px;display:inline-block;margin:8px 0 14px}
+.sum{text-align:left;border-top:1px solid var(--rule);margin-top:14px;padding-top:12px;font-size:14.5px}
+.sum div{display:flex;justify-content:space-between;gap:10px;padding:3px 0}.sum span{color:var(--muted)}
+footer{max-width:620px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:13px;text-align:center}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <p class="bis" lang="ar">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+  <div class="eye">Lembaga Cerdas Al-Qur'an</div>
+  <h1>Kasbon Penggerak LCA</h1>
+  <p>Selesaikan tiga langkah dakwah di bawah ini. Setelah semuanya selesai, isian kasbon akan terbuka.</p>
+  <span class="per" id="per">Bulan buku berjalan</span>
+</div></header>
+
+<main id="app">
+  <!-- 1. Identitas -->
+  <section class="step" id="s1">
+    <h2><span class="num">1</span>Identitas Penggerak</h2>
+    <p class="lead">Ketik NIK Anda. Nama dan data lainnya akan muncul sendiri.</p>
+    <div class="body">
+      <div id="nikbox">
+        <label for="nik">NIK Penggerak</label>
+        <form class="row" id="nikf"><input type="text" id="nik" placeholder="contoh: KP.0819012" autocomplete="off" autocapitalize="characters" spellcheck="false" required><button class="btn" type="submit" id="nikb">Cek</button></form>
+        <div class="err" id="nikerr" role="alert"></div>
+      </div>
+      <div class="id" id="idcard" hidden>
+        <div class="hd"><b id="i-nama"></b><span id="i-nik"></span></div>
+        <dl><dt>Kantor</dt><dd id="i-kantor"></dd><dt>Bagian</dt><dd id="i-bagian"></dd><dt>No. Anggota</dt><dd id="i-no"></dd><dt>Kategori</dt><dd id="i-kat"></dd></dl>
+        <div class="ft">Bukan Anda? <button type="button" id="ganti">Ganti NIK</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Portal + status WA -->
+  <section class="step locked" id="s2">
+    <h2><span class="num">2</span>Bagikan Portal LCA di Status WhatsApp</h2>
+    <p class="lead">Buka Portal Lembaga Cerdas Al-Qur'an, lalu pasang link-nya di status WhatsApp Anda.</p>
+    <p class="lockmsg" data-lock>Isi NIK terlebih dahulu.</p>
+    <div class="body">
+      <div class="task" id="t-portal"><span class="chk">✓</span><div class="tx"><b>Buka Portal LCA</b><small>cerdaslca.org — baca satu kisah atau materi hari ini</small></div><a class="btn o" href="https://cerdaslca.org" target="_blank" rel="noopener" data-task="portal">Buka</a></div>
+      <label>Teks untuk status WhatsApp</label>
+      <div class="copy" id="stext"></div>
+      <div class="btns"><button class="btn o" type="button" id="bcopy">Salin teks</button><button class="btn o" type="button" id="bshare">Bagikan…</button></div>
+      <p class="hint">Buka WhatsApp → tab <b>Pembaruan/Status</b> → ikon pensil → tempel teks di atas → kirim.</p>
+      <div class="up" id="up-status">
+        <p><b>Tangkapan layar status WhatsApp</b><br><span class="hint">Pastikan link cerdaslca.org terlihat.</span></p>
+        <label class="btn o w" style="margin:0"><input type="file" accept="image/*" id="f-status">Unggah tangkapan layar</label>
+        <div class="thumbs" id="th-status"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Medsos -->
+  <section class="step locked" id="s3">
+    <h2><span class="num">3</span>Dukung Media Sosial LCA</h2>
+    <p class="lead">Buka setiap akun: subscribe/follow, lalu like, komentar, dan bagikan satu konten terbaru.</p>
+    <p class="lockmsg" data-lock>Isi NIK terlebih dahulu.</p>
+    <div class="body">
+      <div id="medsos"></div>
+      <div class="up" id="up-medsos">
+        <p><b>Tangkapan layar interaksi</b><br><span class="hint">1–4 gambar yang menunjukkan Anda sudah subscribe/follow dan berkomentar.</span></p>
+        <label class="btn o w" style="margin:0"><input type="file" accept="image/*" multiple id="f-medsos">Unggah tangkapan layar</label>
+        <div class="thumbs" id="th-medsos"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Form kasbon -->
+  <section class="step locked" id="s4">
+    <h2><span class="num">4</span>Isian Kasbon</h2>
+    <p class="lead">Terbuka setelah langkah 1–3 selesai.</p>
+    <div class="prog" aria-hidden="true"><i id="prog"></i></div>
+    <p class="lockmsg" id="sisa" data-lock></p>
+    <form class="body" id="kf" novalidate>
+      <div class="rule"><b>Ketentuan:</b> kasbon maksimal <b>25% dari Ihsanul Mas'ul</b> yang Anda terima, dihitung per bulan buku (tanggal 26 s/d 25).</div>
+      <label for="nom">Nominal kasbon</label>
+      <div class="rp"><span>Rp</span><input type="text" id="nom" inputmode="numeric" placeholder="0" autocomplete="off" required></div>
+      <label for="kep">Keperluan</label>
+      <textarea id="kep" rows="3" maxlength="500" placeholder="contoh: biaya sekolah anak" required></textarea>
+      <label for="wa">Nomor WhatsApp Anda</label>
+      <input type="tel" id="wa" inputmode="tel" placeholder="0812xxxxxxx" autocomplete="tel" required>
+      <div class="err" id="kerr" role="alert"></div>
+      <button class="btn w" type="submit" id="kb" style="margin-top:14px">Ajukan Kasbon</button>
+      <p class="hint" style="text-align:center">Setelah diajukan, WhatsApp akan terbuka untuk mengirim pemberitahuan ke Bendahara.</p>
+    </form>
+  </section>
+
+  <section class="step ok-card" id="s5" hidden>
+    <div class="big">✓</div>
+    <h2>Pengajuan diterima</h2>
+    <p style="margin:4px 0 0;color:var(--muted)">Kode pengajuan</p>
+    <div class="kode" id="o-kode"></div>
+    <a class="btn w" id="o-wa" target="_blank" rel="noopener">Kirim ke WhatsApp Bendahara</a>
+    <p class="hint">Jika WhatsApp belum terbuka, ketuk tombol di atas. Bendahara akan memeriksa bukti dan menghubungi Anda.</p>
+    <div class="sum" id="o-sum"></div>
+  </section>
+</main>
+<footer>Jazakumullahu khairan atas dakwah Anda. · <a href="https://cerdaslca.org">Portal LCA</a></footer>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  var PORTAL='https://cerdaslca.org';
+  var STATUS_TEXT='Yuk belajar dan memahami Al-Qur\'an bersama Lembaga Cerdas Al-Qur\'an (LCA). Kisah sirah, materi Al-Qur\'an, dan kata Al-Qur\'an hari ini, terbit setiap hari 👇\n'+PORTAL;
+  var ICO={
+    youtube:'<svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8z"/><path fill="#fff" d="M9.6 15.6V8.4l6.3 3.6z"/></svg>',
+    instagram:'<svg viewBox="0 0 24 24" fill="none" stroke="#D6249F" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#D6249F" stroke="none"/></svg>',
+    tiktok:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.4 2.3 1.9 3.8 4.1 4v3.1c-1.5 0-2.9-.5-4.1-1.3v6.4a6 6 0 1 1-6-6h.6v3.2a2.8 2.8 0 1 0 2.2 2.8V3z"/></svg>',
+    facebook:'<svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0 0 24 12z"/></svg>'
+  };
+  var MED=[
+    {k:'youtube',n:'YouTube',h:'@cerdaslca',a:'Subscribe, like, komentar, bagikan',u:'https://www.youtube.com/@cerdaslca?sub_confirmation=1'},
+    {k:'instagram',n:'Instagram',h:'@lembagacerdasalquran',a:'Follow, like, komentar, bagikan',u:'https://www.instagram.com/lembagacerdasalquran/'},
+    {k:'tiktok',n:'TikTok',h:'@lembagacerdasalquran23',a:'Follow, like, komentar, bagikan',u:'https://www.tiktok.com/@lembagacerdasalquran23'},
+    {k:'facebook',n:'Facebook',h:'Lembaga Cerdas Al-Qur\'an',a:'Ikuti, like, komentar, bagikan',u:'https://www.facebook.com/cerdasalquran/'}
+  ];
+  var S={who:null,done:{},status:[],medsos:[],cfg:null};
+  function ls(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem('lca_kasbon_'+k)||'null');localStorage.setItem('lca_kasbon_'+k,JSON.stringify(v))}catch(e){return null}}
+  function esc(t){var d=document.createElement('div');d.textContent=t==null?'':String(t);return d.innerHTML}
+  function rp(n){return 'Rp'+Math.round(n||0).toLocaleString('id-ID')}
+
+  $('#stext').textContent=STATUS_TEXT;
+  $('#medsos').innerHTML=MED.map(function(m){return '<div class="task" id="t-'+m.k+'"><span class="chk">✓</span><div class="tx"><b class="pf">'+ICO[m.k]+m.n+'</b><small>'+esc(m.h)+' · '+esc(m.a)+'</small></div><a class="btn o" href="'+m.u+'" target="_blank" rel="noopener" data-task="'+m.k+'">Buka</a></div>'}).join('');
+
+  fetch('/api/kasbon/config').then(function(r){return r.json()}).then(function(c){S.cfg=c;if(c.periode)$('#per').textContent='Bulan buku '+c.periode.label+' · '+c.periode.rentang}).catch(function(){});
+
+  // ----- langkah 1: NIK -----
+  function setWho(g){S.who=g;
+    $('#nikbox').hidden=!!g;$('#idcard').hidden=!g;
+    if(g){$('#i-nama').textContent=g.nama;$('#i-nik').textContent=g.nik;$('#i-kantor').textContent=g.kantor;$('#i-bagian').textContent=g.bagian;$('#i-no').textContent=g.no_anggota||'—';$('#i-kat').textContent=g.kategori;ls('nik',g.nik)}
+    var d=ls('done')||{};S.done=(g&&d.nik===g.nik)?d.t||{}:{};
+    update();
+  }
+  function cek(nik){
+    nik=String(nik||'').trim().toUpperCase().replace(/\s+/g,'');if(!nik)return;
+    $('#nikerr').textContent='';$('#nikb').disabled=true;$('#nikb').textContent='…';
+    fetch('/api/kasbon/cek?nik='+encodeURIComponent(nik)).then(function(r){return r.json()}).then(function(j){
+      if(j.ok)setWho(j.data);else{$('#nikerr').textContent=j.error||'NIK tidak ditemukan.';ls('nik',null)}
+    }).catch(function(){$('#nikerr').textContent='Koneksi terputus. Periksa internet lalu coba lagi.'}).then(function(){$('#nikb').disabled=false;$('#nikb').textContent='Cek'});
+  }
+  $('#nikf').addEventListener('submit',function(e){e.preventDefault();cek($('#nik').value)});
+  $('#ganti').onclick=function(){ls('nik',null);setWho(null);$('#nik').value='';$('#nik').focus()};
+
+  // ----- tugas klik -----
+  document.addEventListener('click',function(e){var a=e.target.closest('[data-task]');if(!a||!S.who)return;S.done[a.dataset.task]=true;ls('done',{nik:S.who.nik,t:S.done});setTimeout(update,300)});
+  $('#bcopy').onclick=function(){var b=this;function ok(){b.textContent='Tersalin ✓';setTimeout(function(){b.textContent='Salin teks'},2000)}
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(STATUS_TEXT).then(ok,fallback);else fallback();
+    function fallback(){var t=document.createElement('textarea');t.value=STATUS_TEXT;document.body.appendChild(t);t.select();try{document.execCommand('copy');ok()}catch(e){}t.remove()}};
+  $('#bshare').onclick=function(){if(navigator.share)navigator.share({text:STATUS_TEXT}).catch(function(){});else $('#bcopy').click()};
+
+  // ----- unggah gambar (dikecilkan di HP agar ringan) -----
+  function shrink(file){return new Promise(function(res,rej){
+    if(!/^image\//.test(file.type))return rej(new Error('Berkas harus berupa gambar.'));
+    var u=URL.createObjectURL(file),im=new Image();
+    im.onload=function(){var M=1400,w=im.naturalWidth,h=im.naturalHeight,s=Math.min(1,M/Math.max(w,h));var c=document.createElement('canvas');c.width=Math.round(w*s);c.height=Math.round(h*s);
+      var x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);
+      var q=.75,d=c.toDataURL('image/jpeg',q);while(d.length>2.6e6&&q>.35){q-=.1;d=c.toDataURL('image/jpeg',q)}res(d)};
+    im.onerror=function(){URL.revokeObjectURL(u);rej(new Error('Gambar tidak bisa dibaca. Coba tangkapan layar format JPG/PNG.'))};im.src=u})}
+  function bindUp(inp,key,max){
+    $(inp).addEventListener('change',function(){var fs=[].slice.call(this.files||[]);this.value='';
+      fs.slice(0,max-(key==='status'?0:S[key].length)).reduce(function(p,f){return p.then(function(){return shrink(f).then(function(d){if(key==='status')S.status=[d];else if(S[key].length<max)S[key].push(d)})})},Promise.resolve())
+      .catch(function(e){alert(e.message)}).then(update)});
+  }
+  bindUp('#f-status','status',1);bindUp('#f-medsos','medsos',4);
+  function thumbs(sel,key){$(sel).innerHTML=S[key].map(function(d,i){return '<div><img alt="Tangkapan layar '+(i+1)+'" src="'+d+'"><button type="button" aria-label="Hapus gambar" data-del="'+key+':'+i+'">×</button></div>'}).join('')}
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-del]');if(!b)return;var p=b.dataset.del.split(':');S[p[0]].splice(+p[1],1);update()});
+
+  // ----- status langkah -----
+  function update(){
+    var who=!!S.who;
+    var s2=who&&S.done.portal&&S.status.length>0;
+    var s3=who&&MED.every(function(m){return S.done[m.k]})&&S.medsos.length>0;
+    $('#s1').classList.toggle('done',who);
+    ['#s2','#s3'].forEach(function(s){$(s).classList.toggle('locked',!who);$(s).querySelector('[data-lock]').hidden=who});
+    $('#s2').classList.toggle('done',!!s2);$('#s3').classList.toggle('done',!!s3);
+    $('#t-portal').classList.toggle('ok',!!S.done.portal);
+    MED.forEach(function(m){$('#t-'+m.k).classList.toggle('ok',!!S.done[m.k])});
+    $('#up-status').classList.toggle('ok',S.status.length>0);$('#up-medsos').classList.toggle('ok',S.medsos.length>0);
+    thumbs('#th-status','status');thumbs('#th-medsos','medsos');
+    var need=[];if(!who)need.push('isi NIK');if(who&&!S.done.portal)need.push('buka Portal LCA');if(who&&!S.status.length)need.push('unggah tangkapan layar status WA');
+    var left=MED.filter(function(m){return !S.done[m.k]}).map(function(m){return m.n});if(who&&left.length)need.push('buka '+left.join(', '));if(who&&!S.medsos.length)need.push('unggah tangkapan layar medsos');
+    var total=1+1+1+MED.length+1,got=(who?1:0)+(S.done.portal?1:0)+(S.status.length?1:0)+MED.filter(function(m){return S.done[m.k]}).length+(S.medsos.length?1:0);
+    $('#prog').style.width=Math.round(got/total*100)+'%';
+    var open=who&&s2&&s3;
+    $('#s4').classList.toggle('locked',!open);
+    $('#sisa').hidden=open;$('#sisa').textContent=open?'':'Belum terbuka. Masih perlu: '+need.join('; ')+'.';
+  }
+
+  // ----- formulir kasbon -----
+  $('#nom').addEventListener('input',function(){var n=this.value.replace(/\D/g,'').replace(/^0+/,'').slice(0,9);this.value=n?(+n).toLocaleString('id-ID'):''});
+  $('#kf').addEventListener('submit',function(e){e.preventDefault();var err=$('#kerr');err.textContent='';
+    var nominal=+$('#nom').value.replace(/\D/g,''),kep=$('#kep').value.trim(),wa=$('#wa').value.trim();
+    if(nominal<10000){err.textContent='Isi nominal kasbon (minimal Rp10.000).';return}
+    if(kep.length<5){err.textContent='Tuliskan keperluan kasbon.';return}
+    if(!/^(\+?62|0)8\d{7,12}$/.test(wa.replace(/[\s-]/g,''))){err.textContent='Nomor WhatsApp tidak valid (contoh: 0812xxxxxxx).';return}
+    var b=$('#kb');b.disabled=true;b.textContent='Mengirim…';
+    fetch('/api/kasbon',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nik:S.who.nik,nominal:nominal,keperluan:kep,wa:wa.replace(/[\s-]/g,''),tugas:{portal:!!S.done.portal,medsos:MED.filter(function(m){return S.done[m.k]}).map(function(m){return m.k})},bukti_status:S.status[0],bukti_medsos:S.medsos})})
+    .then(function(r){return r.json().catch(function(){return{ok:false,error:'Server tidak merespons dengan benar.'}})}).then(function(j){
+      if(!j.ok){err.textContent=j.error||'Pengajuan gagal.';return}
+      var g=S.who,msg='Assalamu\'alaikum Bendahara LCA,\n\nSaya mengajukan *kasbon* melalui Portal LCA:\n\nKode: *'+j.kode+'*\nNama: '+g.nama+'\nNIK: '+g.nik+'\nKantor: '+g.kantor+'\nBagian: '+g.bagian+'\nKategori: '+g.kategori+'\nNominal: *'+rp(nominal)+'*\nKeperluan: '+kep+'\nBulan buku: '+j.periode.label+'\n\nTugas status WA & medsos LCA sudah saya selesaikan (bukti terlampir di Portal). Mohon diproses. Jazakumullahu khairan.';
+      var link='https://wa.me/'+j.wa_bendahara+'?text='+encodeURIComponent(msg);
+      $('#o-kode').textContent=j.kode;$('#o-wa').href=link;
+      $('#o-sum').innerHTML=[['Nama',g.nama],['Nominal',rp(nominal)],['Keperluan',kep],['Bulan buku',j.periode.label]].map(function(x){return '<div><span>'+x[0]+'</span><b>'+esc(x[1])+'</b></div>'}).join('');
+      ['#s1','#s2','#s3','#s4'].forEach(function(s){$(s).hidden=true});$('#s5').hidden=false;window.scrollTo(0,0);
+      ls('done',null);
+      if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)){try{window.location.href=link}catch(x){}}
+    }).catch(function(){err.textContent='Koneksi terputus. Periksa internet lalu coba lagi.'}).then(function(){b.disabled=false;b.textContent='Ajukan Kasbon'});
+  });
+
+  var saved=ls('nik');if(saved){$('#nik').value=saved;cek(saved)}else update();
+})();
+</script>
+</body>
+</html>
