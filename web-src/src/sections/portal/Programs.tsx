@@ -1,12 +1,12 @@
 import { ArrowUpRight } from 'lucide-react'
 import data from '@/data/business-data.json'
-import { images, logo, type Img, pic } from '@/lib/images'
+import { DEPT, images, logo, type Img, pic } from '@/lib/images'
 import { Reveal } from '@/components/Reveal'
 import { SectionHead } from '@/components/SectionHead'
 import { cardReveal, staggerContainer } from '@/lib/motion'
 
 const P = data.programs
-const FAMILY = ['LCA', 'GENCAR', 'GEMAR', 'Sensus', 'Pendidikan', 'Tafaqur', 'Kiprah Muslimah', 'Kaca Cermin', 'Mitra Berkah']
+const FAMILY = ['LCA', 'GENCAR', 'GEMAR', 'Sensus', 'Pendidikan', 'Tafaqur', 'Wakaf', 'Kiprah Muslimah', 'Mitra Berkah', 'Informasi', 'Kaca Cermin', 'Kaca Patri']
 
 function PhotoCard({ img, kicker, title, text, logoImg, big = false, className = '' }:
   { img: Img; kicker: string; title: string; text: string; logoImg?: Img; big?: boolean; className?: string }) {
@@ -17,7 +17,7 @@ function PhotoCard({ img, kicker, title, text, logoImg, big = false, className =
       <div className="absolute inset-0 -z-10" style={{ background: 'linear-gradient(180deg, oklch(30% 0.07 170 / 0.03) 20%, oklch(30% 0.07 170 / 0.62) 100%)' }} />
       <div className={`flex h-full flex-col justify-between ${big ? 'p-8 md:p-10' : 'p-6 md:p-7'}`}>
         <div className="flex items-start justify-between">
-          {logoImg ? <img {...pic(logoImg)} alt={logoImg.alt} className={`${big ? 'h-14 w-14' : 'h-11 w-11'} rounded-full ring-2 ring-white/20`} /> : <span />}
+          {logoImg ? <img {...pic(logoImg)} alt={logoImg.alt} className={`${big ? 'h-16 w-16' : 'h-12 w-12'} rounded-full shadow-[0_6px_18px_-6px_rgba(0,0,0,0.6)] ring-2 ring-white/40`} /> : <span />}
           <span className="glass grid h-10 w-10 place-items-center rounded-full text-brand-ondark transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
             <ArrowUpRight className="h-4 w-4" />
           </span>
@@ -51,13 +51,15 @@ export function Programs() {
               </h3>
               <p className="mt-3 max-w-[52ch] text-sm leading-relaxed text-brand-ink2">Setiap gerakan memiliki logo sendiri, dengan lingkaran hitam-kuning dan bulan sabit yang sama: “{data.motto}”.</p>
             </div>
-            <ul className="flex flex-wrap gap-2">
+            <ul className="grid grid-cols-3 gap-x-2 gap-y-4 sm:grid-cols-4 lg:grid-cols-6">
               {FAMILY.map((n) => {
                 const l = logo(n)
                 return (
-                  <li key={n} className="flex items-center gap-2 rounded-full bg-brand-raised py-1.5 pl-1.5 pr-3.5 text-sm font-medium text-brand-ink ring-1 ring-[var(--color-border)]">
-                    {l.src ? <img {...pic(l)} alt="" className="h-7 w-7 rounded-full" /> : <span className="grid h-7 w-7 place-items-center rounded-full bg-brand-night text-[0.6rem] font-bold text-brand-gold">{n.slice(0, 2)}</span>}
-                    {n}
+                  <li key={n}>
+                    <a href={DEPT[n]?.href ?? '/departemen'} title={DEPT[n]?.full ?? n} className="group flex flex-col items-center gap-1.5 text-center">
+                      <img {...pic(l)} alt={l.alt} className="h-16 w-16 rounded-full shadow-[0_8px_20px_-10px_rgba(0,0,0,0.55)] transition-transform duration-200 group-hover:-translate-y-1 group-hover:scale-105 md:h-[72px] md:w-[72px]" />
+                      <span className="text-[0.72rem] font-semibold leading-tight text-brand-ink group-hover:text-brand">{n}</span>
+                    </a>
                   </li>
                 )
               })}

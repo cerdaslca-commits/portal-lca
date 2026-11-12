@@ -13,7 +13,7 @@ const toImg = (r?: Raw): Img => {
   const key = r.localPath.split('/').pop()!.replace(/\.(jpg|png)$/, '') // photo-3 / logo-1
   const m = M[key]
   if (key.startsWith('logo')) {
-    return { src: `/img/${key}-96.webp`, srcSet: `/img/${key}-96.webp 1x, /img/${key}-192.webp 2x` + (key === 'logo-0' ? `, /img/${key}-384.webp 4x` : ''), alt: r.alt, ratio: 1, logo: true }
+    return { src: `/img/${key}-96.webp`, srcSet: `/img/${key}-96.webp 1x, /img/${key}-192.webp 2x` , alt: r.alt, ratio: 1, logo: true }
   }
   const mid = m.widths.find((w) => w >= 960) ?? m.widths[m.widths.length - 1]
   return { src: `/img/${key}-${mid}.webp`, srcSet: m.widths.map((w) => `/img/${key}-${w}.webp ${w}w`).join(', '), alt: r.alt, ratio: m.ratio }
@@ -33,8 +33,30 @@ export const bySection = (section: string): Img[] =>
   all.filter((i) => i.imageType === 'scene' && i.sectionType === section).map(toImg)
 export const byAlt = (needle: string): Img =>
   toImg(all.find((i) => i.alt.toLowerCase().includes(needle.toLowerCase())))
+/** Logo resmi departemen & komunitas LCA (dari Google Drive LCA), resolusi 96/192/384 px. */
+export const DEPT: Record<string, { key: string; full: string; href: string }> = {
+  LCA: { key: 'lca', full: "Lembaga Cerdas Al-Qur'an", href: '/tentang' },
+  GENCAR: { key: 'gencar', full: "Gerakan Cerdas Baca Al-Qur'an", href: '/gencar' },
+  GEMAR: { key: 'gemar', full: "Gerakan Memahami Arti Kata Al-Qur'an", href: '/program15' },
+  Sensus: { key: 'sensus', full: 'Departemen Sensus', href: '/sensus' },
+  Pendidikan: { key: 'pendidikan', full: 'Departemen Pendidikan', href: '/pendidikan' },
+  Tafaqur: { key: 'tafaqur', full: 'Departemen Tafaqur', href: '/departemen' },
+  Wakaf: { key: 'wakaf', full: 'Departemen Wakaf', href: '/wakaf' },
+  'Kiprah Muslimah': { key: 'muslimah', full: 'Departemen Kiprah Muslimah', href: '/departemen' },
+  'Mitra Berkah': { key: 'koperasi', full: 'Koperasi Syariah Guru Ngaji', href: '/departemen' },
+  Informasi: { key: 'it', full: 'Departemen IT & LCA Online', href: '/departemen' },
+  'Kaca Cermin': { key: 'kcc', full: 'Komunitas Kaca Cermin', href: '/departemen' },
+  'Kaca Patri': { key: 'kcp', full: 'Komunitas Kaca Patri', href: '/departemen' },
+}
+const deptImg = (name: string): Img | null => {
+  const d = DEPT[name]
+  if (!d) return null
+  const u = (s: number) => `/img/dept/${d.key}-${s}.webp`
+  return { src: u(96), srcSet: `${u(96)} 1x, ${u(192)} 2x, ${u(384)} 4x`, alt: `Logo ${name}`, ratio: 1, logo: true }
+}
+
 export const logo = (name: string): Img =>
-  toImg(all.find((i) => (i.imageType === 'logo' || i.imageType === 'product-logo') && i.associatedName === name))
+  deptImg(name) ?? toImg(all.find((i) => (i.imageType === 'logo' || i.imageType === 'product-logo') && i.associatedName === name))
 export const village = (name: string): Img => toImg(all.find((i) => i.sectionType === `desa:${name}`))
 
 export const images = {
