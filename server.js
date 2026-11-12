@@ -283,6 +283,7 @@ function set(i,k){i.src=D+k+'-384.webp';i.classList.remove('dark');i.style.backg
 function run(){document.querySelectorAll('img[data-logo]').forEach(function(i){var a=i.closest('article.dept'),k=(a&&A[a.id])||K[i.getAttribute('data-logo')];if(k)set(i,k)});
 document.querySelectorAll('[data-family] img').forEach(function(i){var k=N[(i.getAttribute('alt')||'').replace(/^Logo /,'')];if(k)set(i,k)})}
 run();document.addEventListener('DOMContentLoaded',run);})();
+})();</script><script src="/share-bar.js" defer></script><script>(function(){
 })();</script>`;
 const bridgeCache = { mtime: 0, raw: null, gz: null };
 function serveOldPortal(req, res) {

@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Reveal } from '@/components/Reveal'
 import { SectionHead } from '@/components/SectionHead'
 import { fadeUp } from '@/lib/motion'
+import { ShareBar, absUrl } from '@/components/ShareBar'
 
 const T = data.today
 const trig = 'gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-brand-ink2 data-[state=active]:bg-brand data-[state=active]:text-brand-ondark data-[state=active]:shadow-none hover:text-brand-ink'
@@ -71,6 +72,11 @@ export function Today() {
                 </div>
               </div>
               {W.note && <p className="mt-6 rounded-2xl bg-brand-goldsoft px-4 py-3 text-sm text-brand-ink2">{W.note}</p>}
+              <ShareBar className="mt-6 border-t border-brand-line pt-5" data={{
+                title: `Kata Al-Qur'an Hari Ini: ${W.arabic} (${W.latin})`,
+                text: `Arti: ${W.meaning}\nQS. ${W.ref}\n${W.ayah}\n"${W.translation}"${W.note ? `\n\n${W.note}` : ''}\n\n${cal.hijri} · ${cal.gregorian}`,
+                url: absUrl('/kata'),
+              }} />
             </TabsContent>
 
             <TabsContent value="kalender" className="mt-0 p-5 md:p-7">
@@ -89,16 +95,24 @@ export function Today() {
                   </li>
                 ))}
               </ul>
+              <ShareBar className="mt-4 border-t border-brand-line pt-5" data={{
+                title: `Pengingat Hari Besar & Puasa Sunnah (${cal.hijri})`,
+                text: cal.next.map((n) => `• ${n.title}: ${formatGregorian(n.date, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} (${n.inDays} hari lagi)`).join('\n'),
+                url: absUrl('/kalender'),
+              }} />
             </TabsContent>
 
-            <TabsContent value="materi" className="mt-0 grid gap-3 p-5 md:grid-cols-3 md:p-7">
-              {T.materi.map((m) => (
-                <article key={m.title} className="flex flex-col rounded-2xl bg-brand-surface p-5 lift">
-                  <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-brand-goldink">{m.tag}</p>
-                  <h3 className="mt-2 font-semibold leading-snug text-brand-ink">{m.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-brand-ink2">{m.text}</p>
-                </article>
-              ))}
+            <TabsContent value="materi" className="mt-0 p-5 md:p-7">
+              <div className="grid gap-3 md:grid-cols-3">
+                {T.materi.map((m) => (
+                  <article key={m.title} className="flex flex-col rounded-2xl bg-brand-surface p-5 lift">
+                    <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-brand-goldink">{m.tag}</p>
+                    <h3 className="mt-2 font-semibold leading-snug text-brand-ink">{m.title}</h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-ink2">{m.text}</p>
+                    <ShareBar compact className="mt-4" data={{ title: m.title, text: `${m.tag}\n${m.text}`, url: absUrl('/materi') }} />
+                  </article>
+                ))}
+              </div>
             </TabsContent>
           </Tabs>
         </Reveal>

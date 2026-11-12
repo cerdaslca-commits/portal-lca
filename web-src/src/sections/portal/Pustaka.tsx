@@ -3,6 +3,7 @@ import { Reveal } from '@/components/Reveal'
 import { SectionHead } from '@/components/SectionHead'
 import { cardReveal, staggerContainer } from '@/lib/motion'
 import { usePustaka, type PustakaItem } from '@/lib/pustaka'
+import { ShareBar, absUrl } from '@/components/ShareBar'
 
 const QUICK = [
   { href: '/kata', label: "Kata Al-Qur'an Hari Ini", note: 'Satu kata setiap subuh', Icon: Languages },
@@ -17,8 +18,8 @@ const QUICK = [
 
 function Row({ item, kicker }: { item: PustakaItem; kicker: string }) {
   return (
-    <li>
-      <a href={`/${item.id}`} className="group flex items-start justify-between gap-4 border-t border-brand-line py-4 first:border-t-0">
+    <li className="border-t border-brand-line py-4 first:border-t-0">
+      <a href={`/${item.id}`} className="group flex items-start justify-between gap-4">
         <span>
           <span className="text-[0.7rem] font-semibold uppercase tracking-wider text-brand-goldink">{kicker}{item.tag ? ` · ${item.tag}` : ''}</span>
           <span className="mt-1 block font-semibold leading-snug text-brand-ink group-hover:text-brand">{item.title}</span>
@@ -26,6 +27,7 @@ function Row({ item, kicker }: { item: PustakaItem; kicker: string }) {
         </span>
         <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-brand-mute transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" aria-hidden />
       </a>
+      <ShareBar compact className="mt-3" data={{ title: `${kicker}: ${item.title}`, text: [item.tag, item.desc].filter(Boolean).join('\n'), url: absUrl(`/${item.id}`) }} />
     </li>
   )
 }
