@@ -9,6 +9,9 @@ const crypto = require('crypto');
 
 const PORT = +process.env.PORT || 3000;
 const PUB = path.resolve(process.env.PUBLIC_DIR || path.join(__dirname, 'public'));
+// Desain baru (React, hasil build web-src/ → web/). Melayani /, /donasi, /desa, /desa/<id> dan aset-asetnya.
+const WEB = path.resolve(process.env.WEB_DIR || path.join(__dirname, 'web'));
+const HAS_WEB = fs.existsSync(path.join(WEB, 'index.html'));
 let DATA = process.env.DATA_DIR || '/data';
 try { fs.mkdirSync(DATA, { recursive: true }); fs.accessSync(DATA, fs.constants.W_OK); }
 catch (e) { DATA = path.join(__dirname, 'data'); fs.mkdirSync(DATA, { recursive: true }); console.warn('DATA_DIR tidak dapat ditulis, memakai', DATA); }
@@ -32,7 +35,7 @@ function save() {
 }
 
 /* ---------- util ---------- */
-const MIME = { '.html': 'text/html; charset=utf-8', '.json': 'application/json; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.xml': 'application/xml; charset=utf-8', '.txt': 'text/plain; charset=utf-8', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.mp4': 'video/mp4', '.pdf': 'application/pdf', '.woff2': 'font/woff2' };
+const MIME = { '.html': 'text/html; charset=utf-8', '.json': 'application/json; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.xml': 'application/xml; charset=utf-8', '.txt': 'text/plain; charset=utf-8', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.mp4': 'video/mp4', '.pdf': 'application/pdf', '.woff2': 'font/woff2', '.css': 'text/css; charset=utf-8', '.webmanifest': 'application/manifest+json; charset=utf-8', '.gif': 'image/gif', '.woff': 'font/woff' };
 const SEC = { 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'X-Frame-Options': 'SAMEORIGIN' };
 function ip(req) { return String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim(); }
 function send(res, code, body, headers) {
@@ -199,6 +202,7 @@ async function api(req, res, url) {
     if (!limited('hit:' + ip(req), 240, 600e3)) { let b = {}; try { b = JSON.parse(await readBody(req, 500) || '{}'); } catch (e) {} hit(req, b.p); }
     return send(res, 204, '', { 'Cache-Control': 'no-store' });
   }
+  if (p === '/api/pustaka' && m === 'GET') return json(res, 200, { ok: true, pages: pustaka() }, { 'Cache-Control': 'public, max-age=300' });
   if (p === '/api/stats' && m === 'GET') return json(res, 200, Object.assign({ ok: true }, publicStats()));
   if (p === '/api/admin/login' && m === 'POST') {
     if (!ADMIN_PW) return json(res, 503, { ok: false, error: 'Admin belum diaktifkan. Atur variabel ADMIN_PASSWORD di Railway.' });
@@ -240,16 +244,94 @@ async function api(req, res, url) {
   return json(res, 404, { ok: false });
 }
 
+/* ---------- gabungan desain baru + portal lama ---------- */
+const OLD_INDEX = path.join(PUB, 'index.html');
+const ENT = { amp: '&', quot: '"', apos: "'", lt: '<', gt: '>', nbsp: ' ' };
+const unent = s => String(s || '').replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, e) => e[0] === '#' ? String.fromCodePoint(e[1].toLowerCase() === 'x' ? parseInt(e.slice(2), 16) : +e.slice(1)) : (ENT[e.toLowerCase()] ?? m));
+// Daftar halaman portal lama (materi, sirah, sahabat, kajian) dibaca dari index.html — seri baru otomatis ikut.
+let pk = { mtime: 0, pages: [] };
+function pustaka() {
+  let st; try { st = fs.statSync(OLD_INDEX); } catch (e) { return []; }
+  if (st.mtimeMs === pk.mtime) return pk.pages;
+  const html = fs.readFileSync(OLD_INDEX, 'utf8'), pages = [];
+  const re = /<section class="page" id="p-([\w-]+)"([^>]*)>/g; let m;
+  while ((m = re.exec(html))) {
+    const id = m[1], a = {}; m[2].replace(/\s(data-[\w-]+)="([^"]*)"/g, (_, k, v) => { a[k] = unent(v); });
+    if (!/^(materi|sirah|sahabat|kajian)-/.test(id)) continue;
+    const meta = (a['data-materi'] || a['data-kajian'] || '').split('|');
+    const sh = (a['data-sahabat'] || '').split('|');
+    pages.push({ id, title: a['data-title'] || id, sec: a['data-sec'] || '',
+      tag: a['data-sahabat'] ? sh[1] : (meta.length > 1 ? meta[0] : (a['data-bab'] || '')),
+      desc: a['data-sahabat'] ? (sh[2] || '') : (meta.length > 1 ? meta[1] : ''),
+      terbit: a['data-terbit'] || '' });
+  }
+  pk = { mtime: st.mtimeMs, pages };
+  return pages;
+}
+// Skrip jembatan yang disisipkan ke portal lama (tanpa mengubah index.html):
+// tombol Beranda/logo → beranda baru, Donasi → halaman donasi baru.
+const BRIDGE = `<script>(function(){
+var MAP={beranda:'/',donasi:'/donasi'};
+function hid(){return location.hash.slice(1)||location.pathname.replace(/^\\/+|\\/+$/g,'')}
+function chk(){var t=MAP[hid()];if(t){location.replace(t);return true}}
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;var t=MAP[a.getAttribute('href').slice(1)];if(t){e.preventDefault();e.stopPropagation();location.href=t}},true);
+window.addEventListener('hashchange',chk,true);chk();
+})();</script>`;
+const bridgeCache = { mtime: 0, raw: null, gz: null };
+function serveOldPortal(req, res) {
+  fs.stat(OLD_INDEX, (err, st) => {
+    if (err) return send(res, 404, 'Not found');
+    if (bridgeCache.mtime !== st.mtimeMs) {
+      let html = fs.readFileSync(OLD_INDEX, 'utf8');
+      const i = html.lastIndexOf('</html>');
+      if (HAS_WEB) html = i > -1 ? html.slice(0, i) + BRIDGE + '\n' + html.slice(i) : html + BRIDGE;
+      const raw = Buffer.from(html, 'utf8');
+      Object.assign(bridgeCache, { mtime: st.mtimeMs, raw, gz: zlib.gzipSync(raw) });
+    }
+    const h = { 'Content-Type': MIME['.html'], 'Cache-Control': 'no-cache' };
+    const gz = /\bgzip\b/.test(req.headers['accept-encoding'] || '');
+    if (gz) { h['Content-Encoding'] = 'gzip'; h['Vary'] = 'Accept-Encoding'; }
+    const body = gz ? bridgeCache.gz : bridgeCache.raw;
+    h['Content-Length'] = body.length;
+    res.writeHead(200, Object.assign({}, SEC, h));
+    res.end(req.method === 'HEAD' ? '' : body);
+  });
+}
+// Sitemap gabungan: sitemap portal lama + halaman desain baru (/, /donasi, /desa, /desa/<id>).
+function serveSitemap(req, res) {
+  const read = f => { try { return fs.readFileSync(f, 'utf8'); } catch (e) { return ''; } };
+  const locs = [], seen = new Set();
+  for (const x of [read(path.join(WEB, 'sitemap.xml')), read(path.join(PUB, 'sitemap.xml'))]) {
+    x.replace(/<loc>([^<]+)<\/loc>/g, (_, u) => { u = u.trim(); if (/\/(beranda)$/.test(u)) return; if (!seen.has(u)) { seen.add(u); locs.push(u); } });
+  }
+  const xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + locs.map(u => '  <url><loc>' + u + '</loc></url>').join('\n') + '\n</urlset>\n';
+  send(res, 200, req.method === 'HEAD' ? '' : xml, { 'Content-Type': MIME['.xml'], 'Cache-Control': 'public, max-age=3600' });
+}
+// Rute desain baru → file HTML pra-render di web/.
+function webPage(rel) {
+  if (!HAS_WEB) return null;
+  const p = rel.replace(/\/+$/, '') || '/';
+  if (p === '/' || p === '/index.html') return path.join(WEB, 'index.html');
+  if (p === '/donasi') return path.join(WEB, 'donasi', 'index.html');
+  if (p === '/desa') return path.join(WEB, 'desa', 'index.html');
+  const m = /^\/desa\/([a-z0-9-]+)$/.exec(p);
+  if (m) { const f = path.join(WEB, 'desa', m[1], 'index.html'); return fs.existsSync(f) ? f : path.join(WEB, 'desa', 'index.html'); }
+  return null;
+}
+
 /* ---------- statis ---------- */
 const cache = new Map();
 function serveFile(req, res, file, status) {
   fs.stat(file, (err, st) => {
     if (err || !st.isFile()) return send(res, 404, 'Not found');
     const ext = path.extname(file).toLowerCase(), type = MIME[ext] || 'application/octet-stream';
-    const rel = path.relative(PUB, file).split(path.sep).join('/');
-    const cc = rel.startsWith('media/') ? 'public, max-age=604800' : (ext === '.html' || ext === '.json' ? 'no-cache' : 'public, max-age=3600');
+    const inWeb = file.startsWith(WEB + path.sep);
+    const rel = path.relative(inWeb ? WEB : PUB, file).split(path.sep).join('/');
+    const cc = inWeb && rel.startsWith('assets/') ? 'public, max-age=31536000, immutable'
+      : (rel.startsWith('media/') || (inWeb && /^(img|fonts)\//.test(rel))) ? 'public, max-age=604800'
+      : (ext === '.html' || ext === '.json' || ext === '.webmanifest' ? 'no-cache' : 'public, max-age=3600');
     const h = { 'Content-Type': type, 'Cache-Control': cc };
-    if (rel === 'admin.html') { h['X-Robots-Tag'] = 'noindex, nofollow'; h['Cache-Control'] = 'no-store'; }
+    if (!inWeb && rel === 'admin.html') { h['X-Robots-Tag'] = 'noindex, nofollow'; h['Cache-Control'] = 'no-store'; }
     const gz = /\bgzip\b/.test(req.headers['accept-encoding'] || '') && /text|json|xml|svg|javascript/.test(type);
     if (gz) {
       const key = file + '|' + st.mtimeMs; let buf = cache.get(key);
@@ -277,11 +359,22 @@ if (!keepHosts.includes(host)) {
   if (req.method !== 'GET' && req.method !== 'HEAD') return send(res, 405, 'Method not allowed');
   let rel; try { rel = decodeURIComponent(url.pathname); } catch (e) { return send(res, 400, 'Bad request'); }
   if (rel === '/admin' || rel === '/admin/') rel = '/admin.html';
-  const file = path.resolve(PUB, '.' + rel);
+  if (rel === '/sitemap.xml') return serveSitemap(req, res);
+  if (HAS_WEB && (rel === '/beranda' || rel === '/beranda/')) return send(res, 301, '', { Location: '/' + url.search });
+  // 1) halaman desain baru: /, /donasi, /desa, /desa/<id>
+  const page = webPage(rel);
+  if (page) return serveFile(req, res, page);
+  // 2) file statis: aset desain baru (web/) lalu file portal lama (media/, kata.json, admin.html, ...)
+  const wfile = path.resolve(WEB, '.' + rel), file = path.resolve(PUB, '.' + rel);
   if (!file.startsWith(PUB + path.sep) && file !== PUB) return send(res, 403, 'Forbidden');
-  fs.stat(file, (err, st) => {
-    if (!err && st.isFile()) return serveFile(req, res, file);
-    if (/\.[a-z0-9]{2,5}$/i.test(rel)) return send(res, 404, 'Not found');
-    serveFile(req, res, path.join(PUB, 'index.html'));
+  const tryWeb = HAS_WEB && wfile.startsWith(WEB + path.sep) && path.basename(wfile) !== 'index.html';
+  fs.stat(tryWeb ? wfile : '', (e1, s1) => {
+    if (!e1 && s1.isFile()) return serveFile(req, res, wfile);
+    fs.stat(file, (err, st) => {
+      if (!err && st.isFile()) return path.basename(file) === 'index.html' ? serveOldPortal(req, res) : serveFile(req, res, file);
+      if (/\.[a-z0-9]{2,11}$/i.test(rel)) return send(res, 404, 'Not found');
+      // 3) halaman portal lama (/materi-3, /sahabat-9, /gabung, /sensus, ...)
+      serveOldPortal(req, res);
+    });
   });
-}).listen(PORT, () => console.log('Portal LCA di port', PORT, '| data:', FILE, '| admin:', ADMIN_PW ? 'aktif' : 'BELUM aktif'));
+}).listen(PORT, () => console.log('Portal LCA di port', PORT, '| desain baru:', HAS_WEB ? WEB : 'TIDAK ADA', '| data:', FILE, '| admin:', ADMIN_PW ? 'aktif' : 'BELUM aktif'));
