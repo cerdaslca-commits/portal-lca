@@ -13,7 +13,7 @@ const toImg = (r?: Raw): Img => {
   const key = r.localPath.split('/').pop()!.replace(/\.(jpg|png)$/, '') // photo-3 / logo-1
   const m = M[key]
   if (key.startsWith('logo')) {
-    return { src: `/img/${key}-96.webp`, srcSet: `/img/${key}-96.webp 1x, /img/${key}-192.webp 2x`, alt: r.alt, ratio: 1, logo: true }
+    return { src: `/img/${key}-96.webp`, srcSet: `/img/${key}-96.webp 1x, /img/${key}-192.webp 2x` + (key === 'logo-0' ? `, /img/${key}-384.webp 4x` : ''), alt: r.alt, ratio: 1, logo: true }
   }
   const mid = m.widths.find((w) => w >= 960) ?? m.widths[m.widths.length - 1]
   return { src: `/img/${key}-${mid}.webp`, srcSet: m.widths.map((w) => `/img/${key}-${w}.webp ${w}w`).join(', '), alt: r.alt, ratio: m.ratio }

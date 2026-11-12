@@ -6,6 +6,7 @@ import { images, pic } from '@/lib/images'
 import { heroWord, staggerContainer, easeExpo } from '@/lib/motion'
 import { scrollToId } from '@/lib/route'
 import { Mesh } from '@/components/Mesh'
+import { SocialIcons } from '@/components/SocialIcons'
 
 const LINE_A = ['Satu', 'desa', 'demi', 'satu', 'desa,']
 const LINE_B = ['memperhatikan', "Al-Qur'an."]
@@ -23,7 +24,7 @@ export function Hero({ onDonate }: { onDonate: () => void }) {
       </m.div>
       {/* scrim: emerald night, heavier at bottom-left where text sits */}
       <div aria-hidden className="absolute inset-0 -z-10" style={{
-        background: 'linear-gradient(180deg, oklch(17.5% 0.034 172 / 0.55) 0%, oklch(17.5% 0.034 172 / 0.35) 35%, oklch(17.5% 0.034 172 / 0.92) 82%), linear-gradient(90deg, oklch(17.5% 0.034 172 / 0.75) 0%, oklch(17.5% 0.034 172 / 0) 70%)',
+        background: 'linear-gradient(180deg, oklch(30% 0.07 170 / 0.28) 0%, oklch(30% 0.07 170 / 0.06) 38%, oklch(30% 0.07 170 / 0.62) 86%), linear-gradient(90deg, oklch(30% 0.07 170 / 0.52) 0%, oklch(30% 0.07 170 / 0.00) 70%)',
       }} />
       <Mesh className="-z-10 opacity-60 mix-blend-soft-light" />
 
@@ -54,6 +55,11 @@ export function Hero({ onDonate }: { onDonate: () => void }) {
             className="mt-8 flex flex-wrap gap-3">
             <button onClick={onDonate} className="btn btn-gold">Ikut berinfak <ArrowRight className="h-4 w-4" /></button>
             <button onClick={() => scrollToId('program')} className="btn btn-glass">Kenali program</button>
+          </m.div>
+          <m.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1, duration: 0.6, ease: easeExpo }}
+            className="mt-7 flex flex-wrap items-center gap-3">
+            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-ondark2">Ikuti kami</span>
+            <SocialIcons size="sm" only={['tiktok', 'instagram', 'youtube', 'facebook', 'x', 'whatsapp']} />
           </m.div>
         </div>
 

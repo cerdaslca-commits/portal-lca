@@ -11,7 +11,7 @@ export function CTA({ onDonate, title = 'Satu desa berubah, seratus desa maju,',
   return (
     <section aria-label="Ajakan berdonasi" className="bg-brand-bg px-3 py-6 md:px-5">
       <Reveal variants={sectionReveal} className="noise relative isolate mx-auto max-w-[1400px] overflow-hidden rounded-[2rem] bg-brand-night">
-        <img {...pic(images.story[1] ?? images.hero, '100vw')} alt="" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-35" />
+        <img {...pic(images.story[1] ?? images.hero, '100vw')} alt="" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-55" />
         <Mesh className="-z-10" />
         <div className="container-x relative grid gap-10 py-16 md:py-24 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">

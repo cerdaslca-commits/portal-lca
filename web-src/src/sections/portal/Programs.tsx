@@ -14,7 +14,7 @@ function PhotoCard({ img, kicker, title, text, logoImg, big = false, className =
     <Reveal variants={cardReveal} className={`group relative isolate overflow-hidden rounded-[1.75rem] bg-brand-night lift ${className}`}>
       <img {...pic(img, big ? '(min-width: 768px) 58vw, 100vw' : '(min-width: 768px) 42vw, 100vw')} alt={img.alt}
         className="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
-      <div className="absolute inset-0 -z-10" style={{ background: 'linear-gradient(180deg, oklch(17.5% 0.034 172 / 0.05) 20%, oklch(17.5% 0.034 172 / 0.88) 100%)' }} />
+      <div className="absolute inset-0 -z-10" style={{ background: 'linear-gradient(180deg, oklch(30% 0.07 170 / 0.03) 20%, oklch(30% 0.07 170 / 0.62) 100%)' }} />
       <div className={`flex h-full flex-col justify-between ${big ? 'p-8 md:p-10' : 'p-6 md:p-7'}`}>
         <div className="flex items-start justify-between">
           {logoImg ? <img {...pic(logoImg)} alt={logoImg.alt} className={`${big ? 'h-14 w-14' : 'h-11 w-11'} rounded-full ring-2 ring-white/20`} /> : <span />}

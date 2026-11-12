@@ -19,7 +19,7 @@ function Reel({ i }: { i: number }) {
       ) : (
         <button onClick={() => setPlay(true)} className="absolute inset-0 text-left" aria-label={`Putar video: ${v.title}`}>
           <img {...pic(POSTERS[i], '(min-width: 768px) 33vw, 72vw')} alt="" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
-          <span className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 40%, oklch(12% 0.03 172 / 0.9))' }} />
+          <span className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 40%, oklch(22% 0.05 170 / 0.77))' }} />
           <span className="glass absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-brand-ondark transition-transform duration-200 group-hover:scale-110">
             <Play className="ml-1 h-6 w-6 fill-current" />
           </span>
@@ -56,7 +56,7 @@ export function Proof() {
           {feed.map((g) => (
             <li key={g.src} className="group relative aspect-square overflow-hidden bg-brand-night2">
               <img {...pic(g, '(min-width: 768px) 16vw, 33vw')} alt={g.alt} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-              <span className="absolute inset-0 flex items-end bg-[oklch(12%_0.03_172/0.7)] p-3 text-xs font-medium leading-snug text-brand-ondark opacity-0 transition-opacity duration-200 group-hover:opacity-100">{g.alt}</span>
+              <span className="absolute inset-0 flex items-end bg-[oklch(22%_0.05_170/0.59)] p-3 text-xs font-medium leading-snug text-brand-ondark opacity-0 transition-opacity duration-200 group-hover:opacity-100">{g.alt}</span>
             </li>
           ))}
         </ul>

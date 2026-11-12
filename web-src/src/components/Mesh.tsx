@@ -9,7 +9,7 @@ export function Mesh({ variant = 'night', className = '' }: Props) {
     <div aria-hidden className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}>
       <div className="absolute inset-0" style={{
         background: night
-          ? 'radial-gradient(60% 55% at 15% 0%, oklch(45% 0.1 168 / 0.7), transparent 70%), radial-gradient(45% 50% at 95% 10%, oklch(55% 0.1 195 / 0.4), transparent 70%), radial-gradient(45% 45% at 55% 110%, oklch(80% 0.14 82 / 0.25), transparent 70%)'
+          ? 'radial-gradient(60% 55% at 12% 0%, oklch(72% 0.14 160 / 0.55), transparent 70%), radial-gradient(45% 50% at 95% 8%, oklch(68% 0.12 195 / 0.5), transparent 70%), radial-gradient(50% 45% at 55% 110%, oklch(86% 0.14 86 / 0.35), transparent 70%)'
           : 'radial-gradient(60% 55% at 15% 0%, oklch(45% 0.1 168 / 0.25), transparent 70%), radial-gradient(45% 45% at 55% 110%, oklch(80% 0.14 82 / 0.3), transparent 70%)',
       }} />
       <div className="mesh-blob absolute -left-[10%] -top-[30%] h-[80%] w-[60%] rounded-full"

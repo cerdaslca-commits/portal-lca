@@ -15,7 +15,7 @@ export function DonateHero({ desa, setDesa }: { desa: string; setDesa: (d: strin
     <section id="top" className="noise relative isolate overflow-hidden bg-brand-night pb-16 pt-28 md:pb-24 md:pt-36">
       <img {...pic(images.heroDonasi, '100vw', true)} alt={images.heroDonasi.alt} className="absolute inset-0 -z-20 h-full w-full object-cover object-[30%_30%]" />
       <div aria-hidden className="absolute inset-0 -z-10" style={{
-        background: 'linear-gradient(90deg, oklch(17.5% 0.034 172 / 0.94) 0%, oklch(17.5% 0.034 172 / 0.78) 45%, oklch(17.5% 0.034 172 / 0.55) 100%), linear-gradient(0deg, oklch(17.5% 0.034 172 / 0.9), transparent 40%)',
+        background: 'linear-gradient(90deg, oklch(30% 0.07 170 / 0.66) 0%, oklch(30% 0.07 170 / 0.55) 45%, oklch(30% 0.07 170 / 0.39) 100%), linear-gradient(0deg, oklch(30% 0.07 170 / 0.63), transparent 40%)',
       }} />
       <Mesh className="-z-10 opacity-70 mix-blend-soft-light" />
 

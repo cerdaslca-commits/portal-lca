@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Logo Lembaga Cerdas Al-Qur'an">
+<defs><path id="lca-top" d="M28.18 105.02A72 72 0 0 1 171.82 105.02"/><path id="lca-bot" d="M14.05 103.00A86 86 0 0 0 185.95 103.00"/></defs>
+<circle cx="100" cy="100" r="100" fill="#FFE600"/><circle cx="100" cy="100" r="95.2" fill="#0A0A0A"/>
+<path d="M75.55 44.14A38.25 38.25 0 1 0 138.39 83.12A38.36 38.36 0 0 1 75.55 44.14Z" fill="#fff"/><path d="M108.77 42.08A37.85 37.85 0 1 0 136.65 109.54A37.81 37.81 0 0 1 108.77 42.08Z" fill="#FFE600"/>
+<g fill="#fff"><path d="M63 123H71.2V142.4H81.5V150.5H63Z"/><path d="M112.6 150.5 122.2 123H130L139.6 150.5H131.1L126.1 135.2 121.1 150.5Z"/></g><path d="M104.14 130.05A9.65 9.65 0 1 0 104.14 143.45" fill="none" stroke="#fff" stroke-width="8.2"/>
+<g font-family="'Plus Jakarta Sans',Arial,Helvetica,sans-serif" font-weight="700">
+<text fill="#FFE600" font-size="14" letter-spacing=".35"><textPath href="#lca-top" startOffset="50%" text-anchor="middle">LEMBAGA CERDAS AL QUR'AN</textPath></text>
+<text fill="#fff" font-size="8.6" letter-spacing=".25"><textPath href="#lca-bot" startOffset="50%" text-anchor="middle">MENGAJAK MASYARAKAT MEMPERHATIKAN AL QUR'AN</textPath></text>
+</g></svg>

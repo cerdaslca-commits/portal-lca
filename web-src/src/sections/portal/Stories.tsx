@@ -85,12 +85,12 @@ export function Stories() {
         {story && open !== null && (
           <m.div role="dialog" aria-modal="true" aria-label={`Cerita ${story.label}`}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] grid place-items-center bg-[oklch(12%_0.03_172/0.92)] p-4 backdrop-blur-md" onClick={close}>
+            className="fixed inset-0 z-[60] grid place-items-center bg-[oklch(22%_0.05_170/0.78)] p-4 backdrop-blur-md" onClick={close}>
             <m.div key={open} initial={{ scale: 0.94, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.94, opacity: 0 }}
               transition={{ duration: 0.35 }} onClick={(e) => e.stopPropagation()}
               className="relative aspect-[9/16] h-[min(86svh,760px)] max-w-full overflow-hidden rounded-[1.75rem] bg-brand-night shadow-2xl">
               <img {...pic(story.frames[frame], '(min-width: 768px) 430px, 100vw', true)} alt={story.frames[frame].alt} className="absolute inset-0 h-full w-full object-cover" />
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, oklch(12% 0.03 172 / 0.6), transparent 22%, transparent 60%, oklch(12% 0.03 172 / 0.85))' }} />
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, oklch(22% 0.05 170 / 0.51), transparent 22%, transparent 60%, oklch(22% 0.05 170 / 0.72))' }} />
               <div className="absolute inset-x-3 top-3 flex gap-1">
                 {story.frames.map((_, i) => (
                   <span key={i} className="h-[3px] flex-1 overflow-hidden rounded-full bg-white/30">

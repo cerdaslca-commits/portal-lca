@@ -8,7 +8,7 @@
     --color-primary: oklch(42% 0.077 171);
     --color-primary-hover: oklch(36% 0.072 171);
     --color-primary-container: oklch(93% 0.03 165);
-    --color-accent: oklch(78% 0.135 83);
+    --color-accent: oklch(82% 0.15 85);
     --color-accent-hover: oklch(72% 0.135 79);
     --color-accent-ink: oklch(50% 0.105 72);
     --color-accent-container: oklch(94.5% 0.035 88);
@@ -17,27 +17,27 @@
     --color-text-primary: oklch(20% 0.025 171);
     --color-text-secondary: oklch(40% 0.02 171);
     --color-text-muted: oklch(50% 0.016 171);
-    --color-bg: oklch(98.6% 0.005 110);
-    --color-surface: oklch(96.6% 0.009 120);
-    --color-surface-raised: oklch(99.4% 0.003 110);
+    --color-bg: oklch(99.3% 0.004 120);
+    --color-surface: oklch(97.2% 0.014 160);
+    --color-surface-raised: oklch(100% 0 0);
     --color-cream: oklch(95% 0.028 86);
     --color-border: oklch(89.5% 0.012 150);
     --color-border-strong: oklch(80% 0.018 160);
 
     /* Night track (Stripe-style dark bands) */
-    --color-night: oklch(17.5% 0.034 172);
-    --color-night-2: oklch(22.5% 0.04 172);
-    --color-night-3: oklch(28% 0.045 172);
+    --color-night: oklch(40% 0.085 170);
+    --color-night-2: oklch(46% 0.09 170);
+    --color-night-3: oklch(52% 0.09 172);
     --color-on-dark: oklch(97.5% 0.007 110);
-    --color-on-dark-muted: oklch(80% 0.022 160);
-    --color-on-dark-faint: oklch(62% 0.025 165);
-    --color-glass: oklch(97% 0.01 120 / 0.08);
-    --color-glass-border: oklch(97% 0.01 120 / 0.16);
+    --color-on-dark-muted: oklch(92% 0.025 150);
+    --color-on-dark-faint: oklch(82% 0.03 160);
+    --color-glass: oklch(97% 0.01 120 / 0.14);
+    --color-glass-border: oklch(97% 0.01 120 / 0.26);
 
     /* Mesh stops — emerald / mint / teal / gold / sand */
-    --mesh-emerald: oklch(45% 0.1 168);
-    --mesh-mint: oklch(78% 0.12 160);
-    --mesh-teal: oklch(55% 0.1 195);
+    --mesh-emerald: oklch(62% 0.13 165);
+    --mesh-mint: oklch(82% 0.13 160);
+    --mesh-teal: oklch(66% 0.11 195);
     --mesh-gold: oklch(80% 0.14 82);
     --mesh-sand: oklch(93% 0.04 90);
 
@@ -109,13 +109,19 @@
 
   .card-light { background: var(--color-surface-raised); border: 1px solid var(--color-border); border-radius: 1.25rem;
     box-shadow: 0 1px 3px var(--shadow-tint); }
-  .glass { background: oklch(20% 0.035 172 / 0.55); border: 1px solid var(--color-glass-border); backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%); }
+  .glass { background: oklch(32% 0.07 170 / 0.38); border: 1px solid var(--color-glass-border); backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%); }
   .lift { transition: transform 220ms cubic-bezier(.25,.46,.45,.94), box-shadow 220ms; }
   .lift:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -18px var(--shadow-tint-strong); }
 
   .noise::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.07; mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
   .hide-scrollbar { scrollbar-width: none; }
+  /* Teks terang di atas foto/latar hijau: bayangan lembut agar tetap jelas walau latar dibuat cerah */
+  .text-brand-ondark, .text-brand-ondark2 { text-shadow: 0 1px 14px oklch(22% 0.05 170 / 0.35); }
+  .aurora { background:
+      radial-gradient(60% 50% at 8% 0%, oklch(93% 0.06 160 / 0.9), transparent 70%),
+      radial-gradient(50% 45% at 100% 20%, oklch(95% 0.05 90 / 0.8), transparent 70%),
+      var(--color-bg); }
   .hide-scrollbar::-webkit-scrollbar { display: none; }
 }
 

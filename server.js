@@ -276,6 +276,7 @@ function hid(){return location.hash.slice(1)||location.pathname.replace(/^\\/+|\
 function chk(){var t=MAP[hid()];if(t){location.replace(t);return true}}
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;var t=MAP[a.getAttribute('href').slice(1)];if(t){e.preventDefault();e.stopPropagation();location.href=t}},true);
 window.addEventListener('hashchange',chk,true);chk();
+document.querySelectorAll('img[data-logo="lca"]').forEach(function(i){i.src='/img/logo-0-384.webp'});
 })();</script>`;
 const bridgeCache = { mtime: 0, raw: null, gz: null };
 function serveOldPortal(req, res) {
