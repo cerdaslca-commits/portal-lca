@@ -77,7 +77,7 @@
       var end = document.createElement('div'); end.className = 'lca-share-end';
       end.innerHTML = '<h3>Bagikan ' + (/^p-(materi|sirah|sahabat|kisah|kajian|kata)/.test(sec.id) ? 'materi' : 'halaman') + ' ini</h3><p>Semoga menjadi amal jariyah: kirim ke keluarga, grup WhatsApp, dan media sosial Anda.</p>';
       end.appendChild(bar(sec, true));
-      var nav = sec.querySelector(':scope > .snav');
+      var nav = sec.querySelector(':scope > .snav') || sec.querySelector(':scope > .lca-pnav');
       if (nav) sec.insertBefore(end, nav); else sec.appendChild(end);
     });
   }

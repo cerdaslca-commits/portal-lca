@@ -19,6 +19,25 @@ Railway otomatis membangun ulang setiap ada commit ke `main`.
 - Tautan lama bergaya `cerdaslca.org/#materi-3` otomatis dibuka ke `/materi-3`.
 - `sitemap.xml` digabung otomatis (sitemap portal lama + halaman desain baru).
 
+## Kerangka bersama & menu global (sejak November 2026)
+
+Semua halaman (beranda React, `/donasi`, `/desa`, dan seluruh halaman portal lama) memakai **header, menu, dan footer yang sama**,
+disisipkan oleh `server.js`:
+
+- Menu & isi footer: `web-src/src/data/shell.json` (disalin ke `web/shell.json` saat build). Ubah menu cukup di file ini.
+- Tampilan: `web-src/public/shell.css`; perilaku: `web-src/public/shell.js` (menu tarik-turun, menu HP, statistik pengunjung).
+- Halaman portal lama memakai tema terang dan huruf yang sama dengan beranda (`index.html` tidak diubah).
+
+Menu global: **Beranda · Tentang · Program · Pustaka · Laporan & Media · Gabung · Donasi**.
+
+### Pusat program
+Setiap halaman program (`/gencar`, `/sensus`, `/pendidikan`, `/wakaf`, `/guru`, `/tafaqur`, `/kegiatan`, `/program15`)
+otomatis menampilkan semua yang terkait, berurutan: ikhtisar → cara kerja → departemen pelaksana → hasil & data →
+dokumentasi foto → video → kajian terkait → cara ikut serta → program lainnya.
+Isinya diambil langsung dari bagian portal yang sudah ada (departemen, laporan bulanan, hasil sensus, galeri, kajian),
+jadi cukup perbarui sumbernya di `index.html`. Susunannya diatur di `HUBS` dalam `web-src/public/shell.js`.
+Halaman `/tafaqur` adalah halaman baru (disisipkan `server.js`).
+
 ## Menambah konten (tidak berubah)
 
 - Seri **Materi Al-Qur'an** baru tetap ditambahkan di `index.html` (section `p-materi-N`), Kisah Sahabat di `p-sahabat-N`.

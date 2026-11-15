@@ -32,6 +32,7 @@ for (const v of villages) {
 }
 writeFileSync('dist/404.html', html)
 copyFileSync('vercel.json', 'dist/vercel.json')
+copyFileSync('src/data/shell.json', 'dist/shell.json')
 
 const urls = ['/', '/donasi', '/desa', ...villages.map((v) => `/desa/${v.id}`)]
 writeFileSync('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${ORIGIN}${u}</loc><changefreq>${u.startsWith('/desa/') ? 'monthly' : 'weekly'}</changefreq><priority>${u === '/' ? '1.0' : u.split('/').length > 2 ? '0.6' : '0.9'}</priority></url>`).join('\n')}\n</urlset>\n`)

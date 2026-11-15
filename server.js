@@ -244,6 +244,127 @@ async function api(req, res, url) {
   return json(res, 404, { ok: false });
 }
 
+
+/* ---------- kerangka bersama (header, menu global, footer) ---------- */
+// Satu sumber: web/shell.json (dari web-src/src/data/shell.json). Dipakai beranda React dan portal lama.
+const SVG = {
+  chev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>',
+  heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>',
+  menu: '<svg class="m" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg><svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>',
+  wa: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>',
+  phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+  mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>',
+  pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>',
+};
+const escH = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const SHELL_FILES = ['shell.json', 'shell.css', 'shell.js', 'share-bar.js'].map(f => path.join(WEB, f));
+let shellCache = { v: '', data: null };
+function shellVersion() {
+  let v = '';
+  for (const f of SHELL_FILES) { try { v += Math.round(fs.statSync(f).mtimeMs).toString(36); } catch (e) { v += '0'; } }
+  return v;
+}
+function shellData() {
+  const v = shellVersion();
+  if (v !== shellCache.v) {
+    let data = null; try { data = JSON.parse(fs.readFileSync(path.join(WEB, 'shell.json'), 'utf8')); } catch (e) { console.error('shell.json tidak terbaca', e.message); }
+    shellCache = { v, data };
+  }
+  return shellCache;
+}
+function groupOf(menu, p) {
+  p = (p || '/').replace(/\/+$/, '') || '/';
+  for (const m of menu) {
+    if (m.href && (m.href === p)) return m.key || m.href;
+    if (m.items && m.items.some(i => i.href.split('#')[0] === p)) return m.key;
+  }
+  if (/^\/desa(\/|$)/.test(p)) return 'program';
+  if (/^\/(materi|sirah|sahabat|kisah|kajian)-/.test(p)) return 'pustaka';
+  return '';
+}
+const logoSrc = (u) => u.replace(/-96\.webp$/, '');
+function imgSet(u) { return /-96\.webp$/.test(u) ? ` srcset="${u} 1x, ${logoSrc(u)}-192.webp 2x"` : ''; }
+function menuList(items, p) {
+  return '<ul class="lcah-list">' + items.map(i => `<li><a href="${escH(i.href)}"${i.href === p ? ' class="is-on" aria-current="page"' : ''}>` +
+    (i.logo ? `<img src="${escH(i.logo)}"${imgSet(i.logo)} alt="" width="40" height="40" loading="lazy">` : '') +
+    `<span><b>${escH(i.label)}</b>${i.desc ? `<small>${escH(i.desc)}</small>` : ''}</span></a></li>`).join('') + '</ul>';
+}
+function socIcon(s, cls) {
+  return `<a class="${cls || 'lc-soc'}" href="${escH(s.url)}" target="_blank" rel="noopener" aria-label="${escH(s.label)}" title="${escH(s.label)}" style="background:${s.bg};color:${s.ink || '#fff'}"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="${s.path}"/></svg></a>`;
+}
+function shellHeader(pth, solid) {
+  const { data: D } = shellData(); if (!D) return '';
+  const p = (pth || '/').replace(/\/+$/, '') || '/';
+  const g = groupOf(D.menu, p);
+  const nav = D.menu.map(m => {
+    const on = (m.key && m.key === g) || (m.href && m.href === p);
+    if (!m.items) return `<li><a class="lcah-top${on ? ' is-on' : ''}" href="${escH(m.href)}"${on ? ' aria-current="page"' : ''}>${escH(m.label)}</a></li>`;
+    return `<li class="has"><button type="button" class="lcah-top${on ? ' is-on' : ''}" aria-expanded="false" aria-haspopup="true">${escH(m.label)}${SVG.chev}</button>` +
+      `<div class="lcah-panel${m.wide ? ' wide' : ''}"><p class="lcah-ph">${escH(m.label)}</p>${menuList(m.items, p)}` +
+      (m.foot ? `<a class="lcah-pfoot" href="${escH(m.foot.href)}">${escH(m.foot.label)} <span aria-hidden="true">→</span></a>` : '') + '</div></li>';
+  }).join('');
+  const mob = D.menu.map(m => !m.items ? `<a href="${escH(m.href)}">${escH(m.label)}</a>` :
+    `<details${m.key === g ? ' open' : ''}><summary>${escH(m.label)}${SVG.chev}</summary>${menuList(m.items, p)}` +
+    (m.foot ? `<a class="lcah-pfoot" href="${escH(m.foot.href)}">${escH(m.foot.label)} <span aria-hidden="true">→</span></a>` : '') + '</details>').join('');
+  const socs = (D.socials || []).filter(s => s.key !== 'linktree').map(s => socIcon(s)).join('');
+  return `<header class="lcah${solid ? ' is-solid' : ''}" id="lcah" data-solid="${solid ? 1 : 0}"><div class="lcah-bar">` +
+    `<a class="lcah-brand" href="/" aria-label="Beranda ${escH(D.brand.name)}"><img src="/img/dept/lca-96.webp" srcset="/img/dept/lca-96.webp 1x, /img/dept/lca-192.webp 2x, /img/dept/lca-384.webp 4x" alt="Logo ${escH(D.brand.name)}" width="44" height="44"><span><b>${escH(D.brand.name)}</b><small>${escH(D.brand.sub)}</small></span></a>` +
+    `<nav class="lcah-nav" aria-label="Menu utama"><ul>${nav}</ul></nav>` +
+    `<div class="lcah-act"><a class="lcah-donate" href="${escH(D.donate.href)}">${SVG.heart}<span>${escH(D.donate.label)}</span></a>` +
+    `<button type="button" class="lcah-burger" aria-expanded="false" aria-controls="lcah-mob" aria-label="Buka menu">${SVG.menu}</button></div></div>` +
+    `<div class="lcah-mob" id="lcah-mob" hidden>${mob}<div class="lcah-mob-soc">${socs}</div></div></header>`;
+}
+function shellFooter() {
+  const { data: D } = shellData(); if (!D) return '';
+  const F = D.footer, C = F.contact;
+  const grp = k => (D.menu.find(m => m.key === k) || { items: [] }).items;
+  const li = (items) => items.map(i => `<li><a href="${escH(i.href)}">${escH(i.label)}</a></li>`).join('');
+  const pust = grp('pustaka').filter(i => ['/materi', '/sirah', '/kisah', '/kajian', '/kalender'].includes(i.href)).concat(grp('laporan').filter(i => ['/laporan', '/dampak', '/galeri'].includes(i.href)));
+  const socs = (D.socials || []).map(s => `<a href="${escH(s.url)}" target="_blank" rel="noopener"><i style="background:${s.bg};color:${s.ink || '#fff'}"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="${s.path}"/></svg></i><span>${escH(s.label)}${s.followers ? `<em>${escH(s.followers)} pengikut</em>` : ''}</span></a>`).join('');
+  return `<footer class="lcaf" id="lcaf"><div class="lcaf-in"><div class="lcaf-grid">` +
+    `<div class="lcaf-col-wide"><div class="lcaf-brand"><img src="/img/dept/lca-192.webp" alt="Logo ${escH(D.brand.name)}" width="58" height="58" loading="lazy"><span><b>${escH(F.name)}</b><small>${escH(F.legal)}</small></span></div><p>${escH(F.about)}</p></div>` +
+    `<nav aria-label="Program"><h5>Program</h5><ul>${li(grp('program'))}<li><a href="/desa">85 Desa GENCAR</a></li></ul></nav>` +
+    `<nav aria-label="Pustaka dan laporan"><h5>Pustaka & Laporan</h5><ul>${li(pust)}</ul></nav>` +
+    `<div><h5>Kontak</h5><ul class="lcaf-contact"><li>${SVG.wa}<a href="${escH(C.whatsappUrl)}" target="_blank" rel="noopener">WA ${escH(C.whatsapp)}</a></li><li>${SVG.phone}<span>${escH(C.phone)}</span></li><li>${SVG.mail}<a href="mailto:${escH(C.email)}">${escH(C.email)}</a></li><li>${SVG.pin}<span>${escH(C.address)}</span></li></ul>` +
+    `<ul style="margin-top:16px"><li><a href="/tentang">Tentang LCA</a></li><li><a href="/gabung">Gabung jadi relawan</a></li><li><a href="/kontak">Kantor & kontak</a></li></ul></div>` +
+    `<div><h5>Ikuti kami</h5><div class="lcaf-socs">${socs}</div></div>` +
+    `</div><div class="lcaf-bot"><span>© ${new Date().getFullYear()} ${escH(F.legal)} · ${escH(F.name)}</span><span id="lcaf-stats">${escH(F.tagline)}</span></div></div></footer>`;
+}
+const shellHead = v => `<link rel="preload" href="/fonts/PlusJakartaSans-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/shell.css?v=${v}">`;
+// Cache HTML terkompresi per (berkas, alamat, versi kerangka).
+const htmlCache = new Map();
+function sendHtml(req, res, key, build) {
+  let e = htmlCache.get(key);
+  if (!e) {
+    const raw = Buffer.from(build(), 'utf8');
+    e = { raw, gz: zlib.gzipSync(raw) };
+    if (htmlCache.size > 400) htmlCache.delete(htmlCache.keys().next().value);
+    htmlCache.set(key, e);
+  }
+  const h = { 'Content-Type': MIME['.html'], 'Cache-Control': 'no-cache' };
+  const gz = /\bgzip\b/.test(req.headers['accept-encoding'] || '');
+  if (gz) { h['Content-Encoding'] = 'gzip'; h['Vary'] = 'Accept-Encoding'; }
+  const body = gz ? e.gz : e.raw;
+  h['Content-Length'] = body.length;
+  res.writeHead(200, Object.assign({}, SEC, h));
+  res.end(req.method === 'HEAD' ? '' : body);
+}
+// Halaman desain baru (React) dibungkus kerangka yang sama.
+function serveWebPage(req, res, file, rel) {
+  fs.stat(file, (err, st) => {
+    if (err) return send(res, 404, 'Not found');
+    const { v } = shellData();
+    const p = rel.replace(/\/+$/, '') || '/';
+    sendHtml(req, res, file + '|' + st.mtimeMs + '|' + v + '|' + p, () => {
+      let html = fs.readFileSync(file, 'utf8');
+      html = html.replace('</head>', shellHead(v) + '</head>');
+      html = html.replace(/<body([^>]*)>/, m => m + shellHeader(p, false));
+      html = html.replace('</body>', shellFooter() + `<script src="/shell.js?v=${v}" defer></script></body>`);
+      return html;
+    });
+  });
+}
+
 /* ---------- gabungan desain baru + portal lama ---------- */
 const OLD_INDEX = path.join(PUB, 'index.html');
 const ENT = { amp: '&', quot: '"', apos: "'", lt: '<', gt: '>', nbsp: ' ' };
@@ -285,24 +406,49 @@ document.querySelectorAll('[data-family] img').forEach(function(i){var k=N[(i.ge
 run();document.addEventListener('DOMContentLoaded',run);})();
 })();</script><script src="/share-bar.js" defer></script><script>(function(){
 })();</script>`;
-const bridgeCache = { mtime: 0, raw: null, gz: null };
-function serveOldPortal(req, res) {
+// Halaman baru di dalam portal lama: pusat program Tafaqur (isinya dilengkapi shell.js dari bagian terkait).
+const EXTRA_PAGES = `<section class="page" id="p-tafaqur" data-title="Tafaqur" data-sec="Program GENCAR" hidden>
+<span class="eyebrow">Program GENCAR</span>
+<div class="title-logo"><img src="/img/dept/tafaqur-384.webp" alt="Logo Tafaqur"><h1>Tafaqur: <em>infak kecil yang rutin</em></h1></div>
+<p class="lead">Tafaqur (Tabungan Infaq untuk program Al-Qur'an) adalah cara warga ikut menjaga GENCAR. Petugas Tafaqur berkunjung setiap bulan untuk mengambil infak, mengirim kuitansi online, dan mengingatkan tadarus. Dari infak inilah guru ngaji dibina, mushaf diwakafkan, dan sensus menjangkau desa-desa baru.</p>
+<h2>Cara kerja Tafaqur</h2>
+<ol class="steps">
+<li><b>Ditawarkan saat sensus.</b> Setiap kunjungan Sensus Al-Qur'an membawa penawaran partisipasi: keluarga diajak ikut berinfak lewat Tafaqur. Bisa juga mendaftar langsung lewat WhatsApp sekretariat LCA.</li>
+<li><b>Dikunjungi setiap bulan.</b> Petugas Tafaqur datang ke rumah donatur, atau melalui kunjungan online.</li>
+<li><b>Kuitansi online & pengingat tadarus.</b> Setiap setoran dikonfirmasi dengan kuitansi online, sekaligus ajakan membaca Al-Qur'an.</li>
+<li><b>Dilaporkan terbuka.</b> Setoran Tafaqur dicatat dalam Laporan Bendahara dan disampaikan dalam Laporan Bulanan LCA.</li>
+</ol>
+</section>
+`;
+function legacyBase(html) {
+  // Tema tunggal (terang) dan huruf yang sama dengan beranda; Google Fonts lama tidak dimuat lagi.
+  html = html.replace(/<html lang="id">/, '<html lang="id" class="lca-l" data-theme="light">');
+  html = html.replace(/<link rel="preconnect" href="https:\/\/fonts\.(googleapis|gstatic)\.com"[^>]*>\s*/g, '').replace(/<link rel="stylesheet" href="https:\/\/fonts\.googleapis\.com[^>]*>\s*/g, '');
+  html = html.replace('</main>', EXTRA_PAGES + '</main>');
+  return html;
+}
+const legacyCache = { key: '', html: '' };
+function serveOldPortal(req, res, rel) {
   fs.stat(OLD_INDEX, (err, st) => {
     if (err) return send(res, 404, 'Not found');
-    if (bridgeCache.mtime !== st.mtimeMs) {
+    const { v } = shellData();
+    const baseKey = st.mtimeMs + '|' + v;
+    if (legacyCache.key !== baseKey) {
       let html = fs.readFileSync(OLD_INDEX, 'utf8');
-      const i = html.lastIndexOf('</html>');
-      if (HAS_WEB) html = i > -1 ? html.slice(0, i) + BRIDGE + '\n' + html.slice(i) : html + BRIDGE;
-      const raw = Buffer.from(html, 'utf8');
-      Object.assign(bridgeCache, { mtime: st.mtimeMs, raw, gz: zlib.gzipSync(raw) });
+      if (HAS_WEB) {
+        html = legacyBase(html);
+        const top = html.indexOf('<div class="top">');
+        if (top > -1) html = html.slice(0, top) + shellHead(v) + '</head>\n<body class="lca-legacy">\n<!--LCA-HEADER-->\n' + html.slice(top);
+        const fe = html.indexOf('</footer>', html.indexOf('</main>'));
+        if (fe > -1) html = html.slice(0, fe + 9) + '\n' + shellFooter() + html.slice(fe + 9);
+        const i = html.lastIndexOf('</html>');
+        const tail = BRIDGE.replace('<script src="/share-bar.js" defer></script>', `<script src="/shell.js?v=${v}" defer></script><script src="/share-bar.js?v=${v}" defer></script>`);
+        html = i > -1 ? html.slice(0, i) + tail + '\n' + html.slice(i) : html + tail;
+      }
+      legacyCache.key = baseKey; legacyCache.html = html;
     }
-    const h = { 'Content-Type': MIME['.html'], 'Cache-Control': 'no-cache' };
-    const gz = /\bgzip\b/.test(req.headers['accept-encoding'] || '');
-    if (gz) { h['Content-Encoding'] = 'gzip'; h['Vary'] = 'Accept-Encoding'; }
-    const body = gz ? bridgeCache.gz : bridgeCache.raw;
-    h['Content-Length'] = body.length;
-    res.writeHead(200, Object.assign({}, SEC, h));
-    res.end(req.method === 'HEAD' ? '' : body);
+    const p = (rel || '/').replace(/\/+$/, '') || '/';
+    sendHtml(req, res, 'legacy|' + baseKey + '|' + p, () => legacyCache.html.replace('<!--LCA-HEADER-->', shellHeader(p, true)));
   });
 }
 // Sitemap gabungan: sitemap portal lama + halaman desain baru (/, /donasi, /desa, /desa/<id>).
@@ -312,6 +458,7 @@ function serveSitemap(req, res) {
   for (const x of [read(path.join(WEB, 'sitemap.xml')), read(path.join(PUB, 'sitemap.xml'))]) {
     x.replace(/<loc>([^<]+)<\/loc>/g, (_, u) => { u = u.trim(); if (/\/(beranda)$/.test(u)) return; if (!seen.has(u)) { seen.add(u); locs.push(u); } });
   }
+  for (const u of ['https://cerdaslca.org/tafaqur']) if (!seen.has(u)) { seen.add(u); locs.push(u); }
   const xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + locs.map(u => '  <url><loc>' + u + '</loc></url>').join('\n') + '\n</urlset>\n';
   send(res, 200, req.method === 'HEAD' ? '' : xml, { 'Content-Type': MIME['.xml'], 'Cache-Control': 'public, max-age=3600' });
 }
@@ -371,7 +518,7 @@ if (!keepHosts.includes(host)) {
   if (HAS_WEB && (rel === '/beranda' || rel === '/beranda/')) return send(res, 301, '', { Location: '/' + url.search });
   // 1) halaman desain baru: /, /donasi, /desa, /desa/<id>
   const page = webPage(rel);
-  if (page) return serveFile(req, res, page);
+  if (page) return serveWebPage(req, res, page, rel);
   // 2) file statis: aset desain baru (web/) lalu file portal lama (media/, kata.json, admin.html, ...)
   const wfile = path.resolve(WEB, '.' + rel), file = path.resolve(PUB, '.' + rel);
   if (!file.startsWith(PUB + path.sep) && file !== PUB) return send(res, 403, 'Forbidden');
@@ -379,10 +526,10 @@ if (!keepHosts.includes(host)) {
   fs.stat(tryWeb ? wfile : '', (e1, s1) => {
     if (!e1 && s1.isFile()) return serveFile(req, res, wfile);
     fs.stat(file, (err, st) => {
-      if (!err && st.isFile()) return path.basename(file) === 'index.html' ? serveOldPortal(req, res) : serveFile(req, res, file);
+      if (!err && st.isFile()) return path.basename(file) === 'index.html' ? serveOldPortal(req, res, '/') : serveFile(req, res, file);
       if (/\.[a-z0-9]{2,11}$/i.test(rel)) return send(res, 404, 'Not found');
       // 3) halaman portal lama (/materi-3, /sahabat-9, /gabung, /sensus, ...)
-      serveOldPortal(req, res);
+      serveOldPortal(req, res, rel);
     });
   });
 }).listen(PORT, () => console.log('Portal LCA di port', PORT, '| desain baru:', HAS_WEB ? WEB : 'TIDAK ADA', '| data:', FILE, '| admin:', ADMIN_PW ? 'aktif' : 'BELUM aktif'));
