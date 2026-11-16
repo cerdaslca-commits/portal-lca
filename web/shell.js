@@ -85,7 +85,7 @@
     if (!t) return; t.classList.add('lit'); clearTimeout(t._lt); t._lt = setTimeout(function () { t.classList.remove('lit'); }, 1500);
   }, { passive: true });
   // Garis pelangi hanya berputar saat kartunya terlihat (hemat baterai di HP).
-  var RING = '.card-light,.lca-legacy .card,.lca-legacy .box,.lca-legacy .dept,.lca-legacy .chart,.lca-legacy .calc,.lca-legacy .kata-card,.lca-kaj a,.lca-progs a,.lca-pnav,.lca-legacy .tbl,.lca-legacy .dalil,.lca-legacy .vcard,.lca-legacy .kpi,.lca-legacy .plist>div,.lca-cta a,.lca-share-end';
+  var RING = '.card-light,.lca-legacy .card,.lca-legacy .box,.lca-legacy .dept,.lca-legacy .chart,.lca-legacy .calc,.lca-legacy .kata-card,.lca-kaj a,.lca-progs a,.lca-pnav,.lca-legacy .tbl,.lca-legacy .dalil,.lca-legacy .vcard,.lca-legacy .kpi,.lca-legacy .plist>div,.lca-cta a,.lca-share-end,.lca-legacy .acct>div,.lca-legacy .org>div,.lca-legacy .logos a,.lca-legacy .toc li,.lca-legacy .kal .c,.lca-legacy .soc a,.lca-legacy .pay,.lca-legacy .kal-today,#root .ring-1.bg-brand-raised,#root .ring-1.bg-brand-surface,#root .ring-1.bg-brand-line,#konten .card-light,.lca-legacy .evlist li';
   var ringIO = !reduce && 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
     es.forEach(function (en) { en.target.classList.toggle('lca-live', en.isIntersecting); });
   }) : null;
