@@ -236,21 +236,47 @@ footer.lcaf{background:linear-gradient(180deg,rgba(252,253,250,.4),rgba(247,238,
 #konten main>section{position:relative}
 #konten main>section+section::before{content:'';position:absolute;top:0;left:50%;width:min(1240px,92%);height:1px;transform:translateX(-50%);background:var(--lc-contour);opacity:.55;z-index:1}
 
-/* kontur tipis bergradasi di setiap blok/kartu */
-.card-light,.lca-legacy .card,.lca-legacy .box,.lca-legacy .dept,.lca-legacy .chart,.lca-legacy .calc,.lca-legacy .kata-card,
-.lca-kaj a,.lca-progs a,.lca-pnav,.lca-legacy .tbl,.lca-legacy .dalil,.lca-legacy .vcard,.lca-legacy .soc a,.lca-legacy .acct div,.lca-legacy .kpi{position:relative}
-.card-light::after,.lca-legacy .card::after,.lca-legacy .box::after,.lca-legacy .dept::after,.lca-legacy .chart::after,.lca-legacy .calc::after,.lca-legacy .kata-card::after,
-.lca-kaj a::after,.lca-progs a::after,.lca-pnav::after,.lca-legacy .tbl::after,.lca-legacy .dalil::after,.lca-legacy .vcard::after,.lca-legacy .soc a::after,.lca-legacy .kpi::after{
-  content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;background:var(--lc-contour);opacity:.75;transition:opacity .35s,filter .35s;
+/* garis tepi tebal pelangi cerah yang berputar perlahan di setiap kartu/blok
+   (berputar hanya saat kartu terlihat di layar; mati bila "kurangi gerakan") */
+@property --lc-ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes lc-spin{to{--lc-ang:360deg}}
+:root{--lc-ring:3px;--lc-rainbow:conic-gradient(from var(--lc-ang),#00c389,#14d2c4,#1e9bff,#7c5cff,#ff3d8b,#ff4d3d,#ff8a1f,#ffd21f,#9be33a,#00c389)}
+.card-light,.lca-legacy .card,.lca-legacy .box,.lca-legacy .dept,.lca-legacy .chart,.lca-legacy .calc,.lca-legacy .kata-card,.lca-kaj a,.lca-progs a,.lca-pnav,.lca-legacy .tbl,.lca-legacy .dalil,.lca-legacy .vcard,.lca-legacy .kpi,.lca-legacy .plist>div,.lca-cta a,.lca-share-end{position:relative}
+.card-light::after,.lca-legacy .card::after,.lca-legacy .box::after,.lca-legacy .dept::after,.lca-legacy .chart::after,.lca-legacy .calc::after,.lca-legacy .kata-card::after,.lca-kaj a::after,.lca-progs a::after,.lca-pnav::after,.lca-legacy .tbl::after,.lca-legacy .dalil::after,.lca-legacy .vcard::after,.lca-legacy .kpi::after,.lca-legacy .plist>div::after,.lca-cta a::after,.lca-share-end::after{
+  content:'';position:absolute;inset:calc(var(--lc-ring) * -1);border-radius:inherit;padding:var(--lc-ring);pointer-events:none;z-index:1;
+  background:var(--lc-rainbow);opacity:.92;transition:opacity .3s,filter .3s;animation:lc-spin 7s linear infinite paused;
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
-.card-light,.lca-legacy .card,.lca-legacy .box,.lca-legacy .dept,.lca-legacy .chart,.lca-legacy .calc,.lca-legacy .kata-card,.lca-legacy .tbl,.lca-legacy .dalil,.lca-legacy .kpi{border-color:transparent!important}
+.card-light.lca-live::after,.lca-legacy .card.lca-live::after,.lca-legacy .box.lca-live::after,.lca-legacy .dept.lca-live::after,.lca-legacy .chart.lca-live::after,.lca-legacy .calc.lca-live::after,.lca-legacy .kata-card.lca-live::after,.lca-kaj a.lca-live::after,.lca-progs a.lca-live::after,.lca-pnav.lca-live::after,.lca-legacy .tbl.lca-live::after,.lca-legacy .dalil.lca-live::after,.lca-legacy .vcard.lca-live::after,.lca-legacy .kpi.lca-live::after,.lca-legacy .plist>div.lca-live::after,.lca-cta a.lca-live::after,.lca-share-end.lca-live::after{animation-play-state:running}
+.card-light:hover::after,.lca-legacy .card:hover::after,.lca-legacy .box:hover::after,.lca-legacy .dept:hover::after,.lca-legacy .chart:hover::after,.lca-legacy .calc:hover::after,.lca-legacy .kata-card:hover::after,.lca-kaj a:hover::after,.lca-progs a:hover::after,.lca-pnav:hover::after,.lca-legacy .tbl:hover::after,.lca-legacy .dalil:hover::after,.lca-legacy .vcard:hover::after,.lca-legacy .kpi:hover::after,.lca-legacy .plist>div:hover::after,.lca-cta a:hover::after,.lca-share-end:hover::after{opacity:1;filter:saturate(1.25) brightness(1.05);animation-duration:3s}
+.card-light,.lca-legacy .card,.lca-legacy .box,.lca-legacy .dept,.lca-legacy .chart,.lca-legacy .calc,.lca-legacy .kata-card,.lca-legacy .tbl,.lca-legacy .dalil,.lca-legacy .kpi,.lca-legacy .plist>div{border-color:transparent!important}
 .card-light.overflow-hidden::after,.lca-legacy .tbl::after{inset:0}
 .lca-legacy .card.big,.lca-legacy .box.gold{border-color:transparent!important}
 .lca-legacy .kata-card{border-left-width:1px!important}
-.card-light:hover::after,.lca-legacy .card:hover::after,.lca-legacy .box:hover::after,.lca-legacy .dept:hover::after,.lca-legacy .chart:hover::after,.lca-legacy .calc:hover::after,.lca-legacy .kata-card:hover::after,
-.lca-kaj a:hover::after,.lca-progs a:hover::after,.lca-pnav:hover::after,.lca-legacy .vcard:hover::after,.lca-legacy .soc a:hover::after,.lca-legacy .kpi:hover::after{opacity:1;background:var(--lc-contour-hot)}
-.card-light,.lca-legacy .card,.lca-legacy .dept,.lca-legacy .chart,.lca-legacy .kata-card,.lca-kaj a,.lca-progs a{transition:box-shadow .35s,transform .35s}
-.card-light:hover,.lca-legacy .card:hover,.lca-legacy .dept:hover,.lca-legacy .chart:hover,.lca-legacy .kata-card:hover{box-shadow:0 18px 44px -26px rgba(14,90,71,.45),0 6px 22px -18px rgba(240,187,59,.55)}
+.card-light,.lca-legacy .card,.lca-legacy .dept,.lca-legacy .chart,.lca-legacy .kata-card,.lca-kaj a,.lca-progs a,.lca-legacy .plist>div{transition:box-shadow .35s,transform .35s}
+.card-light:hover,.lca-legacy .card:hover,.lca-legacy .dept:hover,.lca-legacy .chart:hover,.lca-legacy .kata-card:hover,.lca-legacy .plist>div:hover{box-shadow:0 18px 44px -22px rgba(124,92,255,.45),0 8px 26px -18px rgba(255,138,31,.6)}
+.lca-legacy .plist>div{border-radius:18px!important;background:#fff}
+@media (max-width:640px){:root{--lc-ring:2.5px}}
+@media (prefers-reduced-motion:reduce){.lca-legacy .tbl.stack tr::after,.card-light::after,.lca-legacy .card::after,.lca-legacy .box::after,.lca-legacy .dept::after,.lca-legacy .chart::after,.lca-legacy .calc::after,.lca-legacy .kata-card::after,.lca-kaj a::after,.lca-progs a::after,.lca-pnav::after,.lca-legacy .tbl::after,.lca-legacy .dalil::after,.lca-legacy .vcard::after,.lca-legacy .kpi::after,.lca-legacy .plist>div::after,.lca-cta a::after,.lca-share-end::after{animation:none!important}}
+
+/* tabel lebar → kartu bertumpuk di HP (mis. Rencana anggaran GENCAR) */
+@media (max-width:640px){
+  .lca-legacy .tbl.stack{overflow:visible;border:0!important;background:none;box-shadow:none}
+  .lca-legacy .tbl.stack::after{display:none}
+  .lca-legacy .tbl.stack table,.lca-legacy .tbl.stack tbody,.lca-legacy .tbl.stack tfoot,.lca-legacy .tbl.stack tr,.lca-legacy .tbl.stack td{display:block;width:100%}
+  .lca-legacy .tbl.stack thead{display:none}
+  .lca-legacy .tbl.stack table{min-width:0!important;background:none!important}
+  .lca-legacy .tbl.stack tr{position:relative;margin:0 0 12px;padding:14px 16px;border-radius:16px;background:#fff;box-shadow:0 10px 24px -16px rgba(124,92,255,.45)}
+  .lca-legacy .tbl.stack tr::after{content:'';position:absolute;inset:calc(var(--lc-ring) * -1);border-radius:inherit;padding:var(--lc-ring);pointer-events:none;background:var(--lc-rainbow);opacity:.92;animation:lc-spin 7s linear infinite paused;
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+  .lca-legacy .tbl.stack tr.lca-live::after{animation-play-state:running}
+  .lca-legacy .tbl.stack td{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:4px 0!important;border:0!important;text-align:right!important;font-size:.95rem}
+  .lca-legacy .tbl.stack td::before{content:attr(data-label);flex:none;text-align:left;font:600 .68rem/1.4 var(--lc-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--lc-mute)}
+  .lca-legacy .tbl.stack td:first-child{display:block;text-align:left!important;font-weight:700;font-size:1.02rem;color:var(--lc-ink);margin-bottom:6px;padding-bottom:8px!important;border-bottom:1px dashed var(--lc-line)!important}
+  .lca-legacy .tbl.stack td:first-child::before{display:none}
+  .lca-legacy .tbl.stack td:empty{display:none}
+  .lca-legacy .tbl.stack tfoot tr{background:var(--lc-cream)}
+  .lca-legacy .tbl.stack tfoot td:last-child{font-weight:800;font-size:1.1rem;color:var(--lc-primary)}
+}
 /* bingkai foto: kilau kontur tipis */
 .lca-phero{box-shadow:0 0 0 1px rgba(240,187,59,.35),0 24px 60px -30px rgba(0,45,33,.55)}
 

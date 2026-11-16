@@ -84,12 +84,31 @@
     var t = e.target.closest && e.target.closest('.lca-w, .lca-glow, .arabic, .ar, h3');
     if (!t) return; t.classList.add('lit'); clearTimeout(t._lt); t._lt = setTimeout(function () { t.classList.remove('lit'); }, 1500);
   }, { passive: true });
+  // Garis pelangi hanya berputar saat kartunya terlihat (hemat baterai di HP).
+  var RING = '.card-light,.lca-legacy .card,.lca-legacy .box,.lca-legacy .dept,.lca-legacy .chart,.lca-legacy .calc,.lca-legacy .kata-card,.lca-kaj a,.lca-progs a,.lca-pnav,.lca-legacy .tbl,.lca-legacy .dalil,.lca-legacy .vcard,.lca-legacy .kpi,.lca-legacy .plist>div,.lca-cta a,.lca-share-end';
+  var ringIO = !reduce && 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) { en.target.classList.toggle('lca-live', en.isIntersecting); });
+  }) : null;
+  function scanRing() {
+    if (!ringIO) return;
+    $$(RING).forEach(function (el) { if (el._ring) return; el._ring = 1; ringIO.observe(el); });
+  }
+  // Tabel lebar (3+ kolom) diberi label per sel agar tampil sebagai kartu bertumpuk di HP.
+  function stackTables() {
+    $$('.lca-legacy .tbl').forEach(function (box) {
+      var t = $('table', box); if (!t) return;
+      var ths = $$('thead th', t).map(function (th) { return th.textContent.trim(); });
+      if (ths.length < 3) return;
+      box.classList.add('stack');
+      $$('tbody tr, tfoot tr', t).forEach(function (tr) { Array.prototype.slice.call(tr.children).forEach(function (td, i) { td.setAttribute('data-label', ths[i] || ''); }); if (ringIO) ringIO.observe(tr); });
+    });
+  }
   function fx() {
-    scanKB();
-    if (document.body.classList.contains('lca-legacy')) setTimeout(function () { splitWords(document); scanKB(); }, 0);
+    scanKB(); scanRing();
+    if (document.body.classList.contains('lca-legacy')) setTimeout(function () { splitWords(document); scanKB(); stackTables(); scanRing(); }, 0);
     var root = document.getElementById('root');
     if (root && 'MutationObserver' in window) {
-      var tm; new MutationObserver(function () { clearTimeout(tm); tm = setTimeout(scanKB, 250); }).observe(root, { childList: true, subtree: true });
+      var tm; new MutationObserver(function () { clearTimeout(tm); tm = setTimeout(function () { scanKB(); scanRing(); }, 250); }).observe(root, { childList: true, subtree: true });
     }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fx); else fx();
