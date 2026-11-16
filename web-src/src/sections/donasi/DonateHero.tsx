@@ -25,8 +25,8 @@ export function DonateHero({ desa, setDesa }: { desa: string; setDesa: (d: strin
             <ShieldCheck className="h-3.5 w-3.5 text-brand-gold" /> Yayasan Al-Kalam · Rekomendasi MUI & Kemenag
           </p>
           <m.h1 variants={staggerContainer} initial="hidden" animate="show" className="mt-6 font-body display-thin text-[clamp(2.6rem,6.4vw,5.25rem)] text-brand-ondark">
-            {WORDS.map((w, i) => <m.span key={i} variants={heroWord} className="mr-[0.22em] inline-block">{w}</m.span>)}
-            <m.span variants={heroWord} className="inline-block font-display italic tracking-normal text-brand-gold">yang belum memilikinya.</m.span>
+            {WORDS.map((w, i) => <m.span key={i} variants={heroWord} className="lca-w mr-[0.22em] inline-block">{w}</m.span>)}
+            <m.span variants={heroWord} className="lca-w inline-block font-display italic tracking-normal text-brand-gold">yang belum memilikinya.</m.span>
           </m.h1>
           <m.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.6, ease: easeExpo }}
             className="mt-6 max-w-[52ch] text-[1.075rem] leading-relaxed text-brand-ondark2">

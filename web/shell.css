@@ -210,3 +210,65 @@ body.lca-legacy>.top,body.lca-legacy .mast,body.lca-legacy nav.nav,body.lca-lega
 .lca-progs span{display:block;font-size:.84rem;line-height:1.5;color:var(--lc-mute);margin-top:3px}
 @media (max-width:640px){.lca-phero{min-height:320px;border-radius:22px}.lca-toc{top:80px;border-radius:18px}}
 @media print{.lcah,.lcaf,.lca-toc{display:none!important}body.lca-legacy{padding-top:0}}
+
+/* =====================================================================
+   Semburat warna, kontur blok, foto bergerak, kata bersinar
+   (ringan: satu lapisan latar tetap tanpa animasi; gerak hanya saat foto terlihat)
+   ===================================================================== */
+:root{--lc-tint-g:rgba(14,90,71,.12);--lc-tint-y:rgba(240,187,59,.17);--lc-tint-r:rgba(186,38,38,.075);--lc-tint-k:rgba(15,31,25,.085);
+  --lc-contour:linear-gradient(125deg,rgba(14,90,71,.55) 0%,rgba(240,187,59,.62) 34%,rgba(186,38,38,.42) 66%,rgba(15,31,25,.55) 100%);
+  --lc-contour-hot:linear-gradient(125deg,#0e5a47 0%,#f0bb3b 34%,#ba2626 66%,#0f1f19 100%)}
+html{background:#fcfdfa!important}
+body{background:transparent!important}
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(52% 40% at 0% 0%,var(--lc-tint-g),transparent 70%),
+    radial-gradient(44% 36% at 100% 4%,var(--lc-tint-y),transparent 70%),
+    radial-gradient(46% 38% at 0% 100%,var(--lc-tint-r),transparent 70%),
+    radial-gradient(50% 42% at 100% 100%,var(--lc-tint-k),transparent 72%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%230e5a47' stroke-opacity='.055' stroke-width='1'%3E%3Crect x='26' y='26' width='36' height='36'/%3E%3Crect x='26' y='26' width='36' height='36' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='7'/%3E%3Cpath d='M0 0 26 26M88 0 62 26M0 88l26-26M88 88 62 62M44 0v18M44 70v18M0 44h18M70 44h18'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:auto,auto,auto,auto,88px 88px}
+/* bagian halaman beranda dibuat tembus pandang tipis agar semburat terlihat */
+section.bg-brand-bg{background-color:rgba(252,253,250,.35)!important}
+section.bg-brand-surface{background-color:rgba(232,246,238,.5)!important}
+footer.lcaf{background:linear-gradient(180deg,rgba(252,253,250,.4),rgba(247,238,218,.55))!important}
+/* garis pemisah antarbagian: hijau-emas-merah-hitam */
+#konten main>section{position:relative}
+#konten main>section+section::before{content:'';position:absolute;top:0;left:50%;width:min(1240px,92%);height:1px;transform:translateX(-50%);background:var(--lc-contour);opacity:.55;z-index:1}
+
+/* kontur tipis bergradasi di setiap blok/kartu */
+.card-light,.lca-legacy .card,.lca-legacy .box,.lca-legacy .dept,.lca-legacy .chart,.lca-legacy .calc,.lca-legacy .kata-card,
+.lca-kaj a,.lca-progs a,.lca-pnav,.lca-legacy .tbl,.lca-legacy .dalil,.lca-legacy .vcard,.lca-legacy .soc a,.lca-legacy .acct div,.lca-legacy .kpi{position:relative}
+.card-light::after,.lca-legacy .card::after,.lca-legacy .box::after,.lca-legacy .dept::after,.lca-legacy .chart::after,.lca-legacy .calc::after,.lca-legacy .kata-card::after,
+.lca-kaj a::after,.lca-progs a::after,.lca-pnav::after,.lca-legacy .tbl::after,.lca-legacy .dalil::after,.lca-legacy .vcard::after,.lca-legacy .soc a::after,.lca-legacy .kpi::after{
+  content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;background:var(--lc-contour);opacity:.75;transition:opacity .35s,filter .35s;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.card-light,.lca-legacy .card,.lca-legacy .box,.lca-legacy .dept,.lca-legacy .chart,.lca-legacy .calc,.lca-legacy .kata-card,.lca-legacy .tbl,.lca-legacy .dalil,.lca-legacy .kpi{border-color:transparent!important}
+.card-light.overflow-hidden::after,.lca-legacy .tbl::after{inset:0}
+.lca-legacy .card.big,.lca-legacy .box.gold{border-color:transparent!important}
+.lca-legacy .kata-card{border-left-width:1px!important}
+.card-light:hover::after,.lca-legacy .card:hover::after,.lca-legacy .box:hover::after,.lca-legacy .dept:hover::after,.lca-legacy .chart:hover::after,.lca-legacy .calc:hover::after,.lca-legacy .kata-card:hover::after,
+.lca-kaj a:hover::after,.lca-progs a:hover::after,.lca-pnav:hover::after,.lca-legacy .vcard:hover::after,.lca-legacy .soc a:hover::after,.lca-legacy .kpi:hover::after{opacity:1;background:var(--lc-contour-hot)}
+.card-light,.lca-legacy .card,.lca-legacy .dept,.lca-legacy .chart,.lca-legacy .kata-card,.lca-kaj a,.lca-progs a{transition:box-shadow .35s,transform .35s}
+.card-light:hover,.lca-legacy .card:hover,.lca-legacy .dept:hover,.lca-legacy .chart:hover,.lca-legacy .kata-card:hover{box-shadow:0 18px 44px -26px rgba(14,90,71,.45),0 6px 22px -18px rgba(240,187,59,.55)}
+/* bingkai foto: kilau kontur tipis */
+.lca-phero{box-shadow:0 0 0 1px rgba(240,187,59,.35),0 24px 60px -30px rgba(0,45,33,.55)}
+
+/* foto bergerak perlahan (Ken Burns); hanya berjalan saat terlihat di layar */
+@keyframes lca-kb-a{from{transform:scale(1.03) translate3d(0,0,0)}to{transform:scale(1.11) translate3d(-1.6%,-1.2%,0)}}
+@keyframes lca-kb-b{from{transform:scale(1.1) translate3d(-1.4%,1%,0)}to{transform:scale(1.03) translate3d(1.2%,-.6%,0)}}
+@keyframes lca-kb-c{from{transform:scale(1.04) translate3d(1.2%,0,0)}to{transform:scale(1.12) translate3d(-1%,1.2%,0)}}
+img.lca-kb{animation:lca-kb-a 22s ease-in-out infinite alternate both;animation-play-state:paused;will-change:auto;backface-visibility:hidden}
+img.lca-kb.d2{animation-name:lca-kb-b}
+img.lca-kb.d3{animation-name:lca-kb-c}
+img.lca-kb.kb-live{animation-play-state:running}
+.lca-legacy .gal figure:hover img.lca-kb{animation-duration:9s}
+
+/* kata bersinar saat disentuh / diarahkan */
+.lca-w{transition:text-shadow .45s ease,color .45s ease,filter .45s ease;border-radius:4px}
+.lca-w.lit,.lca-glow.lit,.arabic.lit,.ar.lit,h3.lit{text-shadow:0 0 10px rgba(240,187,59,.95),0 0 26px rgba(240,187,59,.6),0 0 46px rgba(14,90,71,.35)}
+@media (hover:hover){.lca-w:hover,.lca-glow:hover,.arabic:hover,.ar:hover,h3:hover{text-shadow:0 0 10px rgba(240,187,59,.95),0 0 26px rgba(240,187,59,.6),0 0 46px rgba(14,90,71,.35)}}
+.lca-glow,.arabic,.ar,h3{transition:text-shadow .45s ease}
+
+@media (prefers-reduced-motion:reduce){img.lca-kb{animation:none!important}.lca-w,.lca-glow{transition:none}}
+@media (max-width:640px){body::before{background-size:auto,auto,auto,auto,72px 72px}}

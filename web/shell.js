@@ -43,6 +43,57 @@
     }).catch(function () {});
   }
 
+  /* ---------------- foto bergerak (Ken Burns) & kata bersinar ---------------- */
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var kbIO = !reduce && 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) { en.target.classList.toggle('kb-live', en.isIntersecting); });
+  }, { rootMargin: '80px 0px' }) : null;
+  var kbN = 0;
+  function clipped(img) {
+    for (var n = img.parentElement, i = 0; n && i < 3; n = n.parentElement, i++) {
+      var o = getComputedStyle(n); if (/(hidden|clip)/.test(o.overflow + o.overflowX)) return true;
+    }
+    return false;
+  }
+  function scanKB() {
+    if (!kbIO) return;
+    $$('#root img.object-cover:not(.rounded-full):not(.lca-kb), .lca-phero > img.bg:not(.lca-kb), .gal img:not(.lca-kb)').forEach(function (img) {
+      if (!clipped(img)) return;
+      kbN++; img.classList.add('lca-kb'); if (kbN % 3 === 1) img.classList.add('d2'); else if (kbN % 3 === 2) img.classList.add('d3');
+      img.style.animationDelay = (-Math.random() * 18).toFixed(1) + 's';
+      kbIO.observe(img);
+    });
+  }
+  function splitWords(root) {
+    $$('main h1, main h2', root).forEach(function (h) {
+      if (h.getAttribute('data-w') || h.closest('.lca-toc')) return; h.setAttribute('data-w', '1');
+      var walk = document.createTreeWalker(h, NodeFilter.SHOW_TEXT, null), nodes = [], t;
+      while ((t = walk.nextNode())) if (t.nodeValue.trim()) nodes.push(t);
+      nodes.forEach(function (tn) {
+        var f = document.createDocumentFragment();
+        tn.nodeValue.split(/(\s+)/).forEach(function (w) {
+          if (!w) return;
+          if (/^\s+$/.test(w)) { f.appendChild(document.createTextNode(w)); return; }
+          var sp = document.createElement('span'); sp.className = 'lca-w'; sp.textContent = w; f.appendChild(sp);
+        });
+        tn.parentNode.replaceChild(f, tn);
+      });
+    });
+  }
+  document.addEventListener('pointerdown', function (e) {
+    var t = e.target.closest && e.target.closest('.lca-w, .lca-glow, .arabic, .ar, h3');
+    if (!t) return; t.classList.add('lit'); clearTimeout(t._lt); t._lt = setTimeout(function () { t.classList.remove('lit'); }, 1500);
+  }, { passive: true });
+  function fx() {
+    scanKB();
+    if (document.body.classList.contains('lca-legacy')) setTimeout(function () { splitWords(document); scanKB(); }, 0);
+    var root = document.getElementById('root');
+    if (root && 'MutationObserver' in window) {
+      var tm; new MutationObserver(function () { clearTimeout(tm); tm = setTimeout(scanKB, 250); }).observe(root, { childList: true, subtree: true });
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fx); else fx();
+
   if (!document.body.classList.contains('lca-legacy')) return;
 
   /* ================= halaman dalam ================= */

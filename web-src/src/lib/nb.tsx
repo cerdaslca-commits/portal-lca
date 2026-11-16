@@ -1,7 +1,10 @@
 import { Fragment } from 'react'
 
-// Keeps "Al-Qur'an" from breaking at its hyphen inside large display headlines.
+// Judul besar: setiap kata dibungkus span.lca-w agar bisa "bersinar" saat disentuh (lihat public/shell.css),
+// dan "Al-Qur'an" tidak terputus di tanda hubungnya.
 export function nb(text: string) {
-  const parts = text.split(/(Al-Qur'an[.,]?)/)
-  return parts.map((p, i) => (p.startsWith("Al-Qur'an") ? <span key={i} className="whitespace-nowrap">{p}</span> : <Fragment key={i}>{p}</Fragment>))
+  return text.split(/(\s+)/).map((w, i) =>
+    !w ? null : /^\s+$/.test(w) ? <Fragment key={i}>{w}</Fragment> : (
+      <span key={i} className={w.startsWith("Al-Qur'an") ? 'lca-w whitespace-nowrap' : 'lca-w'}>{w}</span>
+    ))
 }

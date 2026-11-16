@@ -39,10 +39,10 @@ export function Hero({ onDonate }: { onDonate: () => void }) {
           <m.h1 variants={staggerContainer} initial="hidden" animate="show"
             className="mt-6 font-body display-thin text-[clamp(2.75rem,7.4vw,6.25rem)] text-brand-ondark">
             <span className="block">
-              {LINE_A.map((w, i) => (<m.span key={i} variants={heroWord} className="mr-[0.22em] inline-block">{w}</m.span>))}
+              {LINE_A.map((w, i) => (<m.span key={i} variants={heroWord} className="lca-w mr-[0.22em] inline-block">{w}</m.span>))}
             </span>
             <span className="block font-display italic tracking-normal text-brand-gold">
-              {LINE_B.map((w, i) => (<m.span key={i} variants={heroWord} className="mr-[0.2em] inline-block">{w}</m.span>))}
+              {LINE_B.map((w, i) => (<m.span key={i} variants={heroWord} className="lca-w mr-[0.2em] inline-block">{w}</m.span>))}
             </span>
           </m.h1>
 
