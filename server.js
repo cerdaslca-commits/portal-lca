@@ -468,6 +468,7 @@ function webPage(rel) {
   const p = rel.replace(/\/+$/, '') || '/';
   if (p === '/' || p === '/index.html') return path.join(WEB, 'index.html');
   if (p === '/donasi') return path.join(WEB, 'donasi', 'index.html');
+  if (p === '/transparansi') return path.join(WEB, 'transparansi', 'index.html');
   if (p === '/desa') return path.join(WEB, 'desa', 'index.html');
   const m = /^\/desa\/([a-z0-9-]+)$/.exec(p);
   if (m) { const f = path.join(WEB, 'desa', m[1], 'index.html'); return fs.existsSync(f) ? f : path.join(WEB, 'desa', 'index.html'); }

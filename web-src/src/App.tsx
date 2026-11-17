@@ -6,6 +6,7 @@ import { Portal } from '@/pages/Portal'
 // Other pages are code-split so the first visit stays light.
 const Donasi = lazy(() => import('@/pages/Donasi').then((m) => ({ default: m.Donasi })))
 const DesaList = lazy(() => import('@/pages/DesaList').then((m) => ({ default: m.DesaList })))
+const Transparansi = lazy(() => import('@/pages/Transparansi').then((m) => ({ default: m.Transparansi })))
 const DesaDetail = lazy(() => import('@/pages/DesaDetail').then((m) => ({ default: m.DesaDetail })))
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
           <Suspense fallback={<div className="min-h-[100svh] bg-brand-night" aria-busy="true" />}>
             {route === 'donasi' && <Donasi />}
             {route === 'desa' && <DesaList />}
+            {route === 'transparansi' && <Transparansi onDonate={() => go('donasi')} />}
             {route === 'desa-detail' && id && <DesaDetail key={id} id={id} />}
           </Suspense>
         )}
