@@ -62,3 +62,12 @@ Lalu commit folder `web/` dan `web-src/`. Data desa, angka dampak, rekening/QRIS
 
 Uji lokal penuh (desain baru + portal lama + API): dari akar repo jalankan
 `PUBLIC_DIR=. DATA_DIR=./data node server.js` lalu buka http://localhost:3000.
+
+## Laporan Bulanan (otomatis)
+
+Halaman `/laporan` (bulan terbaru) dan arsip `/laporan-YYYY-MM` disusun dari **`laporan.json`** oleh `python3 tools/laporan.py`
+(menulis blok `<!-- LAPORAN:MULAI -->…<!-- LAPORAN:SELESAI -->` di `index.html`, menu, grafik setoran Tafaqur, dan `sitemap.xml`).
+Sumbernya laporan syuro tiap departemen di Google Drive `ARSIP TAHUN 2026 / LAPORAN BULANAN / <BULAN>`.
+Tugas terjadwal Claude memeriksa folder itu setiap bulan, mengisi `laporan.json`, lalu commit ke `main`.
+Halaman program (`/pendidikan`, `/tafaqur`, `/sensus`, `/wakaf`, `/guru`) ikut menampilkan angka bulan ini dari judul bagian departemen.
+Aturan isi: hanya angka gabungan, tanpa nama orang, IM/payroll, kasbon, piutang, saldo kas, atau nomor HP.

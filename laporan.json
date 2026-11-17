@@ -1,0 +1,140 @@
+{
+  "_catatan": "Sumber data halaman /laporan Portal LCA. Diisi tiap bulan dari folder Google Drive 'ARSIP TAHUN 2026 / LAPORAN BULANAN / <BULAN>' lalu dijalankan: python3 tools/laporan.py. Hanya angka agregat: tanpa nama orang (petugas, guru, anggota, donatur, penerima), tanpa IM/payroll, kasbon, piutang, saldo kas, atau nomor HP.",
+  "departemen": [
+    {"id": "sekretariat", "nama": "Sekretariat", "logo": "lca", "file": ["Sekretaris", "Sekretariat"]},
+    {"id": "bendahara", "nama": "Bendahara", "logo": "lca", "file": ["Bendahara"]},
+    {"id": "sensus", "nama": "Departemen Sensus", "logo": "sensus", "file": ["Depsus"]},
+    {"id": "pendidikan", "nama": "Departemen Pendidikan", "logo": "pendidikan", "file": ["Depdik"]},
+    {"id": "katapang", "nama": "Pendidikan Kancab 2 Katapang", "logo": "pendidikan", "file": ["Depdik Katapang"]},
+    {"id": "tafaqur", "nama": "Departemen Tafaqur", "logo": "tafaqur", "file": ["Tafaqur"]},
+    {"id": "wakaf", "nama": "Departemen Wakaf", "logo": "wakaf", "file": ["Wakaf"]},
+    {"id": "depkip", "nama": "Kiprah Muslimah", "logo": "muslimah", "file": ["Depkip"]},
+    {"id": "koperasi", "nama": "Koperasi Syariah Mitra Berkah", "logo": "koperasi", "file": ["Kopsyah", "Koperasi"]},
+    {"id": "online", "nama": "LCA Online & Media", "logo": "it", "file": ["LCA Online"]},
+    {"id": "kcc", "nama": "Kaca Cermin", "logo": "kcc", "file": ["Kaca Cermin"]}
+  ],
+  "riwayat_setoran": [
+    ["Maret", 134.9], ["April", 163.1], ["Mei", 173.1], ["Juni", 166.1], ["Juli", 162.3],
+    ["Agustus", 169.0], ["September", 178.9], ["Oktober", 176.5]
+  ],
+  "bulan": [
+    {
+      "id": "2026-10",
+      "label": "Oktober 2026",
+      "periode": "26 September – 25 Oktober 2026",
+      "diperbarui": "2026-11-17",
+      "sorotan": [
+        ["Rp176,5 jt", "setoran Tafaqur terverifikasi (September: Rp178,9 jt)"],
+        ["1.959", "pertemuan belajar (KBM) tuntas, naik dari 1.268"],
+        ["421", "majelis aktif dengan 983 santri"],
+        ["11.601", "donatur Tafaqur aktif"],
+        ["252", "KK baru tersensus di Desa Tanimulya"],
+        ["34", "permintaan mushaf tersalurkan dari 35"]
+      ],
+      "ringkasan": "Pertemuan belajar yang tuntas naik tajam: rata-rata 65 KBM per hari, dibanding 41 per hari pada bulan lalu, dan 99% pertemuan sudah ditutup di aplikasi LCA Online. Setoran Tafaqur turun tipis 1,3% karena lebih sedikit donatur yang tertagih, sementara jumlah donatur yang berhenti turun dari 960 menjadi 442. Sensus Desa Tanimulya kini menjangkau 96% wilayah desa.",
+      "dept": {
+        "bendahara": {
+          "ringkasan": "Setoran Tafaqur terverifikasi Rp176.538.800 dari 4.492 KK melalui 277 setoran, turun 1,3% dari Rp178.946.700 pada September. Seluruh setoran telah diverifikasi dan dicocokkan dengan hitung fisik Bendahara; tidak ada setoran yang dibatalkan.",
+          "angka": [["Rp176,5 jt", "setoran Tafaqur"], ["4.492", "KK berinfak"], ["Rp39.301", "rata-rata per KK"], ["Rp6,1 jt", "rata-rata setoran per hari"], ["Rp10,8 jt", "setoran tertinggi, 21 Oktober"]],
+          "tabel": {"judul": "Setoran per kantor", "kolom": ["Kantor", "KK", "Setoran"], "baris": [["Kantor Pusat", "2.692", "Rp114.720.800"], ["Kancab 2 Katapang", "1.694", "Rp59.133.300"], ["Kancab 1 Cipatat", "106", "Rp2.684.700"]], "kaki": ["Jumlah", "4.492", "Rp176.538.800"]},
+          "catatan": ["Belanja program dan operasional bulan ini: operasional dan pendukung 4 kantor Rp15,7 jt, Peduli Guru Ngaji Rp1,3 jt, Sensus Al-Qur'an Rp1,1 jt."],
+          "sumber": "Laporan Bendahara Oktober 2026 (LCA ERP)"
+        },
+        "sensus": {
+          "ringkasan": "Gencar Desa Tanimulya (Kec. Ngamprah) berlanjut di RW 14, 18, 19, dan 20 (20 RT), selama 7 hari oleh 12 petugas dengan 24 kali kehadiran. Sebanyak 252 KK menjadi responden, 31% dari 826 KK di wilayah tersebut, dan 107 KK (42%) bergabung menjadi donatur Tafaqur.",
+          "angka": [["252", "KK responden"], ["684", "jiwa dewasa terdata"], ["107", "donatur Tafaqur baru"], ["90%", "KK sudah punya mushaf untuk setiap anggota"], ["54%", "membaca Al-Qur'an setiap hari"], ["16%", "belum lancar atau belum bisa membaca"]],
+          "tabel": {"judul": "Akumulasi Sensus Desa Tanimulya", "kolom": ["Indikator", "Capaian"], "baris": [["Wilayah tersensus", "24 RW, 151 RT (96%)"], ["KK responden", "3.875 dari 8.017 KK (48%)"], ["Donatur Tafaqur", "1.172 KK"], ["Hari pelaksanaan", "39 hari, 22 petugas"]]},
+          "catatan": ["Rumah kosong masih tinggi: 325 rumah (39% kunjungan); 207 di antaranya dijadwalkan sensus ulang.", "Wilayah yang belum tersensus: RW 01 (menunggu konfirmasi), RT 01–02 RW 14, RT 04 RW 12, dan sebagian RW 17."],
+          "rencana": ["Produktivitas naik ke 15 KK per kehadiran (kini 10,5).", "Sensus berjalan pada sedikitnya 26 dari 30 hari.", "Target 360 KK responden dan 165 rumah kosong disensus ulang.", "Seluruh responden ditawari partisipasi sesuai SOP."],
+          "sumber": "Laporan Departemen Sensus Oktober 2026"
+        },
+        "pendidikan": {
+          "ringkasan": "KBM yang tuntas mencapai 1.959 pertemuan, rata-rata 65,3 per hari (bulan lalu 40,9), dan 99% sudah ditutup di aplikasi LCA Online. Ada 15 majelis baru. Belajar menjangkau 17 kecamatan; terbanyak Katapang, Margaasih, dan Margahayu. Skor kinerja pendidikan bulan ini 87 dari 100 (Sangat Baik).",
+          "angka": [["1.959", "KBM tuntas"], ["421", "majelis aktif"], ["983", "santri aktif"], ["43", "guru ngaji aktif mengajar"], ["15", "majelis baru"], ["40 menit", "median durasi belajar"]],
+          "tabel": {"judul": "Perbandingan tiga bulan buku (aplikasi LCA Online)", "kolom": ["Indikator", "Agustus", "September", "Oktober"], "baris": [["KBM tuntas", "1.572", "1.268", "1.959"], ["Guru ngaji aktif", "34", "43", "43"], ["Santri terlayani", "238", "273", "307"], ["Majelis baru", "40", "20", "15"]]},
+          "catatan": ["Puncak belajar pukul 16.00 dan hari Selasa.", "52% majelis aktif baru berisi satu santri.", "168 pesanan KBM batal atau ditolak (7,9%)."],
+          "rencana": ["Menekan pembatalan KBM ke bawah 5%.", "Mengaktifkan kembali guru ngaji terdaftar yang belum mengajar; target 52 guru aktif.", "Sedikitnya 20 majelis baru per bulan buku, dari ajakan guru, donatur Tafaqur, dan hasil sensus.", "Mengembangkan majelis satu santri menjadi majelis keluarga atau tetangga."],
+          "sumber": "Laporan Departemen Pendidikan Oktober 2026 (LCA Online)"
+        },
+        "tafaqur": {
+          "ringkasan": "Petugas lapangan melayani 13.166 donatur terdaftar, 11.601 di antaranya aktif. Sebanyak 80,4% donatur terkunjungi dan 4.462 KK tertagih dengan rata-rata Rp39.406 per KK, sedikit naik dari bulan lalu. Donatur yang berhenti turun dari 960 menjadi 442, dan layanan tilawah oleh petugas kini menjangkau 1.097 donatur. Skor kinerja 78 dari 100 (Baik).",
+          "angka": [["11.601", "donatur aktif"], ["80,4%", "donatur terkunjungi"], ["4.462", "KK tertagih (September 4.633)"], ["Rp39.406", "rata-rata infak per KK"], ["442", "donatur berhenti (September 960)"], ["82,2%", "data nomor HP donatur lengkap"]],
+          "tabel": {"judul": "Kunjungan per kantor", "kolom": ["Kantor", "Donatur", "Terkunjungi", "KK tertagih"], "baris": [["Kantor Pusat", "7.141", "78%", "2.451"], ["Kancab 1 Cipatat", "435", "93%", "118"], ["Kancab 2 Katapang", "5.590", "83%", "1.893"]]},
+          "catatan": ["5.685 donatur masih berstatus menunggu atau rumah kosong dan perlu dikunjungi ulang.", "Dua desa belum terkunjungi bulan ini: Padaasih (Cisarua) dan Selacau (Batujajar)."],
+          "rencana": ["Donatur terkunjungi sedikitnya 95%.", "Target 5.134 KK tertagih.", "Antrean menunggu dan rumah kosong turun 30%.", "Memverifikasi seluruh donatur yang berhenti dan membina kembali yang masih bersedia.", "Kelengkapan nomor HP donatur naik ke 88%."],
+          "sumber": "Laporan Departemen Tafaqur Oktober 2026 (aplikasi Tafaqur); angka setoran resmi mengikuti Bendahara"
+        },
+        "wakaf": {
+          "ringkasan": "Mushaf senilai Rp2.434.500 disalurkan Kantor Pusat ke 11 wilayah, antara lain Tanimulya, Cipageran, dan Cimerang. Dari 35 permintaan Al-Qur'an, 34 tersalurkan (97%), seluruhnya dalam tujuh hari. Wakaf baru masuk dari 2 wakif berupa 2 mushaf dan 10 buku Iqro'.",
+          "angka": [["Rp2,43 jt", "nilai mushaf tersalurkan"], ["34 / 35", "permintaan tersalurkan"], ["11", "wilayah terjangkau"], ["2", "wakif baru"]],
+          "rencana": ["Target penyaluran Rp2.678.000 ke sedikitnya 11 wilayah.", "Permintaan dijawab dalam 1×24 jam dan disalurkan paling lambat 7 hari.", "Menguatkan peran kantor cabang dan mengembangkan wakaf uang serta wakaf produktif."],
+          "sumber": "Laporan Wakaf Al-Qur'an Oktober 2026"
+        },
+        "koperasi": {
+          "ringkasan": "Koperasi Syariah Guru Ngaji Mitra Berkah beranggotakan 83 orang dengan 73 akun aktif di aplikasi. Total saham anggota Rp160,4 jt. Bulan ini anggota mengajukan 87 layanan (pulsa, paket data, token dan tagihan listrik, sembako, serta cicilan barang); 62 di antaranya selesai.",
+          "angka": [["83", "anggota (73 aktif)"], ["Rp160,4 jt", "total saham anggota"], ["87", "pengajuan layanan"], ["62", "pengajuan selesai"], ["74%", "transaksi digital berhasil"]],
+          "rencana": ["Mengajak seluruh guru ngaji menjadi anggota.", "Seluruh anggota memakai aplikasi koperasi.", "Menyebarkan brosur kavling dan perumahan.", "Menghubungi anggota pasif."],
+          "sumber": "Laporan Koperasi Mitra Berkah Oktober 2026"
+        }
+      }
+    },
+    {
+      "id": "2026-08",
+      "label": "Agustus 2026",
+      "periode": "26 Juli – 25 Agustus 2026",
+      "diperbarui": "2026-09-12",
+      "sorotan": [
+        ["Rp169,0 jt", "setoran Tafaqur (Juli: Rp162,3 jt)"],
+        ["12.660", "donatur Tafaqur aktif"],
+        ["376", "majelis aktif"],
+        ["3.011", "pertemuan belajar (KBM)"]
+      ],
+      "ringkasan": "Disarikan dari laporan syuro Sekretariat, Bendahara, dan departemen untuk bulan buku Agustus 2026.",
+      "dept": {
+        "sekretariat": {
+          "ringkasan": "Selama periode ini Sekretariat mengirim 10.369 pesan siaran: kuitansi online, pemberitahuan pergantian petugas, kabar bagi donatur yang belum terkunjungi, dan kabar kepada 218 penerima wakaf.",
+          "angka": [["10.369", "pesan siaran"], ["86 + 48", "Penggerak internal"], ["5.001", "Penggerak eksternal"]],
+          "sumber": "Laporan Sekretariat Agustus 2026"
+        },
+        "bendahara": {
+          "ringkasan": "Setoran Tafaqur bulan buku Agustus 2026 sebesar Rp168,95 jt, naik dari Rp162,27 jt pada Juli.",
+          "angka": [["Rp168,95 jt", "setoran Tafaqur"]],
+          "sumber": "Laporan Bendahara Agustus 2026"
+        },
+        "sensus": {
+          "ringkasan": "Sensus Reborn Desa Tanimulya (Kec. Ngamprah) menjangkau 21 RW dan 130 RT. Sebanyak 3.606 KK menjadi responden dan 1.112 KK bergabung menjadi donatur Tafaqur.",
+          "angka": [["3.606", "KK responden"], ["9.658", "jiwa terdata"], ["1.112", "donatur Tafaqur baru"], ["22", "petugas"]],
+          "rencana": ["Setiap petugas merekam contoh penyampaian kepada responden.", "Merekrut dua kader dari setiap wilayah sensus.", "Mencatat rumah kosong lebih rinci."],
+          "sumber": "Laporan Departemen Sensus Agustus 2026"
+        },
+        "pendidikan": {
+          "ringkasan": "Majelis aktif bertambah menjadi 376 dan pertemuan belajar naik 14%.",
+          "angka": [["376", "majelis aktif"], ["3.011", "KBM"], ["900", "santri"], ["66", "relawan guru ngaji"]],
+          "tabel": {"judul": "Juli dan Agustus", "kolom": ["Indikator", "Juli", "Agustus", "Perubahan"], "baris": [["Majelis aktif", "346", "376", "+9%"], ["Pertemuan belajar (KBM)", "2.641", "3.011", "+14%"], ["Santri mengaji", "917", "900", "−2%"], ["Relawan guru ngaji", "66", "66", "tetap"]]},
+          "sumber": "Laporan Departemen Pendidikan Agustus 2026"
+        },
+        "tafaqur": {
+          "ringkasan": "Petugas mengunjungi 96% donatur, termasuk kunjungan online yang naik 30% dari Juli.",
+          "angka": [["12.660", "donatur aktif"], ["96%", "donatur terkunjungi"], ["2.182", "kunjungan online"], ["82%", "nomor HP donatur lengkap"]],
+          "rencana": ["Menuntaskan kunjungan Tafaqur 100%, offline maupun online.", "Melengkapi nomor HP donatur agar kuitansi online sampai.", "Migrasi aplikasi petugas: peta rute, rencana kunjungan per pekan, ayat tilawah di aplikasi.", "Tarbiyah rutin dan tahsin online sepekan sekali bagi petugas.", "Menerbitkan spanduk program 5T."],
+          "sumber": "Laporan Departemen Tafaqur Agustus 2026"
+        },
+        "wakaf": {
+          "ringkasan": "Wakaf disalurkan ke desa-desa di Cimahi Utara, Ngamprah, dan Cipatat dengan nilai Rp2.436.000.",
+          "angka": [["Rp2,44 jt", "nilai mushaf tersalurkan"]],
+          "sumber": "Laporan Wakaf Agustus 2026"
+        },
+        "depkip": {
+          "ringkasan": "Depkip menjalankan tahsin dan ta'lim setiap Sabtu bersama Pembina serta ikut menyensus Desa Tanimulya.",
+          "angka": [["43", "anggota"], ["11", "anggota mengajar ngaji"], ["5", "ta'lim dan tahsin"], ["24", "kehadiran sensus"]],
+          "sumber": "Laporan Depkip Agustus 2026"
+        },
+        "koperasi": {
+          "ringkasan": "Koperasi beranggotakan 76 orang (63 aktif) dengan total saham Rp158 jt.",
+          "angka": [["76", "anggota (63 aktif)"], ["Rp158 jt", "total saham anggota"], ["29", "transaksi penjualan"]],
+          "sumber": "Laporan Koperasi Agustus 2026"
+        }
+      }
+    }
+  ]
+}

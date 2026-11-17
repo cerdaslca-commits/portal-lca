@@ -144,26 +144,29 @@
       post: [{ t: 'kaj', ids: ['kajian-tanggungjawab', 'kajian-mushaf'] }, { t: 'cta', items: ['pilihdesa', 'desa', 'donasi'] }] },
     sensus: { pre: [
         { t: 'dept', id: 'd-sensus', k: 'Pelaksana', h: 'Departemen Sensus (Depsus)', more: ['/departemen', 'Semua departemen & komunitas'] },
+        { t: 'lap', h2: ['Departemen Sensus'], k: 'Laporan bulanan', h: 'Sensus bulan ini', more: ['/laporan', 'Buka laporan bulanan lengkap'] },
         { t: 'page', id: 'sensus-tanimulya', k: 'Hasil & data', h: 'Hasil terbaru: Sensus Reborn Tanimulya', more: ['/sensus-tanimulya', 'Buka laporan hasil sensus'] },
         { t: 'gal', cats: ['Sensus'], k: 'Dokumentasi', h: 'Petugas sensus di lapangan' }],
       post: [{ t: 'kaj', ids: ['kajian-tanggungjawab'] }, { t: 'cta', items: ['relawan', 'desa', 'donasi'] }] },
     pendidikan: { pre: [
         { t: 'dept', id: 'd-pendidikan', k: 'Pelaksana', h: 'Departemen Pendidikan (Depdik)', more: ['/departemen', 'Semua departemen & komunitas'] },
-        { t: 'lap', h2: ['Pendidikan dan majelis'], k: 'Laporan bulanan', h: 'Angka pendidikan bulan ini', more: ['/laporan', 'Buka laporan bulanan lengkap'] },
+        { t: 'lap', h2: ['Departemen Pendidikan', 'Pendidikan Kancab 2 Katapang'], k: 'Laporan bulanan', h: 'Angka pendidikan bulan ini', more: ['/laporan', 'Buka laporan bulanan lengkap'] },
         { t: 'gal', cats: ['Imtihan'], k: 'Dokumentasi', h: 'Imtihan dan wisuda santri' }],
       post: [{ t: 'kaj', ids: ['kajian-terbata', 'kajian-digital'] }, { t: 'cta', items: ['relawan', 'donasi', 'wa'] }] },
     wakaf: { pre: [
         { t: 'dept', id: 'd-wakaf', k: 'Pelaksana', h: 'Departemen Wakaf', more: ['/departemen', 'Semua departemen & komunitas'] },
+        { t: 'lap', h2: ['Departemen Wakaf'], k: 'Laporan bulanan', h: 'Penyaluran mushaf bulan ini', more: ['/laporan', 'Buka laporan bulanan lengkap'] },
         { t: 'calc', k: 'Hitung wakaf', h: 'Kalkulator wakaf mushaf' },
         { t: 'gal', cats: ['Wakaf'], k: 'Dokumentasi', h: 'Mushaf sampai ke tangan penerima' }],
       post: [{ t: 'kaj', ids: ['kajian-mushaf'] }, { t: 'cta', items: ['donasi', 'pilihdesa', 'wa'] }] },
     guru: { pre: [
         { t: 'dept', id: 'd-koperasi', k: 'Kesejahteraan', h: 'Koperasi Syariah Guru Ngaji Mitra Berkah', more: ['/departemen', 'Semua departemen & komunitas'] },
+        { t: 'lap', h2: ['Koperasi Syariah Mitra Berkah'], k: 'Laporan bulanan', h: 'Koperasi bulan ini', more: ['/laporan', 'Buka laporan bulanan lengkap'] },
         { t: 'gal', cats: ['Rihlah'], k: 'Dokumentasi', h: 'Foto kegiatan guru ngaji' }],
       post: [{ t: 'cta', items: ['relawan', 'donasi', 'wa'] }] },
     tafaqur: { pre: [
         { t: 'dept', id: 'd-tafaqur', k: 'Pelaksana', h: 'Departemen Tafaqur (Fundraising)', more: ['/departemen', 'Semua departemen & komunitas'] },
-        { t: 'lap', h2: ['Tafaqur dan keuangan', 'Komunikasi kepada donatur'], k: 'Laporan bulanan', h: 'Setoran dan donatur bulan ini', more: ['/laporan', 'Buka laporan bulanan lengkap'] }],
+        { t: 'lap', h2: ['Departemen Tafaqur', 'Bendahara'], k: 'Laporan bulanan', h: 'Setoran dan donatur bulan ini', more: ['/laporan', 'Buka laporan bulanan lengkap'] }],
       post: [{ t: 'kaj', ids: ['kajian-malaikat'] }, { t: 'cta', items: ['tafaqur', 'donasi', 'wa'] }] },
     kegiatan: { pre: [{ t: 'gal', cats: ['Qurban Bahagia', 'Imtihan', 'Rihlah'], k: 'Dokumentasi', h: 'Qurban Bahagia, Imtihan, dan Rihlah' }],
       post: [{ t: 'cta', items: ['donasi', 'relawan', 'wa'] }] },
