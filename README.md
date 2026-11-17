@@ -33,6 +33,9 @@ Menu global: **Beranda · Tentang · Program · Pustaka · Laporan & Media · Ga
 ### Video GENCAR & testimoni
 Video (profil LCA, testimoni Ibu Yeni Cipageran, testimoni penerima manfaat, testimoni guru ngaji) disimpan di `media/video/` dan diputar dari server portal sendiri (mendukung Range untuk iPhone/Safari). Tampil di beranda (bagian Video, `/#video`), halaman GENCAR, Galeri, dan Donasi. Tautan YouTube tambahan ada di `web-src/src/data/business-data.json → youtube`.
 
+### Foto & video dari situs donasi GENCAR
+81 foto kegiatan (GENCAR, Sensus, Pendidikan, Peduli Guru Ngaji, Wakaf, Perjalanan GENCAR Cipageran) di `media/kegiatan/` (WebP ≤1280 px) dan 6 video tambahan (himbauan Lurah & Ketua MUI Cipageran, 3 video penyaluran wakaf bersubtitel, Rihlah ke-8 Guru Ngaji) di `media/video/`. Daftar foto & keterangannya ada di `DOCS` dan `VIDS` dalam `web-src/public/shell.js`.
+
 ### Efek visual
 Semburat warna hijau-emas-merah-hitam + pola bintang segi-delapan (latar), kontur gradasi di setiap kartu, foto bergerak pelan (hanya saat terlihat, mati bila pengguna memilih "kurangi gerakan"), dan kata bersinar saat disentuh/diarahkan. Semua diatur di bagian akhir `web-src/public/shell.css` dan `shell.js`.
 

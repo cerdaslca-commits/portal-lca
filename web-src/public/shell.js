@@ -138,7 +138,9 @@
   // Susunan setiap pusat program. pre = sebelum video, post = sesudah video.
   var HUBS = {
     gencar: { pre: [
-        { t: 'vids', k: 'Video', h: 'Video GENCAR & testimoni' },
+        { t: 'vids', tag: 'gencar', k: 'Video', h: 'Video GENCAR & testimoni' },
+        { t: 'gal', cats: ['Perjalanan GENCAR'], k: 'Perjalanan satu desa', h: 'Dari surat izin sampai spanduk: GENCAR di Cipageran', more: ['/galeri', 'Lihat semua foto di Galeri'] },
+        { t: 'vids', tag: 'perjalanan', k: 'Dukungan wilayah', h: 'Himbauan Lurah & Ketua MUI Cipageran' },
         { t: 'progs', k: 'Empat program inti', h: 'Satu tujuan, empat layanan' },
         { t: 'page', id: 'dampak', k: 'Hasil & data', h: 'Dampak dan wilayah garapan', more: ['/dampak', 'Buka halaman Dampak & Wilayah'] },
         { t: 'gal', cats: ['GENCAR'], k: 'Dokumentasi', h: 'GENCAR di lapangan' }],
@@ -147,24 +149,29 @@
         { t: 'dept', id: 'd-sensus', k: 'Pelaksana', h: 'Departemen Sensus (Depsus)', more: ['/departemen', 'Semua departemen & komunitas'] },
         { t: 'lap', h2: ['Departemen Sensus'], k: 'Laporan bulanan', h: 'Sensus bulan ini', more: ['/laporan', 'Buka laporan bulanan lengkap'] },
         { t: 'page', id: 'sensus-tanimulya', k: 'Hasil & data', h: 'Hasil terbaru: Sensus Reborn Tanimulya', more: ['/sensus-tanimulya', 'Buka laporan hasil sensus'] },
-        { t: 'gal', cats: ['Sensus'], k: 'Dokumentasi', h: 'Petugas sensus di lapangan' }],
+        { t: 'gal', cats: ['Sensus'], k: 'Dokumentasi', h: 'Petugas sensus di lapangan', more: ['/galeri', 'Lihat semua foto di Galeri'] },
+        { t: 'vids', tag: 'sensus', k: 'Dukungan wilayah', h: 'Himbauan Lurah & Ketua MUI Cipageran' }],
       post: [{ t: 'kaj', ids: ['kajian-tanggungjawab'] }, { t: 'cta', items: ['relawan', 'desa', 'donasi'] }] },
     pendidikan: { pre: [
         { t: 'vids', tag: 'pendidikan', k: 'Testimoni', h: 'Kesaksian warga & guru ngaji' },
         { t: 'dept', id: 'd-pendidikan', k: 'Pelaksana', h: 'Departemen Pendidikan (Depdik)', more: ['/departemen', 'Semua departemen & komunitas'] },
         { t: 'lap', h2: ['Departemen Pendidikan', 'Pendidikan Kancab 2 Katapang'], k: 'Laporan bulanan', h: 'Angka pendidikan bulan ini', more: ['/laporan', 'Buka laporan bulanan lengkap'] },
+        { t: 'gal', cats: ['Pendidikan'], k: 'Dokumentasi', h: 'Belajar Al-Qur\'an di rumah dan majelis', more: ['/galeri', 'Lihat semua foto di Galeri'] },
         { t: 'gal', cats: ['Imtihan'], k: 'Dokumentasi', h: 'Imtihan dan wisuda santri' }],
       post: [{ t: 'kaj', ids: ['kajian-terbata', 'kajian-digital'] }, { t: 'cta', items: ['relawan', 'donasi', 'wa'] }] },
     wakaf: { pre: [
         { t: 'dept', id: 'd-wakaf', k: 'Pelaksana', h: 'Departemen Wakaf', more: ['/departemen', 'Semua departemen & komunitas'] },
         { t: 'lap', h2: ['Departemen Wakaf'], k: 'Laporan bulanan', h: 'Penyaluran mushaf bulan ini', more: ['/laporan', 'Buka laporan bulanan lengkap'] },
         { t: 'calc', k: 'Hitung wakaf', h: 'Kalkulator wakaf mushaf' },
-        { t: 'gal', cats: ['Wakaf'], k: 'Dokumentasi', h: 'Mushaf sampai ke tangan penerima' }],
+        { t: 'gal', cats: ['Wakaf'], k: 'Dokumentasi', h: 'Mushaf sampai ke tangan penerima', more: ['/galeri', 'Lihat semua foto di Galeri'] },
+        { t: 'vids', tag: 'wakaf', k: 'Bukti penyaluran', h: 'Wakaf sampai langsung ke tangan penerima' }],
       post: [{ t: 'kaj', ids: ['kajian-mushaf'] }, { t: 'cta', items: ['donasi', 'pilihdesa', 'wa'] }] },
     guru: { pre: [
         { t: 'dept', id: 'd-koperasi', k: 'Kesejahteraan', h: 'Koperasi Syariah Guru Ngaji Mitra Berkah', more: ['/departemen', 'Semua departemen & komunitas'] },
         { t: 'lap', h2: ['Koperasi Syariah Mitra Berkah'], k: 'Laporan bulanan', h: 'Koperasi bulan ini', more: ['/laporan', 'Buka laporan bulanan lengkap'] },
-        { t: 'gal', cats: ['Rihlah'], k: 'Dokumentasi', h: 'Foto kegiatan guru ngaji' }],
+        { t: 'gal', cats: ['Peduli Guru Ngaji'], k: 'Dokumentasi', h: 'Santunan, pembinaan ruhiah & tahsin guru ngaji', more: ['/galeri', 'Lihat semua foto di Galeri'] },
+        { t: 'vids', tag: 'guru', k: 'Video', h: 'Rihlah & kesaksian guru ngaji' },
+        { t: 'gal', cats: ['Rihlah'], k: 'Dokumentasi', h: 'Foto rihlah guru ngaji' }],
       post: [{ t: 'cta', items: ['relawan', 'donasi', 'wa'] }] },
     tafaqur: { pre: [
         { t: 'dept', id: 'd-tafaqur', k: 'Pelaksana', h: 'Departemen Tafaqur (Fundraising)', more: ['/departemen', 'Semua departemen & komunitas'] },
@@ -212,11 +219,33 @@
     });
     return got ? f : null;
   }
+  // Dokumentasi tambahan (diambil dari situs donasi GENCAR): ditambahkan ke Galeri dan ke pusat program terkait.
+  var DOCS = [["Sensus", "/media/kegiatan/sensus/sensus-01.webp", "Sensus Al-Qur'an Tanimulya Reborn, Juli 2026"], ["GENCAR", "/media/kegiatan/gencar/gencar-01.webp", "Dokumentasi GENCAR, 17 September 2023"], ["Sensus", "/media/kegiatan/sensus/sensus-02.webp", "Kegiatan Sensus Al-Qur'an bersama warga"], ["GENCAR", "/media/kegiatan/gencar/gencar-02.webp", "Penggerak GENCAR di lapangan"], ["GENCAR", "/media/kegiatan/gencar/gencar-03.webp", "Penggerak GENCAR di lapangan"], ["Sensus", "/media/kegiatan/sensus/sensus-03.webp", "Petugas Sensus Al-Qur'an mendatangi warga"], ["GENCAR", "/media/kegiatan/gencar/gencar-04.webp", "Petugas GENCAR bersiap menjalankan kegiatan"], ["Sensus", "/media/kegiatan/sensus/sensus-04.webp", "Petugas Sensus Al-Qur'an mendatangi warga"], ["Sensus", "/media/kegiatan/sensus/sensus-05.webp", "Kegiatan Sensus Al-Qur'an bersama warga"], ["Sensus", "/media/kegiatan/sensus/sensus-06.webp", "Petugas Sensus Al-Qur'an mendatangi warga"], ["Sensus", "/media/kegiatan/sensus/sensus-07.webp", "Kegiatan Sensus Al-Qur'an bersama warga"], ["Sensus", "/media/kegiatan/sensus/sensus-08.webp", "Sensus Al-Qur'an di Cibeureum"], ["Sensus", "/media/kegiatan/sensus/sensus-09.webp", "Sensus Al-Qur'an di Cigugur Tengah"], ["GENCAR", "/media/kegiatan/gencar/gencar-05.webp", "Kegiatan GENCAR di wilayah garapan"], ["GENCAR", "/media/kegiatan/gencar/gencar-06.webp", "Kegiatan GENCAR di wilayah garapan"], ["GENCAR", "/media/kegiatan/gencar/gencar-07.webp", "Kegiatan GENCAR di wilayah garapan"], ["GENCAR", "/media/kegiatan/gencar/gencar-08.webp", "Kegiatan GENCAR di wilayah garapan"], ["GENCAR", "/media/kegiatan/gencar/gencar-09.webp", "Kegiatan GENCAR di wilayah garapan"], ["GENCAR", "/media/kegiatan/gencar/gencar-10.webp", "Kegiatan GENCAR di wilayah garapan"], ["GENCAR", "/media/kegiatan/gencar/gencar-11.webp", "Kegiatan GENCAR di wilayah garapan"], ["GENCAR", "/media/kegiatan/gencar/gencar-12.webp", "Kegiatan GENCAR di wilayah garapan"], ["GENCAR", "/media/kegiatan/gencar/gencar-13.webp", "Kegiatan GENCAR di wilayah garapan"], ["GENCAR", "/media/kegiatan/gencar/gencar-14.webp", "Kegiatan GENCAR di wilayah garapan"], ["GENCAR", "/media/kegiatan/gencar/gencar-15.webp", "Kegiatan GENCAR di wilayah garapan"], ["GENCAR", "/media/kegiatan/gencar/gencar-16.webp", "Kegiatan GENCAR di wilayah garapan"], ["Sensus", "/media/kegiatan/sensus/sensus-10.webp", "Sensus Al-Qur'an di Melong"], ["Sensus", "/media/kegiatan/sensus/sensus-11.webp", "Sensus Al-Qur'an, Juli 2026"], ["Peduli Guru Ngaji", "/media/kegiatan/guru-ngaji/guru-ngaji-01.webp", "Penyerahan apresiasi Program Peduli Guru Ngaji"], ["Peduli Guru Ngaji", "/media/kegiatan/guru-ngaji/guru-ngaji-02.webp", "Guru ngaji menerima penghargaan LCA"], ["Peduli Guru Ngaji", "/media/kegiatan/guru-ngaji/guru-ngaji-03.webp", "Dokumentasi penerima Peduli Guru Ngaji"], ["Peduli Guru Ngaji", "/media/kegiatan/guru-ngaji/guru-ngaji-04.webp", "Apresiasi bagi pengajar Al-Qur'an"], ["Peduli Guru Ngaji", "/media/kegiatan/guru-ngaji/guru-ngaji-05.webp", "Penyerahan dukungan kepada guru ngaji"], ["Peduli Guru Ngaji", "/media/kegiatan/guru-ngaji/guru-ngaji-06.webp", "Guru Ngaji LCA mengikuti pembinaan ruhiah dan membaca Al-Qur'an bersama"], ["Peduli Guru Ngaji", "/media/kegiatan/guru-ngaji/guru-ngaji-07.webp", "Suasana pembinaan ruhiah Guru Ngaji LCA"], ["Peduli Guru Ngaji", "/media/kegiatan/guru-ngaji/guru-ngaji-08.webp", "Kebersamaan Guru Ngaji dalam kegiatan pembinaan ruhiah LCA"], ["Peduli Guru Ngaji", "/media/kegiatan/guru-ngaji/guru-ngaji-09.webp", "Guru Ngaji LCA mengikuti pembinaan skill mengajar dan tahsin Al-Qur'an"], ["Peduli Guru Ngaji", "/media/kegiatan/guru-ngaji/guru-ngaji-10.webp", "Kelompok Guru Ngaji mempelajari materi tahsin Al-Qur'an"], ["Peduli Guru Ngaji", "/media/kegiatan/guru-ngaji/guru-ngaji-11.webp", "Guru Ngaji berlatih keterampilan mengajar Al-Qur'an dalam kelompok"], ["Peduli Guru Ngaji", "/media/kegiatan/guru-ngaji/guru-ngaji-12.webp", "Guru Ngaji menerima santunan beras dari program Peduli Guru Ngaji LCA"], ["Peduli Guru Ngaji", "/media/kegiatan/guru-ngaji/guru-ngaji-13.webp", "Para Guru Ngaji bersama santunan beras dari LCA"], ["Peduli Guru Ngaji", "/media/kegiatan/guru-ngaji/guru-ngaji-14.webp", "Penerima menunjukkan santunan beras program Peduli Guru Ngaji LCA"], ["Pendidikan", "/media/kegiatan/pendidikan/pendidikan-01.webp", "Kelompok santri belajar Al-Qur'an bersama Guru Ngaji di rumah"], ["Pendidikan", "/media/kegiatan/pendidikan/pendidikan-02.webp", "Guru Ngaji membimbing santri secara personal di rumah"], ["Pendidikan", "/media/kegiatan/pendidikan/pendidikan-03.webp", "Kegiatan belajar membaca Al-Qur'an di rumah santri"], ["Pendidikan", "/media/kegiatan/pendidikan/pendidikan-04.webp", "Guru Ngaji laki-laki mendampingi anak belajar membaca Al-Qur'an di rumah"], ["Pendidikan", "/media/kegiatan/pendidikan/pendidikan-05.webp", "Guru Ngaji mendampingi ibu dan lansia belajar Al-Qur'an di rumah"], ["Pendidikan", "/media/kegiatan/pendidikan/pendidikan-06.webp", "Guru Ngaji LCA mendampingi keluarga belajar Al-Qur'an di rumah"], ["Pendidikan", "/media/kegiatan/pendidikan/pendidikan-07.webp", "Pendampingan belajar membaca Al-Qur'an"], ["Pendidikan", "/media/kegiatan/pendidikan/pendidikan-08.webp", "Suasana pembelajaran bersama warga"], ["Pendidikan", "/media/kegiatan/pendidikan/pendidikan-09.webp", "Peserta mengikuti pendidikan baca Al-Qur'an"], ["Pendidikan", "/media/kegiatan/pendidikan/pendidikan-10.webp", "Bimbingan membaca Al-Qur'an secara langsung"], ["Pendidikan", "/media/kegiatan/pendidikan/pendidikan-11.webp", "Kegiatan belajar Al-Qur'an di wilayah GENCAR"], ["Pendidikan", "/media/kegiatan/pendidikan/pendidikan-12.webp", "Pembinaan dan persiapan pengajar Al-Qur'an"], ["Pendidikan", "/media/kegiatan/pendidikan/pendidikan-13.webp", "Penguatan layanan pendidikan Al-Qur'an"], ["Perjalanan GENCAR", "/media/kegiatan/perjalanan/perjalanan-01.webp", "Contoh surat permohonan izin sosialisasi GENCAR Cipageran"], ["Perjalanan GENCAR", "/media/kegiatan/perjalanan/perjalanan-02.webp", "Contoh surat tindak lanjut peresmian GENCAR Cipageran"], ["Perjalanan GENCAR", "/media/kegiatan/perjalanan/perjalanan-03.webp", "Contoh undangan silaturahmi dan sosialisasi GENCAR Cipageran"], ["Perjalanan GENCAR", "/media/kegiatan/perjalanan/perjalanan-04.webp", "Spanduk Sensus Al-Qur'an GENCAR dipasang di tempat yang terlihat masyarakat"], ["Perjalanan GENCAR", "/media/kegiatan/perjalanan/perjalanan-05.webp", "Silaturahmi dan penyampaian dokumen GENCAR kepada pemangku wilayah"], ["Perjalanan GENCAR", "/media/kegiatan/perjalanan/perjalanan-06.webp", "Petugas GENCAR memasang spanduk Sensus Al-Qur'an di lingkungan warga"], ["Perjalanan GENCAR", "/media/kegiatan/perjalanan/perjalanan-07.webp", "Penyerahan surat himbauan dan berkas GENCAR kepada pengurus wilayah"], ["Perjalanan GENCAR", "/media/kegiatan/perjalanan/perjalanan-08.webp", "Koordinasi petugas GENCAR bersama pemangku jabatan wilayah"], ["Perjalanan GENCAR", "/media/kegiatan/perjalanan/perjalanan-09.webp", "Surat himbauan pelaksanaan Sensus Al-Qur'an yang disetujui RW dan DKM"], ["Sensus", "/media/kegiatan/sensus/sensus-12.webp", "Petugas muslimah Sensus Al-Qur'an"], ["Sensus", "/media/kegiatan/sensus/sensus-13.webp", "Dokumentasi Sensus Al-Qur'an 2021"], ["Sensus", "/media/kegiatan/sensus/sensus-14.webp", "Dokumentasi Sensus Al-Qur'an 2021"], ["Sensus", "/media/kegiatan/sensus/sensus-15.webp", "Dokumentasi Sensus Al-Qur'an 2021"], ["Sensus", "/media/kegiatan/sensus/sensus-16.webp", "Dokumentasi Sensus Al-Qur'an 2021"], ["Wakaf", "/media/kegiatan/wakaf/wakaf-01.webp", "Contoh pengajuan Wakaf Al-Qur'an dengan identitas pribadi disamarkan"], ["Wakaf", "/media/kegiatan/wakaf/wakaf-02.webp", "Contoh kebutuhan Wakaf Al-Qur'an dengan nama dan nomor telepon disamarkan"], ["Wakaf", "/media/kegiatan/wakaf/wakaf-03.webp", "Contoh formulir Wakaf Al-Qur'an A4 dengan data pribadi disamarkan"], ["Wakaf", "/media/kegiatan/wakaf/wakaf-04.webp", "Penyerahan mushaf Wakaf Al-Qur'an"], ["Wakaf", "/media/kegiatan/wakaf/wakaf-05.webp", "Penyerahan mushaf Wakaf Al-Qur'an"], ["Wakaf", "/media/kegiatan/wakaf/wakaf-06.webp", "Kegiatan Wakaf Al-Qur'an bersama warga"], ["Wakaf", "/media/kegiatan/wakaf/wakaf-07.webp", "Penyerahan mushaf Wakaf Al-Qur'an"], ["Wakaf", "/media/kegiatan/wakaf/wakaf-08.webp", "Penyerahan mushaf Wakaf Al-Qur'an"], ["Wakaf", "/media/kegiatan/wakaf/wakaf-09.webp", "Kegiatan Wakaf Al-Qur'an bersama warga"], ["Wakaf", "/media/kegiatan/wakaf/wakaf-10.webp", "Penyerahan mushaf Wakaf Al-Qur'an"], ["Wakaf", "/media/kegiatan/wakaf/wakaf-11.webp", "Kegiatan Wakaf Al-Qur'an bersama warga"], ["GENCAR", "/media/kegiatan/gencar/gencar-17.webp", "Penggerak GENCAR di lapangan"], ["GENCAR", "/media/kegiatan/gencar/gencar-18.webp", "Penggerak GENCAR di lapangan"]];
+  function addDocs() {
+    var gal = document.getElementById('gallery'); if (!gal || gal.getAttribute('data-docs')) return;
+    gal.setAttribute('data-docs', '1');
+    DOCS.forEach(function (d) {
+      var f = el('figure', null, '<img loading="lazy" decoding="async" src="' + d[1] + '" alt="' + esc(d[2]) + '"><figcaption><b>' + esc(d[0]) + '</b>' + esc(d[2]) + '</figcaption>');
+      f.setAttribute('data-cat', d[0]); gal.appendChild(f);
+    });
+    var gf = document.getElementById('gfilter');
+    if (gf) {
+      var have = $$('button', gf).map(function (b) { return b.textContent; });
+      ['Pendidikan', 'Peduli Guru Ngaji', 'Perjalanan GENCAR'].forEach(function (c) {
+        if (have.indexOf(c) > -1) return;
+        var b = el('button', null, esc(c)); b.type = 'button'; gf.appendChild(b);
+        b.addEventListener('click', function () {
+          $$('#gfilter button').forEach(function (x) { x.classList.toggle('on', x === b); });
+          $$('#gallery figure').forEach(function (fig) { fig.hidden = fig.getAttribute('data-cat') !== c; });
+        });
+      });
+    }
+  }
   function galBody(cats) {
     var figs = $$('#gallery figure').filter(function (f) { return cats.indexOf(f.getAttribute('data-cat')) > -1; });
     if (!figs.length) return null;
     var g = el('div', 'gal');
-    figs.slice(0, 9).forEach(function (f) { var c = clean(f.cloneNode(true)); c.style.display = ''; c.removeAttribute('hidden'); g.appendChild(c); });
+    figs.slice(0, 12).forEach(function (f) { var c = clean(f.cloneNode(true)); c.style.display = ''; c.removeAttribute('hidden'); g.appendChild(c); });
     return g;
   }
   function kajBody(ids) {
@@ -250,15 +279,21 @@
   }
   // Video GENCAR & testimoni (disimpan di server portal sendiri, diputar langsung di halaman).
   var VIDS = [
-    { src: '/media/video/lca-perjalanan.mp4', poster: '/media/video/lca-perjalanan-poster.webp', t: 'Mengenal Perjalanan Lembaga Cerdas Al-Qur\'an', k: 'Profil · 4 menit' },
-    { src: '/media/video/testimoni-ibu-yeni.mp4', poster: '/media/video/testimoni-ibu-yeni-poster.webp', t: 'Kesaksian Ibu Yeni, Cipageran', k: 'Testimoni · 2 menit', q: 'Saya sangat berterima kasih sekali karena itu sangat membantu sekali bagi saya khususnya yang ingin belajar tapi kesulitan untuk keluar rumah.', tag: 'pendidikan' },
-    { src: '/media/video/testimoni-penerima-manfaat.mp4', poster: '/media/video/testimoni-penerima-manfaat-poster.webp', t: 'Kesaksian penerima manfaat', k: 'Testimoni · 2,5 menit' },
-    { src: '/media/video/testimoni-guru-ngaji.mp4', poster: '/media/video/testimoni-guru-ngaji-poster.webp', t: 'Kesaksian guru ngaji', k: 'Testimoni · 2,5 menit', tag: 'pendidikan' }
+    { src: '/media/video/lca-perjalanan.mp4', poster: '/media/video/lca-perjalanan-poster.webp', t: 'Mengenal Perjalanan Lembaga Cerdas Al-Qur\'an', k: 'Profil · 4 menit', l: 1, tags: ['gencar'] },
+    { src: '/media/video/testimoni-ibu-yeni.mp4', poster: '/media/video/testimoni-ibu-yeni-poster.webp', t: 'Kesaksian Ibu Yeni, Cipageran', k: 'Testimoni · 2 menit', q: 'Saya sangat berterima kasih sekali karena itu sangat membantu sekali bagi saya khususnya yang ingin belajar tapi kesulitan untuk keluar rumah.', tags: ['gencar', 'pendidikan'] },
+    { src: '/media/video/testimoni-penerima-manfaat.mp4', poster: '/media/video/testimoni-penerima-manfaat-poster.webp', t: 'Kesaksian penerima manfaat', k: 'Testimoni · 2,5 menit', tags: ['gencar', 'wakaf'] },
+    { src: '/media/video/testimoni-guru-ngaji.mp4', poster: '/media/video/testimoni-guru-ngaji-poster.webp', t: 'Kesaksian guru ngaji', k: 'Testimoni · 2,5 menit', tags: ['gencar', 'pendidikan', 'guru'] },
+    { src: '/media/video/himbauan-lurah-cipageran.mp4', poster: '/media/video/himbauan-lurah-cipageran-poster.webp', t: 'Himbauan Lurah Cipageran', k: 'Pemerintah Kelurahan', q: 'Mengajak masyarakat mendukung pelaksanaan GENCAR dan pelayanan Al-Qur\'an di Kelurahan Cipageran.', l: 1, tags: ['perjalanan', 'sensus'] },
+    { src: '/media/video/himbauan-ketua-mui-cipageran.mp4', poster: '/media/video/himbauan-ketua-mui-cipageran-poster.webp', t: 'Himbauan Ketua MUI Cipageran', k: 'Majelis Ulama Indonesia', q: 'Menguatkan ajakan agar masyarakat memperhatikan Al-Qur\'an dan menerima kegiatan Sensus Al-Qur\'an dengan baik.', l: 1, tags: ['perjalanan', 'sensus'] },
+    { src: '/media/video/wakaf-penyaluran-01.mp4', poster: '/media/video/wakaf-penyaluran-01-poster.webp', vtt: '/media/video/wakaf-penyaluran-01-id.vtt', t: 'Testimoni penerima Wakaf Al-Qur\'an', k: 'Bukti penyaluran · bersubtitel', l: 1, tags: ['wakaf'] },
+    { src: '/media/video/wakaf-penyaluran-02.mp4', poster: '/media/video/wakaf-penyaluran-02-poster.webp', vtt: '/media/video/wakaf-penyaluran-02-id.vtt', t: 'Al-Qur\'an diterima sesuai kebutuhan', k: 'Bukti penyaluran · bersubtitel', l: 1, tags: ['wakaf'] },
+    { src: '/media/video/wakaf-penyaluran-03.mp4', poster: '/media/video/wakaf-penyaluran-03-poster.webp', vtt: '/media/video/wakaf-penyaluran-03-id.vtt', t: 'Bukti penerimaan Wakaf Al-Qur\'an', k: 'Bukti penyaluran · bersubtitel', tags: ['wakaf'] },
+    { src: '/media/video/rihlah-guru-ngaji-2021.mp4', poster: '/media/video/rihlah-guru-ngaji-2021-poster.webp', t: 'Rihlah ke-8 Guru Ngaji LCA, Rancabali Ciwidey', k: 'Rihlah · 2021 · 6 menit', q: 'Rihlah gratis tahunan sebagai bentuk perhatian LCA kepada Guru Ngaji dan keluarga.', l: 1, tags: ['guru'] }
   ];
   function vidsBody(tag) {
     var g = el('div', 'lca-vids');
-    VIDS.filter(function (v) { return !tag || v.tag === tag; }).forEach(function (v) {
-      var f = el('figure', null, '<video src="' + v.src + '" poster="' + v.poster + '" controls playsinline preload="none"></video><figcaption><small>' + esc(v.k) + '</small><b>' + esc(v.t) + '</b>' + (v.q ? '<em>“' + esc(v.q) + '”</em>' : '') + '</figcaption>');
+    VIDS.filter(function (v) { return !tag || v.tags.indexOf(tag) > -1; }).forEach(function (v) {
+      var f = el('figure', v.l ? 'l' : null, '<video src="' + v.src + '" poster="' + v.poster + '" controls playsinline preload="none">' + (v.vtt ? '<track kind="captions" src="' + v.vtt + '" srclang="id" label="Bahasa Indonesia" default>' : '') + '</video><figcaption><small>' + esc(v.k) + '</small><b>' + esc(v.t) + '</b>' + (v.q ? '<em>“' + esc(v.q) + '”</em>' : '') + '</figcaption>');
       g.appendChild(f);
     });
     return g;
@@ -352,6 +387,7 @@
   }
 
   function init() {
+    addDocs();
     PROGRAMS.forEach(composeHub);
     // Halaman Departemen: setiap departemen menautkan ke pusat programnya.
     Object.keys(DEPT_TO_PROG).forEach(function (id) {
