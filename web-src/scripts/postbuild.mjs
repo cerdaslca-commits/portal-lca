@@ -24,6 +24,8 @@ const pre = (n, widths) => `<link rel="preload" as="image" type="image/webp" hre
 
 page('/donasi', "Donasi GENCAR — Hadirkan Al-Qur'an di Setiap Rumah | LCA",
   "Infak untuk Sensus Al-Qur'an, pendidikan baca Al-Qur'an gratis, wakaf mushaf, dan Peduli Guru Ngaji. Bayar via QRIS, transfer, atau Midtrans.", '/og-donasi.jpg', pre(1, [480, 960, 1400]))
+page('/transparansi', 'Transparansi — Laporan Terbuka Lembaga Cerdas Al-Qur\'an | LCA',
+  'Angka dampak, laporan bulanan, penggerak per bulan, dan legalitas LCA: setiap rupiah tercatat, setiap program terukur.', '/og-image.jpg', '')
 page('/desa', '85 Desa GENCAR — Pilih dan Dukung Desanya | LCA',
   'Daftar 85 desa/kelurahan garapan GENCAR di Cimahi, Bandung Barat, dan Kabupaten Bandung, lengkap dengan kebutuhan dana dan capaian program.', '/og-donasi.jpg', '')
 for (const v of villages) {
@@ -34,6 +36,6 @@ writeFileSync('dist/404.html', html)
 copyFileSync('vercel.json', 'dist/vercel.json')
 copyFileSync('src/data/shell.json', 'dist/shell.json')
 
-const urls = ['/', '/donasi', '/desa', ...villages.map((v) => `/desa/${v.id}`)]
+const urls = ['/', '/donasi', '/transparansi', '/desa', ...villages.map((v) => `/desa/${v.id}`)]
 writeFileSync('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${ORIGIN}${u}</loc><changefreq>${u.startsWith('/desa/') ? 'monthly' : 'weekly'}</changefreq><priority>${u === '/' ? '1.0' : u.split('/').length > 2 ? '0.6' : '0.9'}</priority></url>`).join('\n')}\n</urlset>\n`)
 console.log(`postbuild: ${urls.length - 1} route pages, 404.html, sitemap.xml (${urls.length} URLs)`)
