@@ -7,18 +7,25 @@ import { Reveal } from '@/components/Reveal'
 import { SectionHead } from '@/components/SectionHead'
 import { slideIn, staggerContainer, sectionReveal } from '@/lib/motion'
 
-const POSTERS = [byAlt('Barisan Penggerak'), byAlt('Penerima wakaf mushaf'), byAlt('apresiasi kepada guru ngaji')]
+// Sampul: foto lapangan untuk video lama; video baru memakai sampul dari videonya sendiri (v.poster).
+const POSTERS: Record<string, ReturnType<typeof byAlt>> = {
+  '/media/video/lca-perjalanan.mp4': byAlt('Barisan Penggerak'),
+  '/media/video/testimoni-penerima-manfaat.mp4': byAlt('Penerima wakaf mushaf'),
+  '/media/video/testimoni-guru-ngaji.mp4': byAlt('apresiasi kepada guru ngaji'),
+}
 
 function Reel({ i }: { i: number }) {
   const [play, setPlay] = useState(false)
-  const v = data.videos[i]
+  const v = data.videos[i] as { title: string; url: string; duration?: string; poster?: string; quote?: string }
+  const cover = POSTERS[v.url]
   return (
     <div className="group relative aspect-[9/16] overflow-hidden rounded-[1.5rem] bg-brand-night2 ring-1 ring-[var(--color-glass-border)]">
       {play ? (
-        <video src={v.url} poster={v.poster ?? POSTERS[i].src} controls autoPlay playsInline preload="metadata" className="h-full w-full object-cover" />
+        <video src={v.url} poster={cover?.src ?? v.poster} controls autoPlay playsInline preload="metadata" className="h-full w-full object-cover" />
       ) : (
         <button onClick={() => setPlay(true)} className="absolute inset-0 text-left" aria-label={`Putar video: ${v.title}`}>
-          <img {...pic(POSTERS[i], '(min-width: 768px) 33vw, 72vw')} alt="" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
+          {cover ? <img {...pic(cover, '(min-width: 768px) 25vw, 72vw')} alt="" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
+            : <img src={v.poster} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" />}
           <span className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 40%, oklch(22% 0.05 170 / 0.77))' }} />
           <span className="glass absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-brand-ondark transition-transform duration-200 group-hover:scale-110">
             <Play className="ml-1 h-6 w-6 fill-current" />
@@ -26,6 +33,7 @@ function Reel({ i }: { i: number }) {
           <span className="absolute inset-x-4 bottom-4">
             {v.duration && <span className="tnum text-xs text-brand-ondark2">{v.duration}</span>}
             <span className="mt-1 block font-semibold leading-snug text-brand-ondark">{v.title}</span>
+            {v.quote && <span className="mt-1.5 line-clamp-3 block text-xs italic leading-snug text-brand-ondark2">“{v.quote}”</span>}
           </span>
         </button>
       )}
@@ -43,8 +51,8 @@ export function Proof({ id = 'bukti', kicker = 'Bukti nyata', title = 'Lihat keg
         <Reveal variants={sectionReveal}>
           <SectionHead dark kicker={kicker} title={title} accent={accent} />
         </Reveal>
-        <Reveal variants={staggerContainer} className="hide-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
-          {[0, 1, 2].map((i) => (
+        <Reveal variants={staggerContainer} className="hide-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 lg:grid-cols-4">
+          {data.videos.map((_, i) => (
             <Reveal key={i} variants={slideIn} className="w-[72%] shrink-0 snap-center sm:w-[46%] md:w-auto"><Reel i={i} /></Reveal>
           ))}
         </Reveal>

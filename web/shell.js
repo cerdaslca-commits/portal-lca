@@ -150,6 +150,7 @@
         { t: 'gal', cats: ['Sensus'], k: 'Dokumentasi', h: 'Petugas sensus di lapangan' }],
       post: [{ t: 'kaj', ids: ['kajian-tanggungjawab'] }, { t: 'cta', items: ['relawan', 'desa', 'donasi'] }] },
     pendidikan: { pre: [
+        { t: 'vids', tag: 'pendidikan', k: 'Testimoni', h: 'Kesaksian warga & guru ngaji' },
         { t: 'dept', id: 'd-pendidikan', k: 'Pelaksana', h: 'Departemen Pendidikan (Depdik)', more: ['/departemen', 'Semua departemen & komunitas'] },
         { t: 'lap', h2: ['Departemen Pendidikan', 'Pendidikan Kancab 2 Katapang'], k: 'Laporan bulanan', h: 'Angka pendidikan bulan ini', more: ['/laporan', 'Buka laporan bulanan lengkap'] },
         { t: 'gal', cats: ['Imtihan'], k: 'Dokumentasi', h: 'Imtihan dan wisuda santri' }],
@@ -250,13 +251,14 @@
   // Video GENCAR & testimoni (disimpan di server portal sendiri, diputar langsung di halaman).
   var VIDS = [
     { src: '/media/video/lca-perjalanan.mp4', poster: '/media/video/lca-perjalanan-poster.webp', t: 'Mengenal Perjalanan Lembaga Cerdas Al-Qur\'an', k: 'Profil · 4 menit' },
+    { src: '/media/video/testimoni-ibu-yeni.mp4', poster: '/media/video/testimoni-ibu-yeni-poster.webp', t: 'Kesaksian Ibu Yeni, Cipageran', k: 'Testimoni · 2 menit', q: 'Saya sangat berterima kasih sekali karena itu sangat membantu sekali bagi saya khususnya yang ingin belajar tapi kesulitan untuk keluar rumah.', tag: 'pendidikan' },
     { src: '/media/video/testimoni-penerima-manfaat.mp4', poster: '/media/video/testimoni-penerima-manfaat-poster.webp', t: 'Kesaksian penerima manfaat', k: 'Testimoni · 2,5 menit' },
-    { src: '/media/video/testimoni-guru-ngaji.mp4', poster: '/media/video/testimoni-guru-ngaji-poster.webp', t: 'Kesaksian guru ngaji', k: 'Testimoni · 2,5 menit' }
+    { src: '/media/video/testimoni-guru-ngaji.mp4', poster: '/media/video/testimoni-guru-ngaji-poster.webp', t: 'Kesaksian guru ngaji', k: 'Testimoni · 2,5 menit', tag: 'pendidikan' }
   ];
-  function vidsBody() {
+  function vidsBody(tag) {
     var g = el('div', 'lca-vids');
-    VIDS.forEach(function (v) {
-      var f = el('figure', null, '<video src="' + v.src + '" poster="' + v.poster + '" controls playsinline preload="none"></video><figcaption><small>' + esc(v.k) + '</small><b>' + esc(v.t) + '</b></figcaption>');
+    VIDS.filter(function (v) { return !tag || v.tag === tag; }).forEach(function (v) {
+      var f = el('figure', null, '<video src="' + v.src + '" poster="' + v.poster + '" controls playsinline preload="none"></video><figcaption><small>' + esc(v.k) + '</small><b>' + esc(v.t) + '</b>' + (v.q ? '<em>“' + esc(v.q) + '”</em>' : '') + '</figcaption>');
       g.appendChild(f);
     });
     return g;
@@ -277,7 +279,7 @@
     else if (b.t === 'cta') { body = ctaBody(b.items); b.k = 'Ikut serta'; b.h = b.h || 'Bagaimana Anda bisa terlibat'; }
     else if (b.t === 'progs') body = progsBody();
     else if (b.t === 'calc') body = calcBody();
-    else if (b.t === 'vids') body = vidsBody();
+    else if (b.t === 'vids') body = vidsBody(b.tag);
     return body ? block(b, body) : null;
   }
 

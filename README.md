@@ -31,7 +31,7 @@ disisipkan oleh `server.js`:
 Menu global: **Beranda · Tentang · Program · Pustaka · Laporan & Media · Gabung · Donasi**.
 
 ### Video GENCAR & testimoni
-Tiga video (profil LCA, testimoni penerima manfaat, testimoni guru ngaji) disimpan di `media/video/` dan diputar dari server portal sendiri (mendukung Range untuk iPhone/Safari). Tampil di beranda (bagian Video, `/#video`), halaman GENCAR, Galeri, dan Donasi. Tautan YouTube tambahan ada di `web-src/src/data/business-data.json → youtube`.
+Video (profil LCA, testimoni Ibu Yeni Cipageran, testimoni penerima manfaat, testimoni guru ngaji) disimpan di `media/video/` dan diputar dari server portal sendiri (mendukung Range untuk iPhone/Safari). Tampil di beranda (bagian Video, `/#video`), halaman GENCAR, Galeri, dan Donasi. Tautan YouTube tambahan ada di `web-src/src/data/business-data.json → youtube`.
 
 ### Efek visual
 Semburat warna hijau-emas-merah-hitam + pola bintang segi-delapan (latar), kontur gradasi di setiap kartu, foto bergerak pelan (hanya saat terlihat, mati bila pengguna memilih "kurangi gerakan"), dan kata bersinar saat disentuh/diarahkan. Semua diatur di bagian akhir `web-src/public/shell.css` dan `shell.js`.
