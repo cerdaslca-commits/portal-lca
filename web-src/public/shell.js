@@ -138,6 +138,7 @@
   // Susunan setiap pusat program. pre = sebelum video, post = sesudah video.
   var HUBS = {
     gencar: { pre: [
+        { t: 'vids', k: 'Video', h: 'Video GENCAR & testimoni' },
         { t: 'progs', k: 'Empat program inti', h: 'Satu tujuan, empat layanan' },
         { t: 'page', id: 'dampak', k: 'Hasil & data', h: 'Dampak dan wilayah garapan', more: ['/dampak', 'Buka halaman Dampak & Wilayah'] },
         { t: 'gal', cats: ['GENCAR'], k: 'Dokumentasi', h: 'GENCAR di lapangan' }],
@@ -246,6 +247,20 @@
     });
     return w;
   }
+  // Video GENCAR & testimoni (disimpan di server portal sendiri, diputar langsung di halaman).
+  var VIDS = [
+    { src: '/media/video/lca-perjalanan.mp4', poster: '/media/video/lca-perjalanan-poster.webp', t: 'Mengenal Perjalanan Lembaga Cerdas Al-Qur\'an', k: 'Profil · 4 menit' },
+    { src: '/media/video/testimoni-penerima-manfaat.mp4', poster: '/media/video/testimoni-penerima-manfaat-poster.webp', t: 'Kesaksian penerima manfaat', k: 'Testimoni · 2,5 menit' },
+    { src: '/media/video/testimoni-guru-ngaji.mp4', poster: '/media/video/testimoni-guru-ngaji-poster.webp', t: 'Kesaksian guru ngaji', k: 'Testimoni · 2,5 menit' }
+  ];
+  function vidsBody() {
+    var g = el('div', 'lca-vids');
+    VIDS.forEach(function (v) {
+      var f = el('figure', null, '<video src="' + v.src + '" poster="' + v.poster + '" controls playsinline preload="none"></video><figcaption><small>' + esc(v.k) + '</small><b>' + esc(v.t) + '</b></figcaption>');
+      g.appendChild(f);
+    });
+    return g;
+  }
   function calcBody() {
     var calc = document.getElementById('calc'); if (!calc) return null;
     var prev = calc.previousElementSibling; if (prev && prev.tagName === 'H2' && /Kalkulator/i.test(prev.textContent)) prev.remove();
@@ -262,6 +277,7 @@
     else if (b.t === 'cta') { body = ctaBody(b.items); b.k = 'Ikut serta'; b.h = b.h || 'Bagaimana Anda bisa terlibat'; }
     else if (b.t === 'progs') body = progsBody();
     else if (b.t === 'calc') body = calcBody();
+    else if (b.t === 'vids') body = vidsBody();
     return body ? block(b, body) : null;
   }
 
@@ -341,6 +357,9 @@
       var p = PROGRAMS.filter(function (x) { return x.id === DEPT_TO_PROG[id]; })[0];
       var l = el('a', 'lca-deptlink', 'Lihat program ' + esc(p.name) + ' →'); l.href = '/' + p.id; a.appendChild(l);
     });
+    // Galeri: tampilkan video GENCAR & testimoni di bagian Video.
+    var gv = $$('#p-galeri > h2').filter(function (h) { return h.textContent.trim() === 'Video'; })[0];
+    if (gv && !$('#p-galeri .lca-vids')) { var vb = vidsBody(); vb.style.margin = '14px 0 18px'; gv.insertAdjacentElement('afterend', vb); }
     // Tautan lama yang masih menunjuk halaman Donasi lama → halaman donasi baru.
     $$('a[href="#donasi"]').forEach(function (a) { a.setAttribute('href', '/donasi'); });
   }

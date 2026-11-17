@@ -495,6 +495,19 @@ function serveFile(req, res, file, status) {
       h['Content-Encoding'] = 'gzip'; h['Vary'] = 'Accept-Encoding';
       return send(res, status || 200, req.method === 'HEAD' ? '' : buf, h);
     }
+    // Video/audio: dukung permintaan sebagian (Range) agar bisa diputar & digeser di iPhone/Safari dan HP lain.
+    if (/^(video|audio)\//.test(type)) {
+      h['Accept-Ranges'] = 'bytes';
+      const m = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '');
+      if (m && (m[1] || m[2])) {
+        let start = m[1] ? +m[1] : Math.max(0, st.size - +m[2]), end = m[1] && m[2] ? Math.min(+m[2], st.size - 1) : st.size - 1;
+        if (start > end || start >= st.size) { res.writeHead(416, Object.assign({}, SEC, { 'Content-Range': 'bytes */' + st.size })); return res.end(); }
+        h['Content-Range'] = 'bytes ' + start + '-' + end + '/' + st.size; h['Content-Length'] = end - start + 1;
+        res.writeHead(206, Object.assign({}, SEC, h));
+        if (req.method === 'HEAD') return res.end();
+        return fs.createReadStream(file, { start, end }).pipe(res);
+      }
+    }
     h['Content-Length'] = st.size;
     res.writeHead(status || 200, Object.assign({}, SEC, h));
     if (req.method === 'HEAD') return res.end();

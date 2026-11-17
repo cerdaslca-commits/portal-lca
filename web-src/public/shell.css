@@ -304,3 +304,12 @@ img.lca-kb.kb-live{animation-play-state:running}
 
 @media (prefers-reduced-motion:reduce){img.lca-kb{animation:none!important}.lca-w,.lca-glow{transition:none}}
 @media (max-width:640px){body::before{background-size:auto,auto,auto,auto,72px 72px}}
+
+/* video GENCAR & testimoni (halaman dalam) */
+.lca-vids{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.lca-vids figure{position:relative;margin:0;border-radius:20px;overflow:hidden;background:#06261d;box-shadow:0 14px 34px -22px rgba(0,40,30,.6)}
+.lca-vids video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#06261d}
+.lca-vids figure:first-child video{object-fit:contain}
+.lca-vids figcaption{padding:10px 14px 12px;color:#e6f4ec;font-family:var(--lc-sans)}
+.lca-vids figcaption small{display:block;font:600 .66rem/1.4 var(--lc-sans);letter-spacing:.12em;text-transform:uppercase;color:#f5cf6a}
+.lca-vids figcaption b{display:block;font:600 .92rem/1.35 var(--lc-sans);color:#fff;margin-top:2px}

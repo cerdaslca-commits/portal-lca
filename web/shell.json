@@ -162,7 +162,7 @@
     {
      "label": "Laporan Bulanan",
      "href": "/laporan",
-     "desc": "Semua departemen, diperbarui tiap bulan"
+     "desc": "Syuro sekretariat & departemen"
     },
     {
      "label": "Hasil Sensus Tanimulya",
@@ -173,6 +173,11 @@
      "label": "Transparansi",
      "href": "/transparansi",
      "desc": "Angka terbuka bulan demi bulan"
+    },
+    {
+     "label": "Video GENCAR & Testimoni",
+     "href": "/#video",
+     "desc": "Perjalanan LCA & kesaksian warga"
     },
     {
      "label": "Galeri Kegiatan",

@@ -15,7 +15,7 @@ function Reel({ i }: { i: number }) {
   return (
     <div className="group relative aspect-[9/16] overflow-hidden rounded-[1.5rem] bg-brand-night2 ring-1 ring-[var(--color-glass-border)]">
       {play ? (
-        <video src={v.url} poster={POSTERS[i].src} controls autoPlay playsInline className="h-full w-full object-cover" />
+        <video src={v.url} poster={v.poster ?? POSTERS[i].src} controls autoPlay playsInline preload="metadata" className="h-full w-full object-cover" />
       ) : (
         <button onClick={() => setPlay(true)} className="absolute inset-0 text-left" aria-label={`Putar video: ${v.title}`}>
           <img {...pic(POSTERS[i], '(min-width: 768px) 33vw, 72vw')} alt="" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
@@ -33,14 +33,15 @@ function Reel({ i }: { i: number }) {
   )
 }
 
-export function Proof() {
+export function Proof({ id = 'bukti', kicker = 'Bukti nyata', title = 'Lihat kegiatannya. Dengarkan ceritanya.', accent = 'Lanjutkan dampaknya.', feedOn = true, youtube = false }:
+  { id?: string; kicker?: string; title?: string; accent?: string; feedOn?: boolean; youtube?: boolean }) {
   const feed = bySection('gallery').slice(0, 6)
   return (
-    <section id="bukti" className="noise relative isolate overflow-hidden bg-brand-night py-20 md:py-28">
+    <section id={id} className="noise relative isolate overflow-hidden bg-brand-night py-20 md:py-28">
       <Mesh />
       <div className="container-x relative">
         <Reveal variants={sectionReveal}>
-          <SectionHead dark kicker="Bukti nyata" title="Lihat kegiatannya. Dengarkan ceritanya." accent="Lanjutkan dampaknya." />
+          <SectionHead dark kicker={kicker} title={title} accent={accent} />
         </Reveal>
         <Reveal variants={staggerContainer} className="hide-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
           {[0, 1, 2].map((i) => (
@@ -48,6 +49,19 @@ export function Proof() {
           ))}
         </Reveal>
 
+        {youtube && (
+          <div className="mt-10">
+            <p className="text-sm font-semibold text-brand-ondark">Tonton juga di YouTube LCA</p>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {data.youtube.map((y) => (
+                <li key={y.url}><a href={y.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm text-brand-ondark ring-1 ring-white/20 transition-colors hover:bg-white/20">
+                  <svg viewBox="0 0 24 24" className="h-4 w-4 fill-[#ff0033]" aria-hidden><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg>{y.title}</a></li>
+              ))}
+              <li><a href="https://www.youtube.com/@cerdaslca" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-brand-gold px-4 py-2 text-sm font-semibold text-brand-night">Kanal @cerdaslca ↗</a></li>
+            </ul>
+          </div>
+        )}
+        {feedOn && (<>
         <div className="mt-16 flex items-baseline justify-between">
           <h3 className="font-body text-xl font-light text-brand-ondark">Dokumentasi lapangan</h3>
           <a href="https://www.instagram.com/lembagacerdasalquran/" target="_blank" rel="noreferrer" className="text-sm font-semibold text-brand-gold hover:underline">@lembagacerdasalquran ↗</a>
@@ -60,6 +74,7 @@ export function Proof() {
             </li>
           ))}
         </ul>
+        </>)}
       </div>
     </section>
   )

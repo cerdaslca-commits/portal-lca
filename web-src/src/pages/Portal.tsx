@@ -7,6 +7,7 @@ import { Today } from '@/sections/portal/Today'
 import { Pustaka } from '@/sections/portal/Pustaka'
 import { Transparency } from '@/sections/portal/Transparency'
 import { CTA } from '@/sections/CTA'
+import { Proof } from '@/sections/donasi/Proof'
 import { StickyDonate } from '@/components/StickyDonate'
 
 export function Portal({ onDonate }: { onDonate: () => void }) {
@@ -16,6 +17,7 @@ export function Portal({ onDonate }: { onDonate: () => void }) {
       <Impact />
       <Stories />
       <Programs />
+      <Proof id="video" kicker="Video GENCAR & testimoni" title="Lihat kegiatannya. Dengarkan kesaksiannya." accent="Rasakan dampaknya." feedOn={false} youtube />
       <Reach />
       <Today />
       <Pustaka />
