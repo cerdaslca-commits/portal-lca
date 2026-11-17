@@ -257,7 +257,7 @@ const SVG = {
   pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>',
 };
 const escH = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const SHELL_FILES = ['shell.json', 'shell.css', 'shell.js', 'share-bar.js'].map(f => path.join(WEB, f));
+const SHELL_FILES = ['shell.json', 'shell.css', 'shell.js', 'share-bar.js', 'asmaul-husna.js'].map(f => path.join(WEB, f));
 let shellCache = { v: '', data: null };
 function shellVersion() {
   let v = '';
@@ -407,7 +407,16 @@ run();document.addEventListener('DOMContentLoaded',run);})();
 })();</script><script src="/share-bar.js" defer></script><script>(function(){
 })();</script>`;
 // Halaman baru di dalam portal lama: pusat program Tafaqur (isinya dilengkapi shell.js dari bagian terkait).
-const EXTRA_PAGES = `<section class="page" id="p-tafaqur" data-title="Tafaqur" data-sec="Program GENCAR" hidden>
+const EXTRA_PAGES = `<section class="page" id="p-asmaul-husna" data-title="99 Asmaul Husna" data-sec="Pustaka" hidden>
+<span class="eyebrow">Pustaka · Dzikir</span>
+<h1>99 Asmaul Husna <em>penenang hati</em></h1>
+<p class="ar" style="font-size:2rem;text-align:center;margin:10px 0 4px">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+<div class="dalil"><p class="ar">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</p><p class="tr">"Ingatlah, hanya dengan mengingat Allah hati menjadi tenteram."</p><cite>QS. Ar-Ra'd: 28</cite></div>
+<p class="lead">Sebutlah nama-nama Allah satu per satu dalam hati. Rasulullah ﷺ bersabda: "Sesungguhnya Allah memiliki sembilan puluh sembilan nama, seratus kurang satu. Barang siapa menjaganya (menghafal dan mengamalkannya), ia masuk surga." (HR. Bukhari no. 2736 dan Muslim no. 2677)</p>
+<div id="ah-app"></div>
+<p class="src">Daftar dan arti mengikuti riwayat at-Tirmidzi yang umum dipakai di Indonesia. Kemajuan dzikir hanya tersimpan di perangkat Anda.</p>
+</section>
+<section class="page" id="p-tafaqur" data-title="Tafaqur" data-sec="Program GENCAR" hidden>
 <span class="eyebrow">Program GENCAR</span>
 <div class="title-logo"><img src="/img/dept/tafaqur-384.webp" alt="Logo Tafaqur"><h1>Tafaqur: <em>infak kecil yang rutin</em></h1></div>
 <p class="lead">Tafaqur (Tabungan Infaq untuk program Al-Qur'an) adalah cara warga ikut menjaga GENCAR. Petugas Tafaqur berkunjung setiap bulan untuk mengambil infak, mengirim kuitansi online, dan mengingatkan tadarus. Dari infak inilah guru ngaji dibina, mushaf diwakafkan, dan sensus menjangkau desa-desa baru.</p>
@@ -442,7 +451,7 @@ function serveOldPortal(req, res, rel) {
         const fe = html.indexOf('</footer>', html.indexOf('</main>'));
         if (fe > -1) html = html.slice(0, fe + 9) + '\n' + shellFooter() + html.slice(fe + 9);
         const i = html.lastIndexOf('</html>');
-        const tail = BRIDGE.replace('<script src="/share-bar.js" defer></script>', `<script src="/shell.js?v=${v}" defer></script><script src="/share-bar.js?v=${v}" defer></script>`);
+        const tail = BRIDGE.replace('<script src="/share-bar.js" defer></script>', `<script src="/shell.js?v=${v}" defer></script><script src="/share-bar.js?v=${v}" defer></script><script src="/asmaul-husna.js?v=${v}" defer></script>`);
         html = i > -1 ? html.slice(0, i) + tail + '\n' + html.slice(i) : html + tail;
       }
       legacyCache.key = baseKey; legacyCache.html = html;
@@ -458,7 +467,7 @@ function serveSitemap(req, res) {
   for (const x of [read(path.join(WEB, 'sitemap.xml')), read(path.join(PUB, 'sitemap.xml'))]) {
     x.replace(/<loc>([^<]+)<\/loc>/g, (_, u) => { u = u.trim(); if (/\/(beranda)$/.test(u)) return; if (!seen.has(u)) { seen.add(u); locs.push(u); } });
   }
-  for (const u of ['https://cerdaslca.org/tafaqur']) if (!seen.has(u)) { seen.add(u); locs.push(u); }
+  for (const u of ['https://cerdaslca.org/tafaqur', 'https://cerdaslca.org/asmaul-husna']) if (!seen.has(u)) { seen.add(u); locs.push(u); }
   const xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + locs.map(u => '  <url><loc>' + u + '</loc></url>').join('\n') + '\n</urlset>\n';
   send(res, 200, req.method === 'HEAD' ? '' : xml, { 'Content-Type': MIME['.xml'], 'Cache-Control': 'public, max-age=3600' });
 }

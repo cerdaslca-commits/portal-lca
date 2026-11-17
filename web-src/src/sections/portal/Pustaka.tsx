@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight, BookOpen, CalendarDays, ClipboardList, FileBarChart, Images, Languages, ScrollText, UserPlus, Users } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, BookOpen, CalendarDays, ClipboardList, FileBarChart, Images, Languages, ScrollText, Sparkles, UserPlus } from 'lucide-react'
 import { Reveal } from '@/components/Reveal'
 import { SectionHead } from '@/components/SectionHead'
 import { cardReveal, staggerContainer } from '@/lib/motion'
@@ -8,11 +8,11 @@ import { ShareBar, absUrl } from '@/components/ShareBar'
 const QUICK = [
   { href: '/kata', label: "Kata Al-Qur'an Hari Ini", note: 'Satu kata setiap subuh', Icon: Languages },
   { href: '/kalender', label: 'Kalender Hijriah KHGT', note: 'Hari besar & puasa sunnah', Icon: CalendarDays },
+  { href: '/asmaul-husna', label: '99 Asmaul Husna', note: 'Dzikir penenang hati', Icon: Sparkles },
   { href: '/kisah', label: '100 Kisah Sirah', note: 'Satu kisah setiap hari', Icon: ScrollText },
   { href: '/sensus', label: "Sensus Al-Qur'an", note: 'Pendataan rumah demi rumah', Icon: ClipboardList },
   { href: '/laporan', label: 'Laporan Bulanan', note: 'Data & wilayah garapan', Icon: FileBarChart },
   { href: '/galeri', label: 'Galeri Foto & Video', note: 'Kegiatan di desa-desa', Icon: Images },
-  { href: '/tentang', label: 'Tentang LCA', note: 'Sejarah, visi, legalitas', Icon: Users },
   { href: '/gabung', label: 'Daftar Relawan', note: 'Guru ngaji & petugas sensus', Icon: UserPlus },
 ]
 

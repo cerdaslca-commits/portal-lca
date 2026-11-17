@@ -36,6 +36,9 @@ Video (profil LCA, testimoni Ibu Yeni Cipageran, testimoni penerima manfaat, tes
 ### Foto & video dari situs donasi GENCAR
 81 foto kegiatan (GENCAR, Sensus, Pendidikan, Peduli Guru Ngaji, Wakaf, Perjalanan GENCAR Cipageran) di `media/kegiatan/` (WebP ≤1280 px) dan 6 video tambahan (himbauan Lurah & Ketua MUI Cipageran, 3 video penyaluran wakaf bersubtitel, Rihlah ke-8 Guru Ngaji) di `media/video/`. Daftar foto & keterangannya ada di `DOCS` dan `VIDS` dalam `web-src/public/shell.js`.
 
+### 99 Asmaul Husna (`/asmaul-husna`)
+Halaman dzikir interaktif di menu Pustaka: meter ketenangan, tandai nama yang sudah disebut (tersimpan di perangkat), filter Semua/Belum/Sudah, dan tombol 🔊 bila perangkat punya suara bahasa Arab. Data di `web-src/public/asmaul-husna.json`, perilaku di `asmaul-husna.js`, halaman disisipkan `server.js` (EXTRA_PAGES).
+
 ### Efek visual
 Semburat warna hijau-emas-merah-hitam + pola bintang segi-delapan (latar), kontur gradasi di setiap kartu, foto bergerak pelan (hanya saat terlihat, mati bila pengguna memilih "kurangi gerakan"), dan kata bersinar saat disentuh/diarahkan. Semua diatur di bagian akhir `web-src/public/shell.css` dan `shell.js`.
 
