@@ -397,7 +397,7 @@ function hid(){return location.hash.slice(1)||location.pathname.replace(/^\\/+|\
 function chk(){var t=MAP[hid()];if(t){location.replace(t);return true}}
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;var t=MAP[a.getAttribute('href').slice(1)];if(t){e.preventDefault();e.stopPropagation();location.href=t}},true);
 window.addEventListener('hashchange',chk,true);chk();
-(function(){var D='/img/dept/',K={lca:'lca',gencar:'gencar',gemar:'gemar',sensus:'sensus',depdik:'pendidikan',tafaqur:'tafaqur',muslimah:'muslimah',koperasi:'koperasi',kcc:'kcc'},
+(function(){var D='/img/dept/',K={lca:'lca',gencar:'gencar',gemar:'gemar',sensus:'sensus',depdik:'pendidikan',tafaqur:'tafaqur',muslimah:'muslimah',koperasi:'koperasi',kcc:'kcc',kcp:'kcp'},
 A={'d-wakaf':'wakaf','d-it':'it','d-kcp':'kcp','d-koperasi':'koperasi','d-muslimah':'muslimah','d-tafaqur':'tafaqur','d-pendidikan':'pendidikan','d-sensus':'sensus'},
 N={'LCA':'lca','GENCAR':'gencar','GEMAR':'gemar','Sensus':'sensus','Pendidikan':'pendidikan','Tafaqur':'tafaqur','Wakaf':'wakaf','Kiprah Muslimah':'muslimah','Mitra Berkah':'koperasi','Kaca Cermin':'kcc','Kaca Patri':'kcp','Informasi':'it'};
 function set(i,k){i.src=D+k+'-384.webp';i.classList.remove('dark');i.style.background='transparent';i.style.padding='0';i.style.borderRadius='50%';i.style.objectFit='contain'}
