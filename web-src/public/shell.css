@@ -374,3 +374,18 @@ img.lca-kb.kb-live{animation-play-state:running}
 .ah-done .ah-close{background:linear-gradient(135deg,#f7eeda,#e2f3ea);box-shadow:0 0 0 2px #f0bb3b}
 @media (max-width:520px){.ah-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.ah-card .ar{font-size:1.7rem}.ah-meter{padding:18px;gap:14px}.ah-ring{width:104px;height:104px}.ah-filter{top:80px}}
 @media (prefers-reduced-motion:reduce){.ah-card.pop{animation:none}}
+/* Asmaul Husna: garis tepi pelangi tebal & bergerak di setiap kartu, meter, filter, dan penutup */
+.ah-card::after,.ah-close::after,.ah-filter::after{content:'';position:absolute;inset:calc(var(--lc-ring) * -1);border-radius:inherit;padding:var(--lc-ring);pointer-events:none;z-index:1;
+  background:var(--lc-rainbow);opacity:.95;animation:lc-spin 6s linear infinite paused;animation-delay:var(--ah-d,0s);transition:filter .3s,opacity .3s;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.ah-close{position:relative}
+.ah-card.lca-live::after,.ah-close.lca-live::after,.ah-filter.lca-live::after{animation-play-state:running}
+.ah-card:hover::after,.ah-card.focus::after{filter:saturate(1.3) brightness(1.08);animation-duration:2.5s}
+.ah-card.ok::after{opacity:1;filter:saturate(1.25)}
+.ah-card{box-shadow:0 10px 24px -18px rgba(124,92,255,.45)}
+.ah-card.focus{box-shadow:0 0 0 4px rgba(240,187,59,.55),0 14px 34px -18px rgba(0,50,38,.5)}
+.ah-meter{box-shadow:0 0 0 3px #ffd21f,0 0 0 6px rgba(124,92,255,.35),0 20px 50px -26px rgba(0,45,33,.7)}
+/* tombol suara tidak menimpa teks */
+.ah-has-voice .ah-card{padding-bottom:44px}
+.ah-say{z-index:2;left:50%;right:auto;bottom:8px;transform:translateX(-50%);width:34px;height:30px;border-radius:999px}
+@media (prefers-reduced-motion:reduce){.ah-card::after,.ah-close::after,.ah-filter::after{animation:none!important}}

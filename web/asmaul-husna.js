@@ -45,7 +45,16 @@
         '<span class="ar" lang="ar" dir="rtl">' + esc(x.ar) + '</span><b>' + esc(x.lat) + '</b><small>' + esc(x.arti) + '</small>' +
         '<button type="button" class="ah-say" data-say="' + x.n + '" aria-label="Dengarkan lafaz ' + esc(x.lat) + '">🔊</button></li>';
     }).join('');
+    ring();
     update();
+  }
+  // Garis pelangi: setiap kartu warnanya bergeser (warna-warni), berputar hanya saat terlihat.
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) { en.target.classList.toggle('lca-live', en.isIntersecting); });
+  }) : null;
+  function ring() {
+    Array.prototype.forEach.call(grid.children, function (li, i) { li.style.setProperty('--ah-d', (-((i * 0.47) % 6)).toFixed(2) + 's'); if (io) io.observe(li); });
+    if (io) { io.observe(root.querySelector('.ah-close')); io.observe(root.querySelector('.ah-filter')); }
   }
   function update() {
     var n = NAMES.filter(function (x) { return said[x.n]; }).length;
